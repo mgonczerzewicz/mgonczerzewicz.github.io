@@ -1,0 +1,519 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit&family=Montserrat&family=Nunito&family=Open+Sans&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+	padding: 0;
+	margin: 0;
+	outline: none;
+	border: none;
+	box-sizing: border-box;
+}
+
+html::-webkit-scrollbar {
+	width: 0px;
+}
+
+img{
+	width: 100%;
+	display: flex;
+}
+
+a{
+	text-decoration: none;
+}
+
+body {
+	font-family: 'Poppins', sans-serif;
+	background-color: #18181B;
+}
+
+nav {
+	max-width: 1200px;
+	margin: auto;
+	padding: 2rem 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 2rem;
+}
+
+.nav-logo {
+	max-width: 100px;
+}
+
+.nav-links {
+	list-style: none;
+	display: flex;
+	align-items: center;
+	gap: 3rem;
+}
+
+.link a{
+	position: relative;
+	padding-bottom: 0.75rem;
+	color: #fff;
+}
+
+.link a::after{
+	content: "";
+	position: absolute;
+	height: 2px;
+	width: 0;
+	bottom: 0;
+	left: 0;
+	background-color: #ff4057;
+	transition:  all 0.3s ease;
+}
+
+.link a:hover::after{
+	width: 70%;
+}
+
+.btn{
+	padding: 1rem 2rem;
+	font-size: 1rem;
+	color: #fff;
+	background-color: #ff4057;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.btn a{
+	color: #fff;
+}
+
+.btn:hover{
+	background-color: hsl(353, 85%, 63%);
+}
+
+.container{
+	max-width: 1200px;
+	margin: auto;
+	padding: 5rem 2rem;
+}
+
+.blur{
+	position: absolute;
+	box-shadow: 0 0 1000px 50px #ff4057;
+	z-index: -100;
+}
+
+.blur2{
+	position: absolute;
+	right: 0;
+	box-shadow: 0 0 1000px 50px #ff4057;
+	z-index: -100;
+}
+
+header{
+	position: relative;
+	padding-top: 2rem;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	align-items: center;
+	gap: 2rem;
+}
+
+header .content h4{
+	margin-bottom: 1rem;
+	color: #fff;
+	font-size: 1rem;
+	font-weight: 600;
+}
+
+header .content h1{
+	color: #fff;
+	margin-bottom: 1rem;
+	font-size: 2rem;
+	font-weight: 700;
+	line-height: 4rem;
+}
+
+header .content h1 span{
+	-webkit-text-fill-color: transparent;
+	-webkit-text-stroke: 1px #fff;
+}
+
+header .content p{
+	margin-bottom: 2rem;
+	color: #ccc;
+}
+
+header .image {
+	position: relative;
+}
+
+header .image::before{
+	content: "o";
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	font-size: 38rem;
+	font-weight: 400;
+	line-height: 20rem;
+	color: #ff4057;
+	opacity: 0.7;
+	z-index: -100;
+}
+
+header .image img{
+	max-width: 600px;
+	margin: auto;
+}
+
+section .header{
+	margin-bottom: 1rem;
+	color: #fff;
+	text-align: center;
+	font-size: 2.25rem;
+	font-weight: 600;
+}
+
+.features{
+    margin-top: 4rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+.features .card{
+    background-color: #27272a;
+    padding: 1rem;
+    border: 2px solid transparent;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.features .card:hover{
+    background-color: #323232;
+    border-color: #fff;
+}
+
+.features .card span{
+    display: inline-block;
+    background-color: #ff4057;
+    padding: 2px 9px;
+    margin-bottom: 1rem;
+    font-size: 1.75rem;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.features .card h4{
+    margin-bottom: 1rem;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.features .card p{
+    color: #ccc;
+    margin-bottom: 1rem;
+}
+
+.features .card a{
+    color: #fff;
+	font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.features .card a:hover{
+    color: #ff4057;
+}
+
+.sub-header{
+	max-width: 600px;
+	margin: auto;
+	text-align: center;
+	color: #ccc;
+}
+
+.pricing {
+	margin-top: 4rem;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 2rem;
+}
+
+.pricing .card{
+	padding: 3rem 2rem;
+	background-color: #27272a;
+	display: flex;
+	flex-direction: column;
+	border: 2px solid transparent;
+	border-radius: 15px;
+	transition: all 0.3s ease;
+	color: #fff
+}
+
+.pricing .card:hover{
+	background-color: #323232;
+	border-color: #fff;
+}
+
+.pricing .card .content{
+	flex: 1;
+	margin-bottom: 2rem;
+}
+
+.pricing .card h4{
+	margin-bottom: 1rem;
+	font-size: 1.2rem;
+	font-weight: 500;
+	padding-bottom: 1rem;
+	border-bottom: 2px solid #ff4057;
+}
+
+.pricing .card p{
+	color: #fff;
+	margin-bottom: 0.75rem;
+}
+
+.under-sub-header{	
+	margin-top: 4rem;
+	display: flex;
+	gap: 2rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.under-sub-header a{
+	background-color: #ff4057;
+	padding: 1rem 2rem;
+	border-radius: 15px;
+	color: #fff;
+	transition: all 0.3s ease;
+}
+
+.under-sub-header a:hover{
+	background-color: hsl(353, 85%, 63%);
+	color: black;
+}
+
+.about {
+	margin-top: 4rem;
+	display: grid;
+	grid-template-columns: repeat(1, 1fr);
+	gap: 2rem;
+}
+
+.about .card{
+	padding: 3rem 2rem;
+	background-color: #27272a;
+	display: flex;
+	gap: 2rem;
+	border: 2px solid transparent;
+	border-radius: 15px;
+	transition: all 0.3s ease;
+	color: #fff
+}
+
+section .header{
+	margin-bottom: 1rem;
+	color: #fff;
+	text-align: center;
+	font-size: 2.25rem;
+	font-weight: 600;
+}
+
+.form-section{
+	padding: 40px 50px 30px;
+	width: 550px;
+	background-color: #27272a;
+	display: flex;
+	gap: 2rem;
+    justify-content: center;
+    align-items: center;
+	margin: auto;
+	border-radius: 15px;
+	transition: all 0.3s ease;
+	border: 2px solid transparent;
+	margin-bottom: 3rem;
+}
+
+.form-section:hover{
+	background-color: #323232;
+	border-color: #fff;
+}
+
+.form-section form{
+	margin-top: 15px;
+}
+
+
+.form-group label{
+	font-size: 0.8rem;
+	font-weight: 600;
+	color: #ff4057;
+	display: block;
+	margin-bottom: 0.75rem;
+}
+
+.form-group p.required{
+	color: #ff4057;
+	float:right;
+	font-size: 0.7rem;
+}
+
+.form-group p.commands{
+	float:left;
+	font-size: 0.8rem;
+	color: #fff;
+}
+
+.form-group input, .form-group textarea{
+	font-size: 0.8rem;
+	font-weight: 500;
+	width: 100%;
+	color: #000;
+	padding: 0.3rem;
+	border: 2px solid #ccc;
+	border-radius: 0.3rem;
+	outline: none;
+}
+
+.form-group textarea{
+	height: 150px;
+	resize: none;
+}
+
+.send-btn{
+	color: #fff;
+	background-color: #ff4057;
+	padding: 6px 20px;
+	border: none;
+	border-radius: 5px;
+	font-size: 15px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.send-btn:hover{
+	color: #000;
+	background-color: hsl(353, 85%, 63%);
+}
+
+.result-container {
+	margin-bottom: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.result-container p{
+	color: #fff;
+	font-size: 0.875rem;
+	font-weight: 500;
+	opacity: 0;
+	transition: all 0.3s ease;
+}
+
+footer{
+	position: relative;
+	display: grid;
+	grid-template-columns: 400px repeat(3, 1fr);
+	gap: 2rem;
+	border-top: 2px solid #ff4057;
+}
+
+footer .column .logo {
+	max-width: 100px;
+	margin-bottom: 2rem;
+}
+
+footer .column p{
+	color: #ccc;
+	margin-bottom: 2rem;
+}
+
+footer .column .socials{
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+footer .column .socials a{
+	color: #ccc;
+	border: 1px solid #ccc;
+	padding: 5px 10px;
+	font-size: 1.25rem;
+	border-radius: 100%;
+	transition: all 0.3s ease;
+}
+
+footer .column .socials a:hover{
+	color: #fff;
+	background-color: #ff4057;
+	border-color: #ff4057;
+}
+
+footer .column h4{
+	color: #fff;
+	margin-bottom: 2rem;
+	font-size: 1.2rem;
+	font-weight: 500;
+}
+
+footer .column > a{
+	display: block;
+	color: #ccc;
+	margin-bottom: 1rem;
+	transition: all 0.3s ease;
+}
+
+
+footer .column > a:hover{
+	color: #ff4057;
+}
+
+.copyright{
+	max-width: 1200px;
+	margin: auto;
+	padding: 1rem;
+	color: #fff;
+	font-size: 0.8rem;
+	text-align: center;
+}
+
+@media (width < 900px){
+    .nav-links{
+        display: none;
+    }
+    header{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    header .image{
+        grid-area: 1/1/2/2;
+    }
+    .features{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .pricing{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    footer{
+        grid-template-columns: 1fr 200px;
+    }
+	.form-section{
+		width: 88%;
+	}
+}
+
+@media (width < 600px){
+    header .image::before{
+        display: none;
+    }
+
+    .features{
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .pricing{
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    footer{
+        grid-template-columns: 1fr 150px;
+    }
+}
