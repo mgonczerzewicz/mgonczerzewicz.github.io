@@ -164,6 +164,7 @@
 	max-width: 100%;
 	max-height: 100%;
 	object-fit: cover;
+	border-radius: 10px;
 }
 
 .about-img img{
@@ -194,7 +195,8 @@
 /* ///////////..PROCESS-SPACE../////////// */
 
 .process-container{
-		margin: 3rem;
+	margin: 3rem;
+	padding: 0 1rem;
 }
 
 .process-items {
@@ -368,7 +370,7 @@
 	flex-direction: column;
 }
 
-.about-container, .contact-container {
+.cont-container, .contact-container {
 	flex: 1;
 	padding: 0;
 	box-sizing: border-box;
@@ -377,6 +379,10 @@
 .contact-text h5 {
 	margin: 0 0 10px;
 	font-size: 18px;
+}
+
+.contact-text p {
+	color: var(--grey_font);
 }
 
 .contact-text p {
