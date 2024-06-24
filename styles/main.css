@@ -204,7 +204,7 @@ body {
 .main-header.scrolled .menu-icon__line,
 .main-header.scrolled .menu-icon__line::before,
 .main-header.scrolled .menu-icon__line::after {
-	background: white;
+	background: var(--black-font);
 }
 
 .logo a {
@@ -353,16 +353,18 @@ body {
 	flex-direction: column;
 	align-items: center;
 	text-align: center;
-	padding: 2rem 1rem; 
+	padding: 2rem 1rem;
 	width: 27%; /* Example fixed width */
 	transition: all 300ms;
 	-webkit-box-shadow: 0px 0px 5px 0px rgba(66, 68, 90, 1);
 	-moz-box-shadow: 0px 0px 5px 0px rgba(66, 68, 90, 1);
 	box-shadow: 0px 0px 5px 0px rgba(66, 68, 90, 1);
+	background-color: rgb(255, 127, 62);
+	border-radius: 15px;
 }
 
 .elementor-widget-item:hover {
-	background-color: rgba(255, 127, 62, 0.5);
+	background-color: rgba(255, 127, 62, 0.66);
 }
 
 .elementor-widget-item i {
@@ -370,7 +372,7 @@ body {
 	margin-bottom: 1rem; /* Space between icon and h4 */
 	width: 60px; /* Fixed width for the circle */
 	height: 60px; /* Fixed height for the circle */
-	border: 3px solid var(--main_color); /* Blue border */
+	border: 3px solid rgba(0, 0, 0, 0.88); /* Blue border */
 	border-radius: 50%; /* Make it a circle */
 	display: flex;
 	align-items: center;
@@ -388,7 +390,7 @@ body {
 
 .elementor-widget-item span {
 	font-size: 1rem; /* Example font size */
-	color: black;
+	color: rgba(0, 0, 0, 0.88);
 }
 
 /* ///////////..STICKY../////////// */
@@ -812,13 +814,30 @@ p {
 
 	.about-container {
 		flex-direction: column; /* Stack elements vertically */
-		padding: 1rem; /* Adjust padding for smaller screens */
+		padding: 1rem ; /* Adjust padding for smaller screens */
+		padding-bottom: 3rem;
 	}
 
 	.about-img,
 	.about-text {
 		width: 100%;
 		padding: 0.5rem 0; /* Adjust padding for smaller screens */
+	}
+
+	/* ///////////..PROCESS../////////// */
+
+	.elementor-widget-container {
+		margin: 1rem;
+	}
+
+	.elementor-widget-items {
+		flex-direction: column; /* Stack items vertically */
+		align-items: center; /* Center items horizontally */
+	}
+
+	.elementor-widget-item {
+		width: 100%; /* Make items full-width on small screens */
+		margin-bottom: 1rem; /* Space between items on small screens */
 	}
 
 	/* ///////////..PROCESS../////////// */
