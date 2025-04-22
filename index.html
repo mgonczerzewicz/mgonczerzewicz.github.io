@@ -2,258 +2,381 @@
 <html lang="pl">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>COMPANY: Regeneracja i czyszczenie filtrów DPF</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
-    rel="stylesheet">
-  <link rel="icon" type="image/png" href="">
-  <link rel="stylesheet" href="styles/main.css" />
-  <meta name="google" content="notranslate">
-  <script src="https://kit.fontawesome.com/482293d510.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoGuess - Znajdz lokalizacje</title>
+    <style>
+        /* CSS bez zmian - tak jak w Twoim ostatnim kodzie */
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        #street-view {
+            height: 100vh;
+            width: 100vw;
+        }
+
+        #map {
+            height: 250px;
+            width: 350px;
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            border: 2px solid #555;
+            border-radius: 10px;
+            z-index: 999;
+            transition: all 0.3s ease-in-out;
+            transform-origin: bottom right;
+            transform: scale(1);
+            background-color: #e8e8e8;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        #map:hover {
+            transform: scale(1.6);
+        }
+
+        #results {
+            position: fixed;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 10px 20px;
+            border-radius: 8px;
+            z-index: 1000;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        #round-info {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        #info {
+            margin-top: 5px;
+            font-weight: normal;
+            font-size: 15px;
+            color: #555;
+        }
+
+        #guess-button,
+        #next-round {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1001;
+            padding: 12px 25px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: none;
+            color: white;
+            transition: background-color 0.2s ease;
+        }
+
+        #guess-button {
+            background-color: #4CAF50;
+        }
+
+        #guess-button:hover:not(:disabled) {
+            background-color: #45a049;
+        }
+
+        #guess-button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        #next-round {
+            background-color: #008CBA;
+        }
+
+        #next-round:hover {
+            background-color: #007ba7;
+        }
+
+        #score-display {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1001;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 8px 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .leaflet-control-attribution {
+            font-size: 10px !important;
+            background: rgba(255, 255, 255, 0.7) !important;
+        }
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 </head>
-<!-- FAJNE : https://www.flux-academy.com/blog/web-design-portfolio-examples -->
 
 <body>
+    <div id="street-view"></div>
+    <div id="map"></div>
 
-  <section id="header-contact">
-    <div>
-      <a href="tel:+1234567890" class="un1">Zadzwoń do nas: +48 123-456-789</a>
-      <a href="mailto:info@example.com" class="un1">Napisz do nas: kontakt@dpf.pl</a>
-    </div>
-  </section>
-
-  <!-- HEADER SECTION -->
-
-  <header class="main-header">
-    <div class="logo">
-      <a href="#">Company</a>
+    <div id="results">
+        <div id="round-info">Runda 1</div>
+        <div id="info"></div>
     </div>
 
-    <input type="checkbox" class="menu-btn" id="menu-btn">
-    <label for="menu-btn" class="menu-icon">
-      <span class="menu-icon__line"></span>
-    </label>
+    <div id="score-display">Suma: 0 pkt</div>
 
-    <ul class="nav-links">
-      <li class="nav-link">
-        <a href="#" class="active">Strona domowa</a>
-      </li>
-      <li class="nav-link">
-        <a href="#">DPF</a>
-      </li>
-      <li class="nav-link">
-        <a href="#">Oferta</a>
-      </li>
-      <li class="nav-link">
-        <a href="#" class="btn-contact">Skontakuj się z nami</a>
-      </li>
-    </ul>
-  </header>
+    <button id="guess-button">Zaznacz odpowiedź</button>
+    <button id="next-round" style="display:none">Następna runda</button>
 
-  <!-- HERO SECTION -->
 
-  <div class="hero">
-    <h1 class="hero1 active">Profesjonalne czyszczenie DPF bez kompromisów</h1>
-    <h1 class="hero2">Odbieramy, czyścimy, dowozimy!</h1>
-    <h1 class="hero2">Przywróć pełną moc swojemu silnikowi!</h1>
-    <h1 class="hero2">Szybkie i skuteczne rozwiązania dla filtrów DPF</h1>
-  </div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
-  <!-- ABOUT SECTION -->
+    <script>
+        let panorama, map, actualLocation, guessMarker, actualMarker, polyline;
+        let totalScore = 0;
+        let roundNumber = 0;
 
-  <!-- <section class="about">
-  <div class="about-container">
-    <div class="about-text">
-      <h3 class="h3-topic">O nas</h3>
-      <p>Jesteśmy firmą z wieloletnim doświadczeniem w czyszczeniu filtrów cząstek stałych do samochodów osobowych, ciężarowych oraz przemysłowych. Posiadamy najlepszą maszynę do czyszczenie filtra cząstek stałych, co daje nam pewność że oferujemy klientom najwyższą jakość usług.</p>
-      <div class="empty-space"></div>
-      <p>Dbamy o każdy szczegół, aby zapewnić kompleksową obsługę naszych klientów. Proces czyszczenia rozpoczynamy od dokładnej diagnozy stanu filtra, co pozwala nam dobrać odpowiednią metodę czyszczenia. Dzięki temu każdy filtr odzyskuje swoje pierwotne parametry techniczne i jest gotowy do dalszej eksploatacji.</p>
-    </div>
-    <div class="about-img">
-      <img src="src/img/dpf-img.jpg" alt="">
-    </div>
-  </div>
-</section> -->
+        // ### PRZYWRÓCONO DEFINICJE IKON ###
+        const guessIcon = L.icon({
+            iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+            iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+            iconSize: [20, 33], iconAnchor: [10, 33], popupAnchor: [1, -30], shadowSize: [33, 33]
+        });
+        const actualIcon = L.icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-gold.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+            iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowSize: [41, 41]
+        });
 
-  <section class="about">
-    <div class="about-container">
-      <div class="about-text">
-        <h3 class="h3-topic">Regeneracja filtrów DPF, FAP</h3>
-        <div class="empty-space"></div>
-        <p>Masz problem z zapchanym filtrem DPF, FAP? Skorzystaj z oferowanej przez nas usługi czyszczenia i regeneracji
-          filtrów DPF, FAP, która pozwala przywrócić filtrowi parametry zbliżone do fabrycznych. Szybko, skutecznie i w
-          korzystnej cenie. W dodatku oferujemy usługę z dojazdem w obie strony - odbieramy filtr od Ciebie, czyścimy i
-          odwozimy, o nic nie musisz się martwić!</p>
-        <div class="empty-space"></div>
-        <p>Do czyszczenia używamy nowoczesnej, wysokiej klasy maszyny wyprodukowanej w Wielkiej Brytanii. Czyszczenie
-          odbywa się w kilku etapach i wykorzystuje działanie profesjonalnych środków czyszczących oraz wodę pod wysokim
-          ciśnieniem. Popiół, sadza i inne zanieczyszczenia są dokładnie wypłukiwane, także z miejsc trudnodostepnych.
-          Czyszczenie jest na tyle dokładne, że pozwala uzyskać parametry części zbliżone do wartości fabrycznych.</p>
-          <div class="empty-space"></div>
-      </div>
-      <div class="about-img">
-        <img src="src/img/dpf-img.jpg" alt="">
-      </div>
-    </div>
-  </section>
+        // ### PRZYWRÓCONO IMPLEMENTACJĘ FUNKCJI ###
+        function getRandomLocation() {
+            const lat = (Math.random() * 170 - 85).toFixed(6);
+            const lng = (Math.random() * 360 - 180).toFixed(6);
+            return { lat: parseFloat(lat), lng: parseFloat(lng) };
+        }
 
-  <!-- PROCESS SECTION -->
+        // ### PRZYWRÓCONO IMPLEMENTACJĘ FUNKCJI ###
+        function initStreetView(location) {
+            const panoramaOptions = {
+                position: location,
+                pov: { heading: Math.random() * 360, pitch: 0 },
+                zoom: 1,
+                visible: true,
+                addressControl: false,
+                linksControl: true,
+                panControl: true,
+                motionTracking: false,
+                motionTrackingControl: false,
+                enableCloseButton: false,
+                fullscreenControl: false
+            };
 
-  <!-- <div class="sticky-div-tel" id="sticky">
-  <i class="fa-solid fa-phone"></i>
-  <div class="text-wrapper">
-    <p>Zadzwoń do nas!</p>
-    <a href="tel:123-456-789">+48 123-456-789</a>
-  </div>
-</div> -->
+            if (panorama) {
+                panorama.setOptions(panoramaOptions);
+                panorama.setVisible(true);
+            } else {
+                panorama = new google.maps.StreetViewPanorama(
+                    document.getElementById('street-view'), panoramaOptions
+                );
+            }
+        }
 
-  <!-- ELEMENTOR-WIDGET SECTION -->
+        // function initMap() {
+        //     map = L.map('map', {
+        //         zoomControl: false,
+        //         attributionControl: true
+        //     }).setView([20, 0], 1);
 
-  <section class="elementor-widget">
-    <div class="elementor-widget-container">
-      <h3 class="h3-topic2">Dlaczego warto wybrać nasze usługi?</h3>
-      <div class="elementor-widget-items">
-        <div class="elementor-widget-item">
-          <i class="fa-solid fa-gear"></i>
-          <h4>Doświadczeni specjaliści</h4>
-          <span>Posiadamy wieloletnie doświadczenie w naprawach aut osobowych i ciężarowych. W naszym zespole znajdziesz specjalistów, którzy sprawnie i profesjonalnie zajmą się twoim filtrem. Podejmiemy się nawet najgorszych przypadków!</span>
-        </div>
-        <div class="elementor-widget-item">
-          <i class="fa-solid fa-check"></i>
-          <h4>Gwarancja jakości</h4>
-          <span>Używamy urządzenia o innowacyjnej opatentowanej metodzie czyszczenia filtrów, której skuteczność sięga 100%, dzięki czemu filtr po regeneracji będzie wyglądać i działać jak nowy.
-            <br><br>
-            Na czyszczenie udzielamy nawet do <b>12 miesięcznej gwarancji</b> bez limitu kilometrów.</span>
-        </div>
-        <div class="elementor-widget-item">
-          <i class="fa-solid fa-truck-fast"></i>
-          <h4>Odbieramy, czyścimy, dowozimy</h4>
-          <span>Oferujemy transport w obie strony. To proste - wystarczy zadzwonić i zamówić usługę, a my zajmiemy się resztą! Regenerację filtra wykonamy w dniu dostarczenia.</span>
-        </div>
-      </div>
-    </div>
-  </section>
+        //     const topoLayer = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+        //         maxZoom: 17,
+        //         attribution: 'Map data: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> contributors'
+        //     }).addTo(map);
 
-  <!-- PROCESS SECTION -->
+        //     map.on('click', function (e) {
+        //         if (document.getElementById('guess-button').style.display !== 'none') {
+        //             if (guessMarker) map.removeLayer(guessMarker);
+        //             guessMarker = L.marker(e.latlng, { icon: guessIcon }).addTo(map);
+        //         }
+        //     });
+        // }
+        function initMap() {
+            map = L.map('map', {
+                zoomControl: false,
+                attributionControl: true
+            }).setView([20, 0], 2);
 
-  <section class="process">
-    <div class="process-container">
-      <h3 class="h3-topic">Nasz proces</h4>
-        <div class="process-items">
-          <div class="process-item">
-            <i class="fa-solid fa-screwdriver-wrench"></i>
-            <h4>Demontaż i inspekcja</h4>
-            <span>Filtr DPF z pojazdu dokładnie sprawdzamy pod kątem uszkodzeń oraz stopnia zanieczyszczenia.</span>
-          </div>
-          <div class="process-item">
-            <i class="fa-solid fa-soap"></i>
-            <h4>Wstępne czyszczenie</h4>
-            <span>Używamy sprężonego powietrza i wody pod wysokim ciśnieniem, aby usunąć luźne osady i
-              zanieczyszczenia.</span>
-          </div>
-          <div class="process-item">
-            <i class="fa-solid fa-flask-vial"></i>
-            <h4>Chemiczne czyszczenie</h4>
-            <span>Stosujemy specjalistyczne środki chemiczne do rozpuszczenia trudnych zanieczyszczeń, a następnie
-              dokładnie przepłukujemy filtr.</span>
-          </div>
-          <div class="process-item">
-            <i class="fa-solid fa-truck"></i>
-            <h4>Osuszanie i montaż</h4>
-            <span>Suszymy filtr sprężonym powietrzem, ponownie sprawdzamy jego stan, a następnie montujemy go z powrotem
-              do pojazdu.</span>
-          </div>
-        </div>
-    </div>
-  </section>
+            const isRetina = L.Browser.retina;
+            const apiKey = '3c38ccdfb92f40f3ba2fa52501a575cb';
 
-  <!-- BANNER IMG -->
+            const tileUrl = isRetina
+                ? `https://maps.geoapify.com/v1/tile/klokantech-basic/{z}/{x}/{y}@2x.png?apiKey=${apiKey}`
+                : `https://maps.geoapify.com/v1/tile/klokantech-basic/{z}/{x}/{y}.png?&apiKey=${apiKey}`;
 
-  <!-- <div class="banner-img"><img src="src/img/truck-banner.jpg" alt=""></div> -->
+            L.tileLayer(tileUrl, {
+                attribution: 'Powered by Geoapify',
+                maxZoom: 20,
+                id: 'terrain-classic'
+            }).addTo(map);
 
-  <!-- CONTACT SECTION -->
+            map.on('click', function (e) {
+                if (document.getElementById('guess-button').style.display !== 'none') {
+                    if (guessMarker) map.removeLayer(guessMarker);
+                    guessMarker = L.marker(e.latlng, { icon: guessIcon }).addTo(map);
+                }
+            });
+        }
 
-  <!-- <section class="contact" id="contact">
-    <h3 class="h3-topic">Potrzebujesz więcej informacji?</h3>
-    <div class="contact-content">
-      <div class="cont-container">
-        <div class="contact-text">
-          <h5 class="h5-undertopic">Skontakuj się z nami</h5>
-          <p>Oferujemy profesjonalne usługi czyszczenia filtrów DPF.<br> Jeśli potrzebujesz więcej informacji lub
-            chciałbyś umówić się na usługę, skontaktuj się z nami już teraz. Jesteśmy tu, aby pomóc!</p>
-          <div class="empty-space"></div>
-          <div class="empty-space"></div>
-          <span>Nie chcesz pisać do nas wiadomości?</span>
-          <h5 class="h5-callus">Zadzwoń do nas!</h5>
-          <a href="tel:123-456-789" class="btn-tel"><i class="fa-solid fa-phone"></i> +48 123-456-789</a>
-        </div>
-      </div>
-      <div class="contact-container">
-        <form class="contact-form">
-          <div class="empty-space2"></div>
-          <label for="email" class="contact-label">Imię *</label>
-          <input type="name" id="name" name="name" required>
 
-          <label for="email">Adres email *</label>
-          <input type="email" id="email" name="email" required>
+        // ### PRZYWRÓCONO IMPLEMENTACJĘ FUNKCJI ###
+        function getDistance(lat1, lon1, lat2, lon2) {
+            function toRad(x) { return x * Math.PI / 180; }
+            const R = 6371;
+            const dLat = toRad(lat2 - lat1); const dLon = toRad(lon2 - lon1);
+            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return R * c;
+        }
 
-          <label for="tel">Numer telefonu *</label>
-          <input type="tel" id="tel" name="tel" required>
+        // ### PRZYWRÓCONO IMPLEMENTACJĘ FUNKCJI ###
+        function calculateScore(distance) {
+            const maxDistance = 15000;
+            const score = Math.max(0, Math.round(5000 * Math.exp(-distance / (maxDistance / 5))));
+            return score;
+        }
 
-          <label for="message">Wiadomość *</label>
-          <textarea id="message" name="message" required></textarea>
+        function updateScoreDisplay() {
+            document.getElementById('round-info').textContent = `Runda ${roundNumber}`;
+            document.getElementById('score-display').textContent = `Suma: ${totalScore} pkt`;
+        }
 
-          <button type="submit">Wyślij wiadomość</button>
-        </form>
-      </div>
-    </div>
-  </section> -->
+        function makeGuess() {
+            if (!guessMarker || !actualLocation) {
+                alert(!guessMarker ? 'Kliknij na mapie, aby wybrać miejsce!' : 'Poczekaj na załadowanie lokalizacji!');
+                return;
+            }
 
-  <!-- FOOTER -->
+            const guessed = guessMarker.getLatLng();
+            const distance = getDistance(actualLocation.lat, actualLocation.lng, guessed.lat, guessed.lng);
+            const roundScore = calculateScore(distance);
 
-  <footer class="footer">
-    <div class="company-name">
-      <p>Company</p>
-      <span>Profesjonalne czyszczenie filtrów DPF</span>
-    </div>
-    <div class="footer-sections">
-      <div class="footer-section">
-        <h3>Kontakt</h3>
-        <a class="un2" type="submit" value="hello@codestudio.pl"
-          onclick="window.location.href='mailto:email@email.co'">kontakt@COMPANY</a><br>
-        <a href="tel:123-456-789" class="un2">+48 123-456-789</a>
-      </div>
-      <div class="footer-section">
-        <h3>Dowiedz się więcej!</h3>
-        <ul>
-          <li><a href="#" class="un2">O nas</a></li>
-          <li><a href="#" class="un2">DPF</a></li>
-          <li><a href="#" class="un2">Oferta</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h3>Address</h3>
-        <p class="un2">1234 Street Name</p>
-        <p class="un2">City, ZIP Code</p>
-        <p class="un2">Country
-      </div>
-    </div>
-    <div class="copyright">
-      <p>Copyright © 2024 <b>COMPANY</b> | ALL RIGHTS RESERVED | Realizacja: <a
-          href="https://mgonczerzewicz.github.io/">CodeStudio.pl</a></p><br>
-    </div>
-  </footer>
+            totalScore += roundScore;
+            updateScoreDisplay();
 
-  <script src="src/scripts/app.js"></script>
+            if (actualMarker) map.removeLayer(actualMarker);
+            if (polyline) map.removeLayer(polyline);
 
+            // Użycie przywróconej ikony:
+            actualMarker = L.marker([actualLocation.lat, actualLocation.lng], { icon: actualIcon }).addTo(map);
+
+            const guessPopup = `Twoje miejsce (Odległość: ${distance.toFixed(0)} km)`;
+            const actualPopup = `Prawdziwa lokalizacja (Runda: +${roundScore} pkt)`;
+            guessMarker.bindPopup(guessPopup).openPopup();
+            actualMarker.bindPopup(actualPopup);
+
+            const latlngs = [guessed, [actualLocation.lat, actualLocation.lng]];
+            polyline = L.polyline(latlngs, { color: 'cyan', weight: 3 }).addTo(map);
+
+            const zoomLevel = 6;
+            map.flyTo(actualMarker.getLatLng(), zoomLevel, {
+                animate: true,
+                duration: 1.5
+            });
+
+            document.getElementById('info').textContent = `Wynik rundy: ${roundScore} pkt (Odległość: ${distance.toFixed(0)} km)`;
+            document.getElementById('next-round').style.display = 'inline-block';
+            document.getElementById('guess-button').style.display = 'none';
+        }
+
+        function newRound() {
+            roundNumber++;
+            console.log(`Starting round ${roundNumber}...`);
+
+            updateScoreDisplay();
+            document.getElementById('info').textContent = '';
+            document.getElementById('next-round').style.display = 'none';
+            document.getElementById('guess-button').style.display = 'inline-block';
+            document.getElementById('guess-button').disabled = true;
+
+            if (guessMarker) { map.removeLayer(guessMarker); guessMarker = null; }
+            if (actualMarker) { map.removeLayer(actualMarker); actualMarker = null; }
+            if (polyline) { map.removeLayer(polyline); polyline = null; }
+
+            map.flyTo([20, 0], 2);
+
+            let tryCount = 0;
+            const maxTries = 15;
+
+            function tryRandomLocation() {
+                if (!google || !google.maps || !google.maps.StreetViewService) {
+                    console.error("Google Maps API not fully loaded yet.");
+                    setTimeout(tryRandomLocation, 150); return;
+                }
+                tryCount++;
+                console.log(`Attempt ${tryCount} to find Street View...`);
+                const randomLoc = getRandomLocation(); // Użycie przywróconej funkcji
+                const svService = new google.maps.StreetViewService();
+                svService.getPanorama(
+                    { location: randomLoc, radius: 100000, source: google.maps.StreetViewSource.OUTDOOR, preference: google.maps.StreetViewPreference.NEAREST },
+                    (data, status) => {
+                        console.log("Street View Status:", status);
+                        if (status === google.maps.StreetViewStatus.OK) {
+                            actualLocation = data.location.latLng.toJSON();
+                            initStreetView(actualLocation); // Użycie przywróconej funkcji
+                            document.getElementById('guess-button').disabled = false;
+                            console.log("Location loaded, guess button enabled.");
+                        } else if (tryCount < maxTries) {
+                            setTimeout(tryRandomLocation, 100);
+                        } else {
+                            console.error("Failed to find Street View after multiple attempts.");
+                            document.getElementById('info').textContent = 'BŁĄD: Nie można załadować lokalizacji. Odśwież stronę.';
+                            document.getElementById('guess-button').disabled = true;
+                        }
+                    }
+                );
+            }
+            tryRandomLocation();
+        }
+
+        // --- Event Listeners --- (Bez zmian)
+        document.getElementById('guess-button').onclick = makeGuess;
+        document.getElementById('next-round').onclick = newRound;
+        document.addEventListener('keydown', function (event) {
+            if (event.code === 'Space' &&
+                document.getElementById('guess-button').style.display !== 'none' &&
+                !document.getElementById('guess-button').disabled) {
+                event.preventDefault();
+                makeGuess();
+            }
+        });
+
+        // ### PRZYWRÓCONO IMPLEMENTACJĘ FUNKCJI ###
+        function onGoogleMapsReady() {
+            console.log("Google Maps API is ready.");
+            initMap();  // Wywołanie funkcji inicjalizującej mapę Leaflet
+            newRound(); // Wywołanie funkcji rozpoczynającej nową rundę gry
+        }
+    </script>
+
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDiRLM1qDla6f4bY0f8TFo59flTGaV-jtA&callback=onGoogleMapsReady&loading=async">
+        </script>
 </body>
 
 </html>
