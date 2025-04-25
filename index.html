@@ -1,382 +1,108 @@
-<!DOCTYPE html>
-<html lang="pl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GeoGuess - Znajdz lokalizacje</title>
+    <title>MGONCZERZEWICZ: Technological solutions</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="icon" type="image/png" href="apple-touch-icon.png">
     <style>
-        /* CSS bez zmian - tak jak w Twoim ostatnim kodzie */
-        body,
-        html {
+        /* Ukryj treść strony na początku - TEN STYL JEST KLUCZOWY */
+        /* #page-content {
+            display: none;
+        } */
+
+        /* Opcjonalne style dla nakładki logowania, jeśli nie są w main.css */
+        /* Jeśli przeniosłeś je do main.css, możesz usunąć ten blok style */
+
+        body {
+            font-family: sans-serif;
             margin: 0;
-            padding: 0;
+            line-height: 1.6;
+            color: #333;
+            background-color: #F2EBDF;
+        }
+
+        #login-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
             height: 100%;
-            font-family: Arial, sans-serif;
-            overflow: hidden;
-        }
-
-        #street-view {
-            height: 100vh;
-            width: 100vw;
-        }
-
-        #map {
-            height: 250px;
-            width: 350px;
-            position: fixed;
-            bottom: 15px;
-            right: 15px;
-            border: 2px solid #555;
-            border-radius: 10px;
-            z-index: 999;
-            transition: all 0.3s ease-in-out;
-            transform-origin: bottom right;
-            transform: scale(1);
-            background-color: #e8e8e8;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        #map:hover {
-            transform: scale(1.6);
-        }
-
-        #results {
-            position: fixed;
-            top: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(255, 255, 255, 0.95);
-            padding: 10px 20px;
-            border-radius: 8px;
+            background-color: #161519;
+            /* Jasne, półprzezroczyste tło */
+            display: flex;
+            justify-content: center;
+            align-items: center;
             z-index: 1000;
+            /* Upewnij się, że panel jest na wierzchu */
+            flex-direction: column;
+        }
+
+        #login-panel {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            /* Poprawiona literówka */
             text-align: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        #round-info {
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
+        #login-overlay img {
+            max-width: 250px;
+            margin-bottom: 20px;
         }
 
-        #info {
-            margin-top: 5px;
-            font-weight: normal;
-            font-size: 15px;
-            color: #555;
+        #login-panel h2 {
+            margin-top: 0;
+            color: black;
         }
 
-        #guess-button,
-        #next-round {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1001;
-            padding: 12px 25px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-            border: none;
+        #login-panel input[type="password"] {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        #login-panel button {
+            padding: 10px 20px;
+            background-color: #8b719d;
             color: white;
-            transition: background-color 0.2s ease;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
         }
 
-        #guess-button {
-            background-color: #4CAF50;
+        #login-panel button:hover {
+            background-color: #39245c;
         }
 
-        #guess-button:hover:not(:disabled) {
-            background-color: #45a049;
+        #login-message {
+            color: red;
+            margin-top: 10px;
         }
 
-        #guess-button:disabled {
-            background-color: #cccccc;
-            cursor: not-allowed;
-        }
-
-        #next-round {
-            background-color: #008CBA;
-        }
-
-        #next-round:hover {
-            background-color: #007ba7;
-        }
-
-        #score-display {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            z-index: 1001;
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 8px 15px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-            font-size: 16px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .leaflet-control-attribution {
-            font-size: 10px !important;
-            background: rgba(255, 255, 255, 0.7) !important;
+        .copyright {
+            margin-top: 20px;
+            font-size: 0.8em;
+            color: #666;
         }
     </style>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 </head>
 
 <body>
-    <div id="street-view"></div>
-    <div id="map"></div>
 
-    <div id="results">
-        <div id="round-info">Runda 1</div>
-        <div id="info"></div>
+    <div id="login-overlay">
+        <div id="login-panel">
+            <h2>Trwa budowa strony!</h2>
+            <p>Proszę podać hasło, aby uzyskać dostęp.</p>
+            <input type="password" id="password-input" placeholder="Wpisz hasło">
+            <button onclick="checkPassword()">Wejdź</button>
+            <p id="login-message"></p>
+        </div>
+        <p class="copyright">&copy; 2025 Michał Gonczerzewicz. Wszelkie prawa zastrzeżone.</p>
     </div>
 
-    <div id="score-display">Suma: 0 pkt</div>
-
-    <button id="guess-button">Zaznacz odpowiedź</button>
-    <button id="next-round" style="display:none">Następna runda</button>
-
-
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-
-    <script>
-        let panorama, map, actualLocation, guessMarker, actualMarker, polyline;
-        let totalScore = 0;
-        let roundNumber = 0;
-
-        // ### PRZYWRÓCONO DEFINICJE IKON ###
-        const guessIcon = L.icon({
-            iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
-            iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
-            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-            iconSize: [20, 33], iconAnchor: [10, 33], popupAnchor: [1, -30], shadowSize: [33, 33]
-        });
-        const actualIcon = L.icon({
-            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-gold.png',
-            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-            iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowSize: [41, 41]
-        });
-
-        // ### PRZYWRÓCONO IMPLEMENTACJĘ FUNKCJI ###
-        function getRandomLocation() {
-            const lat = (Math.random() * 170 - 85).toFixed(6);
-            const lng = (Math.random() * 360 - 180).toFixed(6);
-            return { lat: parseFloat(lat), lng: parseFloat(lng) };
-        }
-
-        // ### PRZYWRÓCONO IMPLEMENTACJĘ FUNKCJI ###
-        function initStreetView(location) {
-            const panoramaOptions = {
-                position: location,
-                pov: { heading: Math.random() * 360, pitch: 0 },
-                zoom: 1,
-                visible: true,
-                addressControl: false,
-                linksControl: true,
-                panControl: true,
-                motionTracking: false,
-                motionTrackingControl: false,
-                enableCloseButton: false,
-                fullscreenControl: false
-            };
-
-            if (panorama) {
-                panorama.setOptions(panoramaOptions);
-                panorama.setVisible(true);
-            } else {
-                panorama = new google.maps.StreetViewPanorama(
-                    document.getElementById('street-view'), panoramaOptions
-                );
-            }
-        }
-
-        // function initMap() {
-        //     map = L.map('map', {
-        //         zoomControl: false,
-        //         attributionControl: true
-        //     }).setView([20, 0], 1);
-
-        //     const topoLayer = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-        //         maxZoom: 17,
-        //         attribution: 'Map data: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> contributors'
-        //     }).addTo(map);
-
-        //     map.on('click', function (e) {
-        //         if (document.getElementById('guess-button').style.display !== 'none') {
-        //             if (guessMarker) map.removeLayer(guessMarker);
-        //             guessMarker = L.marker(e.latlng, { icon: guessIcon }).addTo(map);
-        //         }
-        //     });
-        // }
-        function initMap() {
-            map = L.map('map', {
-                zoomControl: false,
-                attributionControl: true
-            }).setView([20, 0], 2);
-
-            const isRetina = L.Browser.retina;
-            const apiKey = '3c38ccdfb92f40f3ba2fa52501a575cb';
-
-            const tileUrl = isRetina
-                ? `https://maps.geoapify.com/v1/tile/klokantech-basic/{z}/{x}/{y}@2x.png?apiKey=${apiKey}`
-                : `https://maps.geoapify.com/v1/tile/klokantech-basic/{z}/{x}/{y}.png?&apiKey=${apiKey}`;
-
-            L.tileLayer(tileUrl, {
-                attribution: 'Powered by Geoapify',
-                maxZoom: 20,
-                id: 'terrain-classic'
-            }).addTo(map);
-
-            map.on('click', function (e) {
-                if (document.getElementById('guess-button').style.display !== 'none') {
-                    if (guessMarker) map.removeLayer(guessMarker);
-                    guessMarker = L.marker(e.latlng, { icon: guessIcon }).addTo(map);
-                }
-            });
-        }
-
-
-        // ### PRZYWRÓCONO IMPLEMENTACJĘ FUNKCJI ###
-        function getDistance(lat1, lon1, lat2, lon2) {
-            function toRad(x) { return x * Math.PI / 180; }
-            const R = 6371;
-            const dLat = toRad(lat2 - lat1); const dLon = toRad(lon2 - lon1);
-            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
-                Math.sin(dLon / 2) * Math.sin(dLon / 2);
-            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-            return R * c;
-        }
-
-        // ### PRZYWRÓCONO IMPLEMENTACJĘ FUNKCJI ###
-        function calculateScore(distance) {
-            const maxDistance = 15000;
-            const score = Math.max(0, Math.round(5000 * Math.exp(-distance / (maxDistance / 5))));
-            return score;
-        }
-
-        function updateScoreDisplay() {
-            document.getElementById('round-info').textContent = `Runda ${roundNumber}`;
-            document.getElementById('score-display').textContent = `Suma: ${totalScore} pkt`;
-        }
-
-        function makeGuess() {
-            if (!guessMarker || !actualLocation) {
-                alert(!guessMarker ? 'Kliknij na mapie, aby wybrać miejsce!' : 'Poczekaj na załadowanie lokalizacji!');
-                return;
-            }
-
-            const guessed = guessMarker.getLatLng();
-            const distance = getDistance(actualLocation.lat, actualLocation.lng, guessed.lat, guessed.lng);
-            const roundScore = calculateScore(distance);
-
-            totalScore += roundScore;
-            updateScoreDisplay();
-
-            if (actualMarker) map.removeLayer(actualMarker);
-            if (polyline) map.removeLayer(polyline);
-
-            // Użycie przywróconej ikony:
-            actualMarker = L.marker([actualLocation.lat, actualLocation.lng], { icon: actualIcon }).addTo(map);
-
-            const guessPopup = `Twoje miejsce (Odległość: ${distance.toFixed(0)} km)`;
-            const actualPopup = `Prawdziwa lokalizacja (Runda: +${roundScore} pkt)`;
-            guessMarker.bindPopup(guessPopup).openPopup();
-            actualMarker.bindPopup(actualPopup);
-
-            const latlngs = [guessed, [actualLocation.lat, actualLocation.lng]];
-            polyline = L.polyline(latlngs, { color: 'cyan', weight: 3 }).addTo(map);
-
-            const zoomLevel = 6;
-            map.flyTo(actualMarker.getLatLng(), zoomLevel, {
-                animate: true,
-                duration: 1.5
-            });
-
-            document.getElementById('info').textContent = `Wynik rundy: ${roundScore} pkt (Odległość: ${distance.toFixed(0)} km)`;
-            document.getElementById('next-round').style.display = 'inline-block';
-            document.getElementById('guess-button').style.display = 'none';
-        }
-
-        function newRound() {
-            roundNumber++;
-            console.log(`Starting round ${roundNumber}...`);
-
-            updateScoreDisplay();
-            document.getElementById('info').textContent = '';
-            document.getElementById('next-round').style.display = 'none';
-            document.getElementById('guess-button').style.display = 'inline-block';
-            document.getElementById('guess-button').disabled = true;
-
-            if (guessMarker) { map.removeLayer(guessMarker); guessMarker = null; }
-            if (actualMarker) { map.removeLayer(actualMarker); actualMarker = null; }
-            if (polyline) { map.removeLayer(polyline); polyline = null; }
-
-            map.flyTo([20, 0], 2);
-
-            let tryCount = 0;
-            const maxTries = 15;
-
-            function tryRandomLocation() {
-                if (!google || !google.maps || !google.maps.StreetViewService) {
-                    console.error("Google Maps API not fully loaded yet.");
-                    setTimeout(tryRandomLocation, 150); return;
-                }
-                tryCount++;
-                console.log(`Attempt ${tryCount} to find Street View...`);
-                const randomLoc = getRandomLocation(); // Użycie przywróconej funkcji
-                const svService = new google.maps.StreetViewService();
-                svService.getPanorama(
-                    { location: randomLoc, radius: 100000, source: google.maps.StreetViewSource.OUTDOOR, preference: google.maps.StreetViewPreference.NEAREST },
-                    (data, status) => {
-                        console.log("Street View Status:", status);
-                        if (status === google.maps.StreetViewStatus.OK) {
-                            actualLocation = data.location.latLng.toJSON();
-                            initStreetView(actualLocation); // Użycie przywróconej funkcji
-                            document.getElementById('guess-button').disabled = false;
-                            console.log("Location loaded, guess button enabled.");
-                        } else if (tryCount < maxTries) {
-                            setTimeout(tryRandomLocation, 100);
-                        } else {
-                            console.error("Failed to find Street View after multiple attempts.");
-                            document.getElementById('info').textContent = 'BŁĄD: Nie można załadować lokalizacji. Odśwież stronę.';
-                            document.getElementById('guess-button').disabled = true;
-                        }
-                    }
-                );
-            }
-            tryRandomLocation();
-        }
-
-        // --- Event Listeners --- (Bez zmian)
-        document.getElementById('guess-button').onclick = makeGuess;
-        document.getElementById('next-round').onclick = newRound;
-        document.addEventListener('keydown', function (event) {
-            if (event.code === 'Space' &&
-                document.getElementById('guess-button').style.display !== 'none' &&
-                !document.getElementById('guess-button').disabled) {
-                event.preventDefault();
-                makeGuess();
-            }
-        });
-
-        // ### PRZYWRÓCONO IMPLEMENTACJĘ FUNKCJI ###
-        function onGoogleMapsReady() {
-            console.log("Google Maps API is ready.");
-            initMap();  // Wywołanie funkcji inicjalizującej mapę Leaflet
-            newRound(); // Wywołanie funkcji rozpoczynającej nową rundę gry
-        }
-    </script>
-
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDiRLM1qDla6f4bY0f8TFo59flTGaV-jtA&callback=onGoogleMapsReady&loading=async">
-        </script>
+    <script src="scripts.js"></script>
 </body>
-
-</html>
