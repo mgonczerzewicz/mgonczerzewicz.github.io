@@ -1,97 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MGONCZERZEWICZ: Innovative Technology Solutions</title>
+    <title>MGONCZERZEWICZ | GeoGuess</title>
     <link rel="icon" type="image/png" href="apple-touch-icon.png">
     <link
         href="https://fonts.googleapis.com/css2?family=Allison&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <style>
-        /* Ukryj treść strony na początku - TEN STYL JEST KLUCZOWY */
-        /* #page-content {
-            display: none;
-        } */
+        /* --- Combined CSS Styles --- */
 
-        /* Opcjonalne style dla nakładki logowania, jeśli nie są w main.css */
-        /* Jeśli przeniosłeś je do main.css, możesz usunąć ten blok style */
-
-        body {
-            font-family: sans-serif;
+        /* Basic body/html styles - from GeoGuess, adjusted */
+        body, html {
             margin: 0;
-            line-height: 1.6;
-            color: #333;
-            background-color: #333;
+            padding: 0;
+            height: 100%;
+            font-family: 'Roboto', sans-serif; /* Using Arial as a fallback */
+            overflow: hidden; /* Prevent scrolling due to fullscreen street view */
+            color: #333; /* Default text color for game content */
+            background-color: #333; /* Background color before login */
         }
 
+        /* Style to hide the main game content initially */
+        #page-content {
+            display: none;
+        }
+
+        /* --- Login Overlay Styles (from first snippet) --- */
         #login-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #161519;
-            /* Jasne, półprzezroczyste tło */
+            background-color: #161519; /* Dark background */
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
-            /* Upewnij się, że panel jest na wierzchu */
+            z-index: 1000; /* Ensure it's on top */
             flex-direction: column;
+            padding: 20px; /* Dodaj padding na małych ekranach */
+            box-sizing: border-box;
         }
 
         #login-panel {
             background: #fff;
-            padding: 20px;
+            padding: 30px; /* Zwiększony padding panelu */
             border-radius: 8px;
-            /* Poprawiona literówka */
-
             text-align: center;
+            width: 100%; /* Panel domyślnie na całą szerokość na małych ekranach */
+            max-width: 400px; /* Ogranicz szerokość panelu na większych ekranach */
+            margin: auto; /* Centrowanie bloku z ograniczoną szerokością */
+            box-sizing: border-box;
         }
 
         #login-overlay img {
-            max-width: 40px;
-            margin-bottom: 20px;
+            max-width: 50px; /* Nieco większe logo */
+            margin-bottom: 30px; /* Większy odstęp */
         }
 
         #login-panel h2 {
             font-family: 'Allison', sans-serif;
-            font-size: 3em;
+            font-size: 3.5em; /* Większy tytuł */
             margin-top: 0;
+            margin-bottom: 10px; /* Odstęp pod tytułem */
             color: black;
         }
+        #login-panel p {
+             margin-top: 0;
+             margin-bottom: 20px; /* Odstęp pod opisem */
+        }
+
 
         #login-panel input[type="text"],
         #login-panel input[type="password"] {
             display: block;
-            /* Sprawiamy, że inputy są elementami blokowymi */
-            width: calc(100% - 24px);
-            /* Obliczamy szerokość: 100% panelu minus padding (12px z lewej + 12px z prawej) i border (1px*2) */
+            width: 100%; /* Inputy na całą szerokość panelu (minus padding) */
             padding: 12px;
-            /* Zwiększony padding wewnątrz pól */
             margin-bottom: 15px;
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 1em;
             box-sizing: border-box;
-            /* Wliczamy padding i border w szerokość elementu */
-            margin-left: auto;
-            /* Automatyczne marginesy po bokach centrują element blokowy */
-            margin-right: auto;
         }
-
-        #login-panel button:hover {
-        background-color: #e0355a; /* Ciemniejszy kolor po najechaniu */
-    }
-
-     #login-panel button:disabled {
-        background-color: #ccc; /* Kolor przycisku gdy jest zablokowany */
-        cursor: not-allowed;
-    }
-
-     #login-panel input:disabled {
-        background-color: #eee; /* Kolor tła pól input gdy są zablokowane */
-        cursor: not-allowed;
-    }
 
         #login-panel button {
             padding: 10px 20px;
@@ -102,74 +96,334 @@
             cursor: pointer;
             font-size: 1em;
             transition: background-color 0.3s ease;
+            width: 100%; /* Przycisk na całą szerokość panelu */
+            box-sizing: border-box;
+        }
+
+        #login-panel button:hover:not(:disabled) {
+            background-color: #e0355a; /* Darker color on hover */
+        }
+
+        #login-panel button:disabled {
+            background-color: #ccc; /* Grey when disabled */
+            cursor: not-allowed;
+        }
+
+        #login-panel input:disabled {
+            background-color: #eee; /* Light grey background when disabled */
+            cursor: not-allowed;
         }
 
         #login-message {
-        color: red;
-        margin-top: 15px; /* Zwiększony margines powyżej komunikatu */
-        font-size: 0.9em;
-    }
-
-        .copyright {
-        position: absolute;
-        bottom: 15px; /* Zwiększony odstęp od dołu */
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 0.8em;
-        color: #ccc; /* Zmieniony kolor na jaśniejszy dla lepszego kontrastu na ciemnym tle */
-        width: 90%; /* Ogranicz szerokość tekstu copyright */
-        text-align: center; /* Wyśrodkuj tekst copyright */
-    }
-
-    @media (max-width: 480px) {
-        #login-panel {
-            padding: 20px;
-        }
-
-        #login-panel h2 {
-            font-size: 2em;
-        }
-
-        #login-overlay img {
-            max-width: 35px;
-        }
-
-        #login-message {
-            font-size: 0.8em; /* Zmniejszony rozmiar fontu dla komunikatu */
+            color: red;
+            margin-top: 15px;
+            font-size: 0.9em;
         }
 
         .copyright {
-            font-size: 0.6em; /* Zmniejszony rozmiar fontu na małych ekranach */
-            bottom: 10px;
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8em;
+            color: #ccc; /* Light grey for better contrast on dark background */
+            width: 90%; /* Limit width */
+            text-align: center; /* Center text */
         }
-         #login-panel input[type="text"],
-         #login-panel input[type="password"] {
-             width: calc(100% - 24px); /* Dopasowanie szerokości */
-             padding: 10px;
+
+        /* --- Login Overlay Media Queries --- */
+        @media (max-width: 480px) {
+             /* Styles already adjusted for smaller screens in the main rules above */
+             /* Remove redundant overrides here if they conflict */
+             #login-panel {
+                 padding: 20px; /* Mniejszy padding panelu na małych ekranach */
+             }
+              #login-overlay img {
+                 max-width: 40px;
+                 margin-bottom: 20px;
+             }
+             #login-panel h2 {
+                 font-size: 2.5em; /* Mniejszy tytuł na małych ekranach */
+             }
+             #login-panel p {
+                 margin-bottom: 15px;
+             }
+             #login-panel input[type="text"],
+             #login-panel input[type="password"],
+             #login-panel button {
+                  padding: 10px; /* Mniejszy padding w inputach i przycisku */
+             }
+             #login-message {
+                 font-size: 0.8em;
+             }
+             .copyright {
+                 font-size: 0.6em;
+                 bottom: 10px;
+             }
+        }
+
+
+        /* --- GeoGuess Game Styles (Default - when .game-active is NOT on body) --- */
+        /* These styles apply when login overlay is visible */
+         #street-view,
+         #map,
+         #results,
+         #score-display,
+         .game-buttons-container {
+             display: none; /* Hide game elements by default */
          }
-          #login-panel button {
-              width: 100%; /* Przycisk na pełną szerokość */
-              padding: 10px 20px;
-          }
 
-    }
+
+        /* --- GeoGuess Game Styles (When .game-active IS on body) --- */
+        body.game-active #login-overlay {
+             display: none; /* Hide login overlay */
+        }
+
+        body.game-active #page-content {
+            display: block; /* Show game content */
+            position: relative; /* Needed for absolute positioning of children */
+            height: 100%;
+            width: 100%;
+        }
+
+        /* Map styles - fixed height for all screen sizes */
+        body.game-active #map {
+            display: block; /* Show map */
+            position: fixed; /* Mapa przypięta do dołu */
+            bottom: 0;
+            left: 0;
+            width: 100%; /* Mapa na całą szerokość */
+            height: 35vh; /* Stała wysokość mapy na wszystkich ekranach */
+            border-radius: 0; /* Usuń zaokrąglenia */
+            border: none; /* Usuń ramkę */
+            border-top: 2px solid #555; /* Dodaj górną ramkę */
+            z-index: 999;
+            /* Nadpisz stare style przejść i transformacji */
+            transition: none;
+            transform: none;
+            box-shadow: none;
+        }
+
+        body.game-active #map:hover {
+            transform: none; /* Wyłącz powiększanie mapy po najechaniu w tym trybie */
+        }
+
+
+        /* Kontener na przyciski 'Zaznacz odpowiedź' i 'Następna runda' */
+        /* Umieszczony nad mapą, rozciągnięty na całą szerokość, z wewnętrznym paddingiem */
+        body.game-active .game-buttons-container {
+            display: flex; /* Użyj flexbox dla układu przycisków */
+            position: fixed; /* Przypnij do dołu */
+            bottom: 35vh; /* Umieść bezpośrednio nad mapą (zakładając wysokość mapy 35vh) */
+            left: 0;
+            width: 100%;
+            z-index: 1002; /* Nad mapą */
+            justify-content: center; /* Wyśrodkuj przyciski poziomo (przydatne gdy tylko jeden przycisk) */
+            align-items: center; /* Wyśrodkuj w pionie */
+            padding: 10px 20px; /* Dodaj padding lewo/prawo dla marginesów, góra/dół dla odstępu */
+            background-color: rgba(255, 255, 255, 0.8); /* Lekko przezroczyste tło */
+            box-sizing: border-box;
+            gap: 20px; /* Odstęp między przyciskami (jeśli oba widoczne, choć normalnie tylko jeden) */
+        }
+
+         /* Style dla przycisków w kontenerze, nadpisujące stare fixed position */
+         /* Rozciągnięcie na całą szerokość kontenera (minus padding) */
+        body.game-active .game-buttons-container button {
+             position: static; /* Nadpisz pozycjonowanie fixed */
+             transform: none; /* Nadpisz transformacje centrowania */
+             width: 100%; /* PRZYCISK NA CAŁĄ SZEROKOŚĆ kontenera przycisków (minus padding kontenera) */
+             box-sizing: border-box; /* Uwzględnij padding i border przy obliczaniu szerokości przycisku */
+             /* Pozostałe style przycisków (padding, kolory, border etc.) dziedziczone */
+             /* Nadpisujemy padding z ogólnych stylów przycisków, aby kontrolować go globalnie */
+             padding: 12px 25px; /* Zachowaj oryginalny padding wewnętrzny przycisku */
+             margin: 0; /* Usuń ewentualne marginesy */
+             display: block; /* Upewnij się, że przycisk jest blokowy, aby width: 100% działało poprawnie */
+             text-transform: uppercase;
+        }
+
+        /* Wysokość Street View - wypełnia przestrzeń nad mapą i kontenerem przycisków */
+        body.game-active #street-view {
+            display: block; /* Show street view */
+            /* Wysokość: Cały viewport - Wysokość Mapy (35vh) - Wysokość Kontenera Przycisków */
+            /* Zakładając, że wysokość kontenera to ok. 60px na dużych i 40px na małych */
+            height: calc(100vh - 35vh - 60px); /* Dostosowana wysokość na dużych ekranach */
+            width: 100vw;
+            position: relative; /* Zmieniamy na relative, bo mapa jest na dole */
+            z-index: 1; /* Pod mapą i przyciskami */
+        }
+
+
+        body.game-active #results {
+            display: block; /* Show results panel */
+            position: fixed;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 10px 20px;
+            border-radius: 8px;
+            z-index: 1000;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Nowe położenie dla Sumy Punktów - prawy górny róg */
+        body.game-active #score-display {
+            display: block; /* Show score display */
+            position: fixed;
+            top: 15px; /* Od góry */
+            right: 20px; /* Od prawej */
+            left: auto; /* Nadpisz stare ustawienie 'left' */
+            bottom: auto; /* Nadpisz stare ustawienie 'bottom' */
+            z-index: 1001;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 8px 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+
+
+        /* Media query dla responsywności elementów gry (np. telefony pionowo) */
+        @media (max-width: 600px) {
+            /* Mapa - wysokość już ustawiona na 35vh w głównym bloku */
+             body.game-active #map {
+                  border-top-width: 1px; /* Cieńsza ramka na małych */
+             }
+
+            /* Kontener przycisków - dostosowanie pozycji i układu */
+             body.game-active .game-buttons-container {
+                 bottom: 35vh; /* Pozycja nad mapą (35vh) */
+                 flex-direction: column; /* Przyciski jeden pod drugim */
+                 gap: 5px; /* Mniejszy odstęp między przyciskami */
+                 padding: 5px 10px; /* Mniejszy padding lewo/prawo i góra/dół */
+             }
+             body.game-active .game-buttons-container button {
+                  /* width: 100% już ustawione */
+                  padding: 10px 15px; /* Mniejszy padding wewnętrzny przycisków */
+             }
+
+             /* Wysokość Street View - dostosowanie */
+             /* Wysokość: Cały viewport - Wysokość Mapy (35vh) - Wysokość Kontenera Przycisków (~40px) */
+             body.game-active #street-view {
+                 height: calc(100vh - 35vh - 40px); /* Dostosuj wysokość Street View na małych ekranach */
+             }
+
+             /* Panel wyników - mniejszy padding */
+             body.game-active #results {
+                 padding: 8px 15px;
+                 font-size: 0.9em;
+             }
+
+             /* Panel punktów - mniejszy padding i inna pozycja */
+              body.game-active #score-display {
+                 padding: 6px 10px;
+                 font-size: 0.9em;
+                 top: 10px; /* Bliżej góry */
+                 right: 10px; /* Bliżej prawej */
+             }
+        }
+
+        /* Media query dla jeszcze mniejszych ekranów (np. stare telefony) */
+        @media (max-width: 320px) {
+             body.game-active .game-buttons-container {
+                  padding: 5px; /* Mniejszy padding kontenera */
+             }
+             body.game-active .game-buttons-container button {
+                  padding: 8px 10px; /* Mniejszy padding przycisków */
+             }
+             /* Wysokość mapy i Street View pozostaje taka jak w media query 600px */
+        }
+
+        /* Add to your <style> block */
+body.game-active #notification-area {
+    position: fixed;
+    top: 70px; /* Adjust based on results panel height */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1001; /* Above map, below results (or same level) */
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    min-width: 200px; /* Ensure it has some size even with short messages */
+    max-width: 80%; /* Don't let it get too wide */
+    opacity: 0; /* Start invisible */
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out; /* Fade in/out */
+}
+
+/* Style when it contains text (or use a class) */
+body.game-active #notification-area:not(:empty) {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Media query adjustments */
+@media (max-width: 600px) {
+     body.game-active #notification-area {
+         top: 60px; /* Adjust for smaller results panel height */
+         padding: 8px 15px;
+         font-size: 0.9em;
+     }
+}
+
+
+        .leaflet-control-attribution {
+            font-size: 10px !important;
+            background: rgba(255, 255, 255, 0.7) !important;
+        }
     </style>
 </head>
-
 <body>
 
     <div id="login-overlay">
         <img src="apple-touch-icon.png" alt="">
         <div id="login-panel">
             <h2>MGonczerzewicz</h2>
-            <p>Please enter the password to access the site.</p>
+            <p>Please enter the login and password to access the site.</p>
             <input type="text" id="login-input" placeholder="Login">
             <input type="password" id="password-input" placeholder="Password">
-            <button onclick="checkPassword()">Enter</button>
+            <button id="login-button">Enter</button>
             <p id="login-message"></p>
         </div>
         <p class="copyright">&copy; 2025 Michał Gonczerzewicz – Handcrafted with code. All rights reserved.</p>
     </div>
 
+    <div id="page-content">
+        <div id="street-view"></div>
+        <div id="map"></div>
+
+        <!-- New notification area -->
+        <div id="notification-area"></div>
+
+        <!-- Button container -->
+        <div class="game-buttons-container">
+            <button id="guess-button">Zaznacz odpowiedź</button>
+            <button id="next-round" style="display:none">Następna runda</button>
+        </div>
+
+        <!-- Results panel -->
+        <div id="results">
+            <div id="round-info">Runda 1</div>
+            <div id="info"></div> <!-- This will now be ONLY for distance/score info -->
+        </div>
+
+        <!-- Score display -->
+        <div id="score-display">Suma: 0 pkt</div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
     <script src="scripts.js"></script>
+
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDiRLM1qDla6f4bY0f8TFo59flTGaV-jtA&callback=onGoogleMapsReady&loading=async">
+    </script>
+
 </body>
+</html>
