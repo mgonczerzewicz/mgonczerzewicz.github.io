@@ -2,11 +2,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MGONCZERZEWICZ: Innovative Technology Solutions</title>
-    <link rel="stylesheet" href="styles/main.css">
     <link rel="icon" type="image/png" href="apple-touch-icon.png">
     <link
-    href="https://fonts.googleapis.com/css2?family=Allison&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-    rel="stylesheet">
+        href="https://fonts.googleapis.com/css2?family=Allison&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <style>
         /* Ukryj treść strony na początku - TEN STYL JEST KLUCZOWY */
         /* #page-content {
@@ -41,15 +40,16 @@
         }
 
         #login-panel {
-            background-color: #fff;
-            padding: 30px;
+            background: #fff;
+            padding: 20px;
             border-radius: 8px;
             /* Poprawiona literówka */
+
             text-align: center;
         }
 
         #login-overlay img {
-            max-width: 250px;
+            max-width: 40px;
             margin-bottom: 20px;
         }
 
@@ -60,17 +60,42 @@
             color: black;
         }
 
+        #login-panel input[type="text"],
         #login-panel input[type="password"] {
-            padding: 10px;
+            display: block;
+            /* Sprawiamy, że inputy są elementami blokowymi */
+            width: calc(100% - 24px);
+            /* Obliczamy szerokość: 100% panelu minus padding (12px z lewej + 12px z prawej) i border (1px*2) */
+            padding: 12px;
+            /* Zwiększony padding wewnątrz pól */
             margin-bottom: 15px;
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 1em;
+            box-sizing: border-box;
+            /* Wliczamy padding i border w szerokość elementu */
+            margin-left: auto;
+            /* Automatyczne marginesy po bokach centrują element blokowy */
+            margin-right: auto;
         }
+
+        #login-panel button:hover {
+        background-color: #e0355a; /* Ciemniejszy kolor po najechaniu */
+    }
+
+     #login-panel button:disabled {
+        background-color: #ccc; /* Kolor przycisku gdy jest zablokowany */
+        cursor: not-allowed;
+    }
+
+     #login-panel input:disabled {
+        background-color: #eee; /* Kolor tła pól input gdy są zablokowane */
+        cursor: not-allowed;
+    }
 
         #login-panel button {
             padding: 10px 20px;
-            background-color: #8b719d;
+            background-color: #FC466B;
             color: white;
             border: none;
             border-radius: 4px;
@@ -79,33 +104,66 @@
             transition: background-color 0.3s ease;
         }
 
-        #login-panel button:hover {
-            background-color: #39245c;
+        #login-message {
+        color: red;
+        margin-top: 15px; /* Zwiększony margines powyżej komunikatu */
+        font-size: 0.9em;
+    }
+
+        .copyright {
+        position: absolute;
+        bottom: 15px; /* Zwiększony odstęp od dołu */
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.8em;
+        color: #ccc; /* Zmieniony kolor na jaśniejszy dla lepszego kontrastu na ciemnym tle */
+        width: 90%; /* Ogranicz szerokość tekstu copyright */
+        text-align: center; /* Wyśrodkuj tekst copyright */
+    }
+
+    @media (max-width: 480px) {
+        #login-panel {
+            padding: 20px;
+        }
+
+        #login-panel h2 {
+            font-size: 2em;
+        }
+
+        #login-overlay img {
+            max-width: 35px;
         }
 
         #login-message {
-            color: red;
-            margin-top: 10px;
+            font-size: 0.8em; /* Zmniejszony rozmiar fontu dla komunikatu */
         }
 
         .copyright {
-            position: absolute;
+            font-size: 0.6em; /* Zmniejszony rozmiar fontu na małych ekranach */
             bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.8em;
-            color: #666;
         }
+         #login-panel input[type="text"],
+         #login-panel input[type="password"] {
+             width: calc(100% - 24px); /* Dopasowanie szerokości */
+             padding: 10px;
+         }
+          #login-panel button {
+              width: 100%; /* Przycisk na pełną szerokość */
+              padding: 10px 20px;
+          }
 
+    }
     </style>
 </head>
 
 <body>
 
     <div id="login-overlay">
+        <img src="apple-touch-icon.png" alt="">
         <div id="login-panel">
             <h2>MGonczerzewicz</h2>
             <p>Please enter the password to access the site.</p>
+            <input type="text" id="login-input" placeholder="Login">
             <input type="password" id="password-input" placeholder="Password">
             <button onclick="checkPassword()">Enter</button>
             <p id="login-message"></p>
