@@ -726,13 +726,13 @@ footer {
 		z-index: 11;
 		color: #fff;
 		background-color: #8b719d;
-		font-size: 20px; /* Zmniejszenie font-size kontenera do 20px */
+		font-size: 24px; /* Zmniejszono font-size kontenera do 24px */
 		font-weight: bold;
-		padding: 10px 16px; /* Dostosowany padding, aby zachować proporcje */
+		padding: 12px 18px; /* Dostosowany padding, by zachować proporcje */
 		border-radius: 50%; /* Zaokrąglone rogi kontenera */
 		transition: transform 0.3s ease;
 		cursor: pointer;
-	  }
+	}
 
 	.hamburger.rotated {
 		rotate: 90deg;
