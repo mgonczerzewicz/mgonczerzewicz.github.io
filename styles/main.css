@@ -725,15 +725,15 @@ footer {
 		align-items: center;
 		justify-content: center;
 		z-index: 11;
-		color: #fff;
-		background-color: #8b719d;
-		font-size: 20px; /* Zmniejszenie font-size kontenera do 20px */
+		color: #39245c;
+		font-size: 24px; /* Zmniejszenie font-size kontenera do 20px */
 		font-weight: bold;
 		padding: 10px 16px; /* Dostosowany padding, aby zachować proporcje */
 		border-radius: 50%; /* Zaokrąglone rogi kontenera */
-		transition: transform 0.3s ease;
+		transition: all 0.3s ease;
 		cursor: pointer;
 	}
+	
 
 	.hamburger.rotated {
 		rotate: 90deg;
