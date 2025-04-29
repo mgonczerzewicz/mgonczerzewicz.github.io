@@ -1,387 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MGONCZERZEWICZ | GeoGuess</title>
-    <link rel="icon" type="image/png" href="apple-touch-icon.png">
+    <title>Jagodowy Zakątek by Berrland - Pyszne borówkowe przysmaki prosto z natury</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" type="image/png" href="images/favicon/apple-touch-icon.png">
     <link
-        href="https://fonts.googleapis.com/css2?family=Allison&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <style>
-        /* --- Combined CSS Styles --- */
-
-        /* Basic body/html styles - from GeoGuess, adjusted */
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            font-family: 'Roboto', sans-serif; /* Using Arial as a fallback */
-            overflow: hidden; /* Prevent scrolling due to fullscreen street view */
-            color: #333; /* Default text color for game content */
-            background-color: #333; /* Background color before login */
-        }
-
-        /* Style to hide the main game content initially */
-        #page-content {
-            display: none;
-        }
-
-        /* --- Login Overlay Styles (from first snippet) --- */
-        #login-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #161519; /* Dark background */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000; /* Ensure it's on top */
-            flex-direction: column;
-            padding: 20px; /* Dodaj padding na małych ekranach */
-            box-sizing: border-box;
-        }
-
-        #login-panel {
-            background: #fff;
-            padding: 30px; /* Zwiększony padding panelu */
-            border-radius: 8px;
-            text-align: center;
-            width: 100%; /* Panel domyślnie na całą szerokość na małych ekranach */
-            max-width: 400px; /* Ogranicz szerokość panelu na większych ekranach */
-            margin: auto; /* Centrowanie bloku z ograniczoną szerokością */
-            box-sizing: border-box;
-        }
-
-        #login-overlay img {
-            max-width: 50px; /* Nieco większe logo */
-            margin-bottom: 30px; /* Większy odstęp */
-        }
-
-        #login-panel h2 {
-            font-family: 'Allison', sans-serif;
-            font-size: 3.5em; /* Większy tytuł */
-            margin-top: 0;
-            margin-bottom: 10px; /* Odstęp pod tytułem */
-            color: black;
-        }
-        #login-panel p {
-             margin-top: 0;
-             margin-bottom: 20px; /* Odstęp pod opisem */
-        }
-
-
-        #login-panel input[type="text"],
-        #login-panel input[type="password"] {
-            display: block;
-            width: 100%; /* Inputy na całą szerokość panelu (minus padding) */
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 1em;
-            box-sizing: border-box;
-        }
-
-        #login-panel button {
-            padding: 10px 20px;
-            background-color: #FC466B;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1em;
-            transition: background-color 0.3s ease;
-            width: 100%; /* Przycisk na całą szerokość panelu */
-            box-sizing: border-box;
-        }
-
-        #login-panel button:hover:not(:disabled) {
-            background-color: #e0355a; /* Darker color on hover */
-        }
-
-        #login-panel button:disabled {
-            background-color: #ccc; /* Grey when disabled */
-            cursor: not-allowed;
-        }
-
-        #login-panel input:disabled {
-            background-color: #eee; /* Light grey background when disabled */
-            cursor: not-allowed;
-        }
-
-        #login-message {
-            color: red;
-            margin-top: 15px;
-            font-size: 0.9em;
-        }
-
-        .copyright {
-            position: absolute;
-            bottom: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.8em;
-            color: #ccc; /* Light grey for better contrast on dark background */
-            width: 90%; /* Limit width */
-            text-align: center; /* Center text */
-        }
-
-        /* --- Login Overlay Media Queries --- */
-        @media (max-width: 480px) {
-             /* Styles already adjusted for smaller screens in the main rules above */
-             /* Remove redundant overrides here if they conflict */
-             #login-panel {
-                 padding: 20px; /* Mniejszy padding panelu na małych ekranach */
-             }
-              #login-overlay img {
-                 max-width: 40px;
-                 margin-bottom: 20px;
-             }
-             #login-panel h2 {
-                 font-size: 2.5em; /* Mniejszy tytuł na małych ekranach */
-             }
-             #login-panel p {
-                 margin-bottom: 15px;
-             }
-             #login-panel input[type="text"],
-             #login-panel input[type="password"],
-             #login-panel button {
-                  padding: 10px; /* Mniejszy padding w inputach i przycisku */
-             }
-             #login-message {
-                 font-size: 0.8em;
-             }
-             .copyright {
-                 font-size: 0.6em;
-                 bottom: 10px;
-             }
-        }
-
-
-        /* --- GeoGuess Game Styles (Default - when .game-active is NOT on body) --- */
-        /* These styles apply when login overlay is visible */
-         #street-view,
-         #map,
-         #results,
-         #score-display,
-         .game-buttons-container {
-             display: none; /* Hide game elements by default */
-         }
-
-
-        /* --- GeoGuess Game Styles (When .game-active IS on body) --- */
-        body.game-active #login-overlay {
-             display: none; /* Hide login overlay */
-        }
-
-        body.game-active #page-content {
-            display: block; /* Show game content */
-            position: relative; /* Needed for absolute positioning of children */
-            height: 100%;
-            width: 100%;
-        }
-
-        /* Map styles - fixed height for all screen sizes */
-        body.game-active #map {
-            display: block; /* Show map */
-            position: fixed; /* Mapa przypięta do dołu */
-            bottom: 0;
-            left: 0;
-            width: 100%; /* Mapa na całą szerokość */
-            height: 35vh; /* Stała wysokość mapy na wszystkich ekranach */
-            border-radius: 0; /* Usuń zaokrąglenia */
-            border: none; /* Usuń ramkę */
-            border-top: 2px solid #555; /* Dodaj górną ramkę */
-            z-index: 999;
-            /* Nadpisz stare style przejść i transformacji */
-            transition: none;
-            transform: none;
-            box-shadow: none;
-        }
-
-        body.game-active #map:hover {
-            transform: none; /* Wyłącz powiększanie mapy po najechaniu w tym trybie */
-        }
-
-
-        /* Kontener na przyciski 'Zaznacz odpowiedź' i 'Następna runda' */
-        /* Umieszczony nad mapą, rozciągnięty na całą szerokość, z wewnętrznym paddingiem */
-        body.game-active .game-buttons-container {
-            display: flex; /* Użyj flexbox dla układu przycisków */
-            position: fixed; /* Przypnij do dołu */
-            bottom: 35vh; /* Umieść bezpośrednio nad mapą (zakładając wysokość mapy 35vh) */
-            left: 0;
-            width: 100%;
-            z-index: 1002; /* Nad mapą */
-            justify-content: center; /* Wyśrodkuj przyciski poziomo (przydatne gdy tylko jeden przycisk) */
-            align-items: center; /* Wyśrodkuj w pionie */
-            padding: 10px 20px; /* Dodaj padding lewo/prawo dla marginesów, góra/dół dla odstępu */
-            background-color: rgba(255, 255, 255, 0.8); /* Lekko przezroczyste tło */
-            box-sizing: border-box;
-            gap: 20px; /* Odstęp między przyciskami (jeśli oba widoczne, choć normalnie tylko jeden) */
-        }
-
-         /* Style dla przycisków w kontenerze, nadpisujące stare fixed position */
-         /* Rozciągnięcie na całą szerokość kontenera (minus padding) */
-        body.game-active .game-buttons-container button {
-             position: static; /* Nadpisz pozycjonowanie fixed */
-             transform: none; /* Nadpisz transformacje centrowania */
-             width: 100%; /* PRZYCISK NA CAŁĄ SZEROKOŚĆ kontenera przycisków (minus padding kontenera) */
-             box-sizing: border-box; /* Uwzględnij padding i border przy obliczaniu szerokości przycisku */
-             /* Pozostałe style przycisków (padding, kolory, border etc.) dziedziczone */
-             /* Nadpisujemy padding z ogólnych stylów przycisków, aby kontrolować go globalnie */
-             padding: 12px 25px; /* Zachowaj oryginalny padding wewnętrzny przycisku */
-             margin: 0; /* Usuń ewentualne marginesy */
-             display: block; /* Upewnij się, że przycisk jest blokowy, aby width: 100% działało poprawnie */
-             text-transform: uppercase;
-        }
-
-        /* Wysokość Street View - wypełnia przestrzeń nad mapą i kontenerem przycisków */
-        body.game-active #street-view {
-            display: block; /* Show street view */
-            /* Wysokość: Cały viewport - Wysokość Mapy (35vh) - Wysokość Kontenera Przycisków */
-            /* Zakładając, że wysokość kontenera to ok. 60px na dużych i 40px na małych */
-            height: calc(100vh - 35vh - 60px); /* Dostosowana wysokość na dużych ekranach */
-            width: 100vw;
-            position: relative; /* Zmieniamy na relative, bo mapa jest na dole */
-            z-index: 1; /* Pod mapą i przyciskami */
-        }
-
-
-        body.game-active #results {
-            display: block; /* Show results panel */
-            position: fixed;
-            top: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(255, 255, 255, 0.95);
-            padding: 10px 20px;
-            border-radius: 8px;
-            z-index: 1000;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Nowe położenie dla Sumy Punktów - prawy górny róg */
-        body.game-active #score-display {
-            display: block; /* Show score display */
-            position: fixed;
-            top: 15px; /* Od góry */
-            right: 20px; /* Od prawej */
-            left: auto; /* Nadpisz stare ustawienie 'left' */
-            bottom: auto; /* Nadpisz stare ustawienie 'bottom' */
-            z-index: 1001;
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 8px 15px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-            font-size: 16px;
-            font-weight: bold;
-            color: #333;
-        }
-
-
-        /* Media query dla responsywności elementów gry (np. telefony pionowo) */
-        @media (max-width: 600px) {
-            /* Mapa - wysokość już ustawiona na 35vh w głównym bloku */
-             body.game-active #map {
-                  border-top-width: 1px; /* Cieńsza ramka na małych */
-             }
-
-            /* Kontener przycisków - dostosowanie pozycji i układu */
-             body.game-active .game-buttons-container {
-                 bottom: 35vh; /* Pozycja nad mapą (35vh) */
-                 flex-direction: column; /* Przyciski jeden pod drugim */
-                 gap: 5px; /* Mniejszy odstęp między przyciskami */
-                 padding: 5px 10px; /* Mniejszy padding lewo/prawo i góra/dół */
-             }
-             body.game-active .game-buttons-container button {
-                  /* width: 100% już ustawione */
-                  padding: 10px 15px; /* Mniejszy padding wewnętrzny przycisków */
-             }
-
-             /* Wysokość Street View - dostosowanie */
-             /* Wysokość: Cały viewport - Wysokość Mapy (35vh) - Wysokość Kontenera Przycisków (~40px) */
-             body.game-active #street-view {
-                 height: calc(100vh - 35vh - 40px); /* Dostosuj wysokość Street View na małych ekranach */
-             }
-
-             /* Panel wyników - mniejszy padding */
-             body.game-active #results {
-                 padding: 8px 15px;
-                 font-size: 0.9em;
-             }
-
-             /* Panel punktów - mniejszy padding i inna pozycja */
-              body.game-active #score-display {
-                 padding: 6px 10px;
-                 font-size: 0.9em;
-                 top: 10px; /* Bliżej góry */
-                 right: 10px; /* Bliżej prawej */
-             }
-        }
-
-        /* Media query dla jeszcze mniejszych ekranów (np. stare telefony) */
-        @media (max-width: 320px) {
-             body.game-active .game-buttons-container {
-                  padding: 5px; /* Mniejszy padding kontenera */
-             }
-             body.game-active .game-buttons-container button {
-                  padding: 8px 10px; /* Mniejszy padding przycisków */
-             }
-             /* Wysokość mapy i Street View pozostaje taka jak w media query 600px */
-        }
-
-        /* Add to your <style> block */
-body.game-active #notification-area {
-    position: fixed;
-    top: 70px; /* Adjust based on results panel height */
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1001; /* Above map, below results (or same level) */
-    background-color: rgba(255, 255, 255, 0.95);
-    padding: 10px 20px;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    min-width: 200px; /* Ensure it has some size even with short messages */
-    max-width: 80%; /* Don't let it get too wide */
-    opacity: 0; /* Start invisible */
-    visibility: hidden;
-    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out; /* Fade in/out */
-}
-
-/* Style when it contains text (or use a class) */
-body.game-active #notification-area:not(:empty) {
-    opacity: 1;
-    visibility: visible;
-}
-
-/* Media query adjustments */
-@media (max-width: 600px) {
-     body.game-active #notification-area {
-         top: 60px; /* Adjust for smaller results panel height */
-         padding: 8px 15px;
-         font-size: 0.9em;
-     }
-}
-
-
-        .leaflet-control-attribution {
-            font-size: 10px !important;
-            background: rgba(255, 255, 255, 0.7) !important;
-        }
-    </style>
+    href="https://fonts.googleapis.com/css2?family=Allison&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+    <link rel="stylesheet" href="styles/main.css">
 </head>
-<body>
 
+<body>
     <div id="login-overlay">
-        <img src="apple-touch-icon.png" alt="">
         <div id="login-panel">
             <h2>MGonczerzewicz</h2>
             <p>Please enter the login and password to access the site.</p>
@@ -394,36 +30,233 @@ body.game-active #notification-area:not(:empty) {
     </div>
 
     <div id="page-content">
-        <div id="street-view"></div>
-        <div id="map"></div>
+        <header>
+            <div class="main-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="images/menu-logo.png"
+                            alt="Logo Jagodowy Zakątek przedstawia napis oraz rysunkowy obrazek bórówki amerykańskiej">
+                    </a>
+                </div>
+                <div class="hamburger" id="hamburger-button">
+                    &#9776; 
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#about">Co nas wyróżnia</a></li>
+                        <li><a href="#products">Produkty</a></li>
+                        <li><a href="#offer">Oferta</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a class="contact-btn" href="kontakt.html">Kontakt</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
 
-        <!-- New notification area -->
-        <div id="notification-area"></div>
+        <section class="hero">
+            <div class="main-content">
+                <div class="hero-left">
+                    <h1>Świeżość i smak</h1>
+                    <h2>prosto z natury</h2>
 
-        <!-- Button container -->
-        <div class="game-buttons-container">
-            <button id="guess-button">Zaznacz odpowiedź</button>
-            <button id="next-round" style="display:none">Następna runda</button>
-        </div>
+                    <p>Naszą misją jest inspirowanie do zdrowszego życia poprzez <strong>naturalne, pełne witamin
+                            owoce</strong>. Wierzymy, że natura daje nam wszystko, czego potrzebujemy, by czuć się
+                        dobrze każdego dnia. Promując spożycie <strong>borówek</strong>, dzielimy się ich niezwykłymi
+                        właściwościami i zachęcamy do włączania ich do codziennej diety dla zdrowia i witalności.
+                    </p>
+                </div>
+                <div class="hero-right">
+                    <img src="images/blueberries-hero.png" alt="Obrazek związany z Jagodowym Zakątek">
+                </div>
+            </div>
+        </section>
 
-        <!-- Results panel -->
-        <div id="results">
-            <div id="round-info">Runda 1</div>
-            <div id="info"></div> <!-- This will now be ONLY for distance/score info -->
-        </div>
+        <section class="about" id="about">
+            <div class="main-content">
+                <h2>Jagodowy Zakątek</h2>
+                <h3>Nieco o nas</h3>
+                <p class="intro-text">
+                    <strong>W Jagodowym Zakątku wierzymy w moc natury</strong>. Z pasją oferujemy najświeższe jagody,
+                    które pochodzą od sprawdzonych dostawców, dbających o ekologiczną jakość upraw. Nasza oferta to
+                    połączenie tradycji z nowoczesnym podejściem – wybieramy tylko najlepsze owoce, aby dostarczyć Wam
+                    produkty najwyższej jakości. <strong>Każdy nasz produkt tworzony jest z sercem</strong>, abyście
+                    mogli cieszyć się tym, co najlepsze z natury.
+                </p>
+                <div class="cards">
 
-        <!-- Score display -->
-        <div id="score-display">Suma: 0 pkt</div>
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-heart"></i>
+                            <div class="card-title">
+                                <h4>Pasja i zaangażowanie</h4>
+                                <p>Nasza praca to nasza pasja, a borówka to nasza miłość. Każdy etap produkcji jest
+                                    starannie dopracowany.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-leaf"></i>
+                            <div class="card-title">
+                                <h4>Naturalność</h4>
+                                <p>Oferujemy wyłącznie owoce i produkty bez sztucznych dodatków, pełne naturalnego smaku
+                                    i wartości odżywczych.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-check-circle"></i>
+                            <div class="card-title">
+                                <h4>Jakość</h4>
+                                <p>Dbamy o każdy szczegół, abyś mógł cieszyć się świeżymi, zdrowymi i pysznymi
+                                    produktami.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-home"></i>
+                            <div class="card-title">
+                                <h4>Rodzinne tradycje</h4>
+                                <p>Nasza historia to nie tylko uprawy, to także wartości, które przekazujemy z pokolenia
+                                    na pokolenie.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="produkty" id="products">
+            <div class="main-content">
+                <h2>Co ofertujemy?</h2>
+                <h3>Nasze Produkty</h3>
+                <p>Poznaj naszą wyjątkową ofertę borówkowych smakołyków, które zachwycą każde podniebienie.</p>
+                <div class="product-list slick-track">
+                    <div class="product-item">
+                        <h4>Świeże Borówki</h4>
+                        <img src="images/products/blueberries-cup.png" alt="Świeże borówki firmy Jagodowy Zakątek by Berryland">
+                    </div>
+                    <div class="product-item">
+                        <h4>Lodowy borówkowe</h4>
+                        <img src="images/products/blueberries-ice.png" alt="Lody borówkowe firmy Jagodowy Zakątek by Berryland">
+                    </div>
+                    <div class="product-item">
+                        <h4>Dżem Borówkowy</h4>
+                        <img src="images/products/blueberries-jam.png" alt="Dżem borówkowy firmy Jagodowy Zakątek by Berryland">
+                    </div>
+                    <div class="product-item">
+                        <h4>Suszone borówki</h4>
+                        <img src="images/products/blueberries-dyhydrated.png" alt="Suszone borówki firmy Jagodowy Zakątek by Berryland">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="location" id="location-map">
+            <div class="main-content">
+                <div class="location-container">
+                    <h2>Odwiedź nas!</h2>
+                    <h3>Nasza lokalizacja stacjonarna</h3>
+                    
+                    <div class="map-and-info">
+                        <!-- Mapa Google -->
+                        <div class="map-container" style="flex: 1; min-width: 300px;">
+                            <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1066.6019419096012!2d18.03881035579537!3d53.16254332939778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470313c953d01c5b%3A0x7c49d8b64795d378!2s53%C2%B009'45.2%22N%2018%C2%B002'20.6%22E!5e0!3m2!1spl!2spl!4v1714400534321!5m2!1spl!2spl" 
+                            width="100%" 
+                            height="450" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                        </div>
+        
+                        <!-- Informacje kontaktowe -->
+                        <div class="location-info">
+                            <h4>Jagodowy Zakątek</h4>
+                            <p><strong>Adres:</strong> Gdańska 175, 85-674 Bydgoszcz</p>
+                            <p><strong>Godziny otwarcia:</strong><br>
+                                Pon - Pt: 11:00 – 18:00<br>
+                                Sob - Ndz: 10:00 – 18:00<br>
+                            </p>
+                            <p><strong>Telefon:</strong> +48 123 456 789</p>
+                            <p><strong>Email:</strong> kontakt@jagodowyzakatek.pl</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="oferta" id="offer">
+            <div class="main-content">
+                <div class="oferta-container">
+                    <h3>Nasza Oferta</h3>
+                    <p>Poznaj nasze aktualne promocje i propozycje dla klientów indywidualnych oraz biznesowych.</p>
+                    <ul>
+                        <li>Oferty sezonowe na świeże owoce.</li>
+                        <li>Zestawy prezentowe z naszymi produktami.</li>
+                        <li>Propozycje dla gastronomii i sklepów.</li>
+                        <li>Świeże owoce dla firm.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <div class="container">
+                <div class="footer-columns">
+                    <div class="footer-col">
+                        <div class="footer-logo">
+                            <img src="images/menu-logo.png"
+                                alt="Logo Jagodowy Zakątek przedstawia napis oraz rysunkowy obrazek bórówki amerykańskiej">
+    
+                        </div>
+                        <div class="footer-contact">
+                            <p><strong>Adres:</strong><span> ul. Jagodowa 10,<br>00-001 Borówkowo</span></p>
+                            <p><strong>Telefon:</strong> <a href="tel:+48123456789">+48 123 456 789</a></p>
+                            <p><strong>Email:</strong> <a
+                                    href="mailto:kontakt@jagodowyzakatek.pl">kontakt@jagodowyzakatek.pl</a></p>
+                        </div>
+                    </div>
+    
+                    <div class="footer-col">
+                        <h4>Nawigacja</h4>
+                        <ul>
+                            <li><a href="#about">Co nas wyróznia</a></li>
+                            <li><a href="#products">Produkty</a></li>
+                            <li><a href="#offer">Oferta</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="kontakt.html">Kontakt</a></li>
+                        </ul>
+                    </div>
+    
+                    <div class="footer-col">
+                        <h4>Ważne informacje</h4>
+                        <ul>
+                            <li><a href="#">Regulamin</a></li>
+                            <li><a href="#">Polityka Prywatności</a></li>
+                            <li><a href="#">Polityka Cookies</a></li>
+                        </ul>
+                    </div>
+                </div>
+    
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Jagodowy Zakątek. Wszelkie prawa zastrzeżone.</p>
+                </div>
+            </div>
+        </footer>
     </div>
-
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-
-    <script src="scripts.js"></script>
-
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDiRLM1qDla6f4bY0f8TFo59flTGaV-jtA&callback=onGoogleMapsReady&loading=async">
-    </script>
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    
+    <script src="https://kit.fontawesome.com/518e7fbed8.js" crossorigin="anonymous"></script>
+    <script src="scripts/login.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/carousel.js"></script>
 </body>
+
 </html>
