@@ -81,6 +81,7 @@ header {
 
 header.scrolled {
 	backdrop-filter: blur(4px);
+	-webkit-backdrop-filter: blur(4px);
 	background-color: rgba(255, 255, 255, 0);
 }
 
