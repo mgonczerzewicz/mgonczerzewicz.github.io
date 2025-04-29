@@ -1,3 +1,7 @@
+window.addEventListener('load', () => {
+    window.scrollTo(0, 0); // Ustawia scroll na samej górze strony
+});
+
 window.addEventListener('scroll', function() {
     let header = document.querySelector('header');
     let blurTarget = document.querySelector('.blur-target');
@@ -41,6 +45,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       });
     });
   });
+
   
 // Funkcja do sprawdzenia, czy sekcja jest w obszarze widoczności
 function checkVisibility() {

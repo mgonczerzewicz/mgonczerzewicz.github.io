@@ -8,6 +8,7 @@ html {
 	box-sizing: border-box;
 }
 
+
 /* Ukrywanie elementów domyślnie */
 section {
 	opacity: 0;
@@ -1014,6 +1015,7 @@ footer {
 	text-align: center;
 	font-family: 'Poppins', sans-serif;
 	z-index: 9999;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Dodałem cień, by uzyskać efekt przestrzenny */
 	animation: fadeIn 0.4s ease-in-out;
 }
 
