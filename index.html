@@ -59,6 +59,28 @@
             </div>
         </section>
 
+        <div id="cookie-banner" class="cookie-banner">
+            <h3><i class="fas fa-cookie-bite"></i> Ciasteczka</h3>
+            <p>Hej! Korzystamy z plików cookies, aby nasza strona działała jak należy i była jeszcze lepsza. Wybierz, które chcesz zaakceptować.</p>
+            <div class="cookie-buttons">
+                <button id="accept-all">Akceptuj wszystkie</button>
+                <button id="accept-essential">Tylko niezbędne</button>
+                <button id="customize">Personalizuj</button>
+            </div>
+        </div>
+        
+        <div id="cookie-settings" class="cookie-settings hidden">
+            <h3>Ustawienia cookies</h3>
+            <form id="cookie-form">
+                <label><input type="checkbox" checked disabled> Funkcjonalne (wymagane)</label>
+                <label><input type="checkbox" id="analytics"> Analityczne</label>
+                <label><input type="checkbox" id="marketing"> Marketingowe</label>
+                <div class="cookie-buttons2">
+                    <button type="submit">Zapisz ustawienia</button>
+                </div>
+            </form>
+        </div>
+
         <section class="about" id="about">
             <div class="main-content">
                 <h2>Jagodowy Zakątek</h2>
@@ -246,6 +268,7 @@
     <script src="scripts/login.js"></script>
     <script src="scripts/main.js"></script>
     <script src="scripts/carousel.js"></script>
+    <script src="scripts/cookies.js"></script>
 </body>
 
 </html>

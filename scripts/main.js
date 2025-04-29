@@ -64,3 +64,4 @@ window.addEventListener('scroll', checkVisibility);
 
 // Wywołanie funkcji po załadowaniu strony, żeby sprawdzić sekcje od razu
 document.addEventListener('DOMContentLoaded', checkVisibility);
+
