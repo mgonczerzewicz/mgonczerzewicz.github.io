@@ -196,7 +196,7 @@ footer {
 
 .hero .hero-left p {
     text-align: left;
-    font-size: 14px;
+    font-size: 15px;
     margin-top: 20px;
 }
 
@@ -236,7 +236,7 @@ footer {
 }
 
 .about .main-content p {
-    font-size: 14px;
+    font-size: 15px;
 }
 
 /* PRODUCTS */
@@ -255,7 +255,7 @@ footer {
 }
 
 .produkty .main-content p {
-    font-size: 14px;
+    font-size: 15px;
 }
 
 /* LOCATION */
@@ -365,4 +365,12 @@ footer {
 
 .blog-item-content h4 {
     font-size: 18px;
+}
+
+.blog-post-meta {
+    margin-bottom: 10px;
+}
+
+.blog-post-text p {
+    font-size: 15px;
 }

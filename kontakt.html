@@ -4,15 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f3f1f5">
+    <meta name="description" content="Skontaktuj się z Jagodowym Zakątkiem by Berrlandy. Odwiedź naszą lokalizację sezonową lub wyślij zapytanie przez formularz kontaktowy.">
     <title>Jagodowy Zakątek by Berrland - Pyszne borówkowe przysmaki prosto z natury</title>
     <link rel="icon" type="image/png" href="images/favicon/apple-touch-icon.png">
-    <meta name="theme-color" content="#f3f1f5">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Allison&family=Poppins:wght@300;400;700&family=Roboto:wght@100..900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/responsive.css" media="(max-width: 900px)">
+    <script>
+        // Ten skrypt wykonuje się od razu po załadowaniu HEAD i CSS
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section'); // Pobierz wszystkie sekcje
+            sections.forEach(section => {
+                // Sprawdź, czy górna krawędź sekcji znajduje się powyżej dolnej krawędzi okna przeglądarki (czyli jest widoczna)
+                // Używamy getBoundingClientRect().top, aby sprawdzić jej pozycję względem widocznego obszaru
+                const rect = section.getBoundingClientRect();
+                // Jeśli sekcja jest w całości lub częściowo w widoku (górna krawędź poniżej lub na poziomie dolnej krawędzi okna)
+                // i nie jest w całości powyżej górnej krawędzi okna (rect.bottom > 0)
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    section.classList.add('visible'); // Dodaj klasę 'visible', aby ją natychmiast wyświetlić
+                }
+                 // Sekcje poniżej pierwszego ekranu pozostaną ukryte (opacity: 0)
+                 // i zostaną obsłużone przez skrypt main.js po przewinięciu
+            });
+        });
+    </script>   
 
     <link rel="preload" as="image" href="images/menu-logo.webp" type="image/webp">
 
@@ -89,20 +108,19 @@
                         <form id="contact-form" action="YOUR_FORM_SUBMISSION_URL" method="POST">
                             <div class="form-group">
                                 <label for="name">Imię:</label>
-                                <input type="text" id="name" name="imię" required>
+                                <input type="text" id="name" name="imię" placeholder="Twoje imię" required>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email:</label>
-                                <input type="email" id="email" name="email" required>
+                                <input type="email" id="email" name="email" placeholder="przykładowy@mail.com" required>
                             </div>
                             <div class="form-group">
                                 <label for="subject">Temat:</label>
-                                <input type="text" id="subject" name="temat">
+                                <input type="text" id="subject" name="temat" placeholder="Przykładowy temat wiadomości">
                             </div>
                             <div class="form-group">
                                 <label for="message">Wiadomość:</label>
-                                <textarea id="message" name="wiadomość" rows="6" required></textarea>
-                            </div>
+                                <textarea id="message" name="wiadomość" rows="6" placeholder="Wpisz swoją wiadomość tutaj..." required></textarea> </div>
                             <button type="submit" class="btn">Wyślij wiadomość</button>
                         </form>
                     </div>
@@ -133,9 +151,9 @@
                 <div class="footer-col footer-col-2">
                     <h4>Nawigacja</h4>
                     <ul>
-                        <li><a href="#about">Co nas wyróznia</a></li>
-                        <li><a href="#products">Produkty</a></li>
-                        <li><a href="#offer">Oferta</a></li>
+                        <li><a href="index.html#about">Co nas wyróznia</a></li>
+                        <li><a href="index.html#products">Produkty</a></li>
+                        <li><a href="index.html#offer">Oferta</a></li>
                         <li><a href="blog.html">Blog</a></li>
                         <li><a href="kontakt.html">Kontakt</a></li>
                     </ul>
@@ -156,10 +174,7 @@
         </div>
     </footer>
 
-    <script src="scripts/main.js"></script>
     <script src="scripts/cookies.js"></script>
-    <script src="scripts/contact.js"></script>
-    <script src="https://kit.fontawesome.com/518e7fbed8.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

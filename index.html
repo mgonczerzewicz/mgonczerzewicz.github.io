@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f3f1f5">
+    <meta name="description" content="Jagodowy Zakątek by Berrlandy - pasja do borówek i naturalnych smaków. Spróbuj naszych świeżych owoców, dżemów i lodów prosto z serca natury.">
     <title>Jagodowy Zakątek by Berrland - Pyszne borówkowe przysmaki prosto z natury</title>
     <link rel="icon" type="image/png" href="images/favicon/apple-touch-icon.png">
-    <meta name="theme-color" content="#f3f1f5">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -15,7 +16,27 @@
 
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/responsive.css" media="(max-width: 900px)">
+    <script>
+        // Ten skrypt wykonuje się od razu po załadowaniu HEAD i CSS
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section'); // Pobierz wszystkie sekcje
+            sections.forEach(section => {
+                // Sprawdź, czy górna krawędź sekcji znajduje się powyżej dolnej krawędzi okna przeglądarki (czyli jest widoczna)
+                // Używamy getBoundingClientRect().top, aby sprawdzić jej pozycję względem widocznego obszaru
+                const rect = section.getBoundingClientRect();
+                // Jeśli sekcja jest w całości lub częściowo w widoku (górna krawędź poniżej lub na poziomie dolnej krawędzi okna)
+                // i nie jest w całości powyżej górnej krawędzi okna (rect.bottom > 0)
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    section.classList.add('visible'); // Dodaj klasę 'visible', aby ją natychmiast wyświetlić
+                }
+                 // Sekcje poniżej pierwszego ekranu pozostaną ukryte (opacity: 0)
+                 // i zostaną obsłużone przez skrypt main.js po przewinięciu
+            });
+        });
+    </script>
 
+
+    
     <link rel="preload" as="image" href="images/menu-logo.webp" type="image/webp">
 
     <link rel="stylesheet" type="text/css"
@@ -195,7 +216,7 @@
                         <div class="map-container" style="flex: 1; min-width: 300px;">
                             <iframe
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1066.6019419096012!2d18.03881035579537!3d53.16254332939778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470313c953d01c5b%3A0x7c49d8b64795d378!2s53%C2%B009'45.2%22N%2018%C2%B002'20.6%22E!5e0!3m2!1spl!2spl!4v1714400534321!5m2!1spl!2spl"
-                                title="Zaznaczona lokalizacja budki handlowej Jagodowy Zakątek"></iframe>
+                                title="Zaznaczona lokalizacja budki handlowej Jagodowy Zakątek"
                             width="100%"
                             height="450"
                             style="border:0;"
@@ -286,8 +307,8 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 
     <script src="https://kit.fontawesome.com/518e7fbed8.js" crossorigin="anonymous"></script>
-    <script src="scripts/main.js"></script>
-    <script src="scripts/carousel.js"></script>
+    <!-- <script src="scripts/main.js"></script>
+    <script src="scripts/carousel.js"></script> -->
     <script src="scripts/cookies.js"></script>
 </body>
 

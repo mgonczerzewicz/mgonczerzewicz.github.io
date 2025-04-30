@@ -13,6 +13,25 @@
 
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/responsive.css" media="(max-width: 900px)">
+    <script>
+        // Ten skrypt wykonuje się od razu po załadowaniu HEAD i CSS
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section'); // Pobierz wszystkie sekcje
+            sections.forEach(section => {
+                // Sprawdź, czy górna krawędź sekcji znajduje się powyżej dolnej krawędzi okna przeglądarki (czyli jest widoczna)
+                // Używamy getBoundingClientRect().top, aby sprawdzić jej pozycję względem widocznego obszaru
+                const rect = section.getBoundingClientRect();
+                // Jeśli sekcja jest w całości lub częściowo w widoku (górna krawędź poniżej lub na poziomie dolnej krawędzi okna)
+                // i nie jest w całości powyżej górnej krawędzi okna (rect.bottom > 0)
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    section.classList.add('visible'); // Dodaj klasę 'visible', aby ją natychmiast wyświetlić
+                }
+                 // Sekcje poniżej pierwszego ekranu pozostaną ukryte (opacity: 0)
+                 // i zostaną obsłużone przez skrypt main.js po przewinięciu
+            });
+        });
+    </script>
+
 
     <link rel="preload" as="image" href="images/menu-logo.webp" type="image/webp">
 
@@ -94,9 +113,9 @@
                 <div class="footer-col footer-col-2">
                     <h4>Nawigacja</h4>
                     <ul>
-                        <li><a href="#about">Co nas wyróznia</a></li>
-                        <li><a href="#products">Produkty</a></li>
-                        <li><a href="#offer">Oferta</a></li>
+                        <li><a href="index.html#about">Co nas wyróznia</a></li>
+                        <li><a href="index.html#products">Produkty</a></li>
+                        <li><a href="index.html#offer">Oferta</a></li>
                         <li><a href="blog.html">Blog</a></li>
                         <li><a href="kontakt.html">Kontakt</a></li>
                     </ul>
@@ -117,9 +136,7 @@
         </div>
     </footer>
 
-    <script src="scripts/main.js"></script>
     <script src="scripts/cookies.js"></script>
-    <script src="https://kit.fontawesome.com/518e7fbed8.js" crossorigin="anonymous"></script>
 </body>
 
 </html>
