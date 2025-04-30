@@ -153,6 +153,10 @@ footer {
     flex-direction: column;
 }
 
+#cookie-form {
+    text-align: left;
+}
+
 /* HERO */
 .hero {
     padding-top: 140px;
