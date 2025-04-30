@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jagodowy Zakątek by Berrland - Pyszne borówkowe przysmaki prosto z natury</title>
+    <link rel="icon" type="image/png" href="images/favicon/apple-touch-icon.png">
+    <meta name="theme-color" content="#f3f1f5">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allison&family=Poppins:wght@300;400;700&family=Roboto:wght@100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/responsive.css" media="(max-width: 900px)">
+
+    <link rel="preload" as="image" href="images/menu-logo.webp" type="image/webp">
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+
+    </head>
+
+<body>
+    <div id="page-content">
+        <header>
+            <div class="main-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="images/menu-logo.webp"
+                             alt="Logo Jagodowy Zakątek przedstawia napis oraz rysunkowy obrazek bórówki amerykańskiej">
+                    </a>
+                    <a href="https://www.berryland.pl/" target="_blank" class="logo-text">by Berrland</a>
+                </div>
+                <div class="hamburger" id="hamburger-button">
+                    &#9776; 
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html#about">Co nas wyróżnia</a></li>
+                        <li><a href="index.html#products">Produkty</a></li>
+                        <li><a href="index.html#offer">Oferta</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a class="contact-btn" href="kontakt.html">Kontakt</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <div id="cookie-banner" class="cookie-banner">
+            <h3><i class="fas fa-cookie-bite"></i> Ciasteczka</h3>
+            <p>Hej! Korzystamy z plików cookies, aby nasza strona działała jak należy i była jeszcze lepsza. <a class="cookies-policy-link" href="polityka-cookies.html">Dowiedz się więcej o plikach cookies.</a><br>Wybierz, które chcesz zaakceptować.</p>
+            <div class="cookie-buttons">
+                <button id="accept-all">Akceptuj wszystkie</button>
+                <button id="accept-essential">Tylko niezbędne</button>
+                <button id="customize">Personalizuj</button>
+            </div>
+        </div>
+        
+        <div id="cookie-settings" class="cookie-settings hidden">
+            <h3>Ustawienia cookies</h3>
+            <form id="cookie-form">
+                <label><input type="checkbox" checked disabled> Niezbędne (wymagane)</label>
+                <label><input type="checkbox" id="analytics"> Analityczne i statystyczne</label>
+                <label><input type="checkbox" id="functional"> Funkcjonalne</label>
+                <label><input type="checkbox" id="marketing"> Marketingowe i reklamowe</label>
+                <label><input type="checkbox" id="social-media"> Integracja z mediami społecznościowymi</label>
+                <div class="cookie-buttons2">
+                    <button type="submit">Zapisz ustawienia</button>
+                </div>
+            </form>
+        </div>
+
+        <section class="hero">
+            <div class="main-content">
+                <div class="hero-left">
+                    <h1>Świeżość i smak</h1>
+                    <h2>prosto z natury</h2>
+
+                    <p>Naszą misją jest inspirowanie do zdrowszego życia poprzez <strong>naturalne, pełne witamin
+                            owoce</strong>. Wierzymy, że natura daje nam wszystko, czego potrzebujemy, by czuć się
+                        dobrze każdego dnia. Promując spożycie <strong>borówek</strong>, dzielimy się ich niezwykłymi
+                        właściwościami i zachęcamy do włączania ich do codziennej diety dla zdrowia i witalności.
+                    </p>
+                </div>
+                <div class="hero-right">
+                    <img src="images/blueberries-hero.webp" loading="lazy" alt="Obrazek związany z Jagodowym Zakątek">
+                </div>
+            </div>
+        </section>
+
+        <section class="about" id="about">
+            <div class="main-content">
+                <h2>Jagodowy Zakątek</h2>
+                <h3>Nieco o nas</h3>
+                <p class="intro-text">
+                    <strong>W Jagodowym Zakątku wierzymy w moc natury</strong>. Z pasją oferujemy najświeższe jagody,
+                    które pochodzą od sprawdzonych dostawców, dbających o ekologiczną jakość upraw. Nasza oferta to
+                    połączenie tradycji z nowoczesnym podejściem – wybieramy tylko najlepsze owoce, aby dostarczyć Wam
+                    produkty najwyższej jakości. <strong>Każdy nasz produkt tworzony jest z sercem</strong>, abyście
+                    mogli cieszyć się tym, co najlepsze z natury.
+                </p>
+                <div class="cards">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-heart"></i>
+                            <div class="card-title">
+                                <h4>Pasja i zaangażowanie</h4>
+                                <p>Nasza praca to nasza pasja, a borówka to nasza miłość. Każdy etap produkcji jest
+                                    starannie dopracowany.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-leaf"></i>
+                            <div class="card-title">
+                                <h4>Naturalność</h4>
+                                <p>Oferujemy wyłącznie owoce i produkty bez sztucznych dodatków, pełne naturalnego smaku
+                                    i wartości odżywczych.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-check-circle"></i>
+                            <div class="card-title">
+                                <h4>Jakość</h4>
+                                <p>Dbamy o każdy szczegół, abyś mógł cieszyć się świeżymi, zdrowymi i pysznymi
+                                    produktami.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-home"></i>
+                            <div class="card-title">
+                                <h4>Rodzinne tradycje</h4>
+                                <p>Nasza historia to nie tylko uprawy, to także wartości, które przekazujemy z pokolenia
+                                    na pokolenie.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="produkty" id="products">
+            <div class="main-content">
+                <h2>Co ofertujemy?</h2>
+                <h3>Nasze Produkty</h3>
+                <p>Poznaj naszą wyjątkową ofertę borówkowych smakołyków, które zachwycą każde podniebienie.</p>
+                <div class="product-list slick-track">
+                    <div class="product-item">
+                        <h4>Świeże Borówki</h4>
+                        <img src="images/products/blueberries-cup.png" alt="Świeże borówki firmy Jagodowy Zakątek by Berryland">
+                    </div>
+                    <div class="product-item">
+                        <h4>Lodowy borówkowe</h4>
+                        <img src="images/products/blueberries-ice.png" alt="Lody borówkowe firmy Jagodowy Zakątek by Berryland">
+                    </div>
+                    <div class="product-item">
+                        <h4>Dżem Borówkowy</h4>
+                        <img src="images/products/blueberries-jam.png" alt="Dżem borówkowy firmy Jagodowy Zakątek by Berryland">
+                    </div>
+                    <div class="product-item">
+                        <h4>Suszone borówki</h4>
+                        <img src="images/products/blueberries-dyhydrated.png" alt="Suszone borówki firmy Jagodowy Zakątek by Berryland">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="location" id="location-map">
+            <div class="main-content">
+                <div class="location-container">
+                    <h2>Odwiedź nas!</h2>
+                    <h3>Nasza lokalizacja sezonowa</h3>
+                    
+                    <div class="map-and-info">
+                        <!-- Mapa Google -->
+                        <div class="map-container" style="flex: 1; min-width: 300px;">
+                            <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1066.6019419096012!2d18.03881035579537!3d53.16254332939778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470313c953d01c5b%3A0x7c49d8b64795d378!2s53%C2%B009'45.2%22N%2018%C2%B002'20.6%22E!5e0!3m2!1spl!2spl!4v1714400534321!5m2!1spl!2spl" 
+                            width="100%" 
+                            height="450" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                        </div>
+        
+                        <!-- Informacje kontaktowe -->
+                        <div class="location-info">
+                            <h4>Jagodowy Zakątek</h4>
+                            <p><strong>Adres:</strong><span> ul. Jagodowa 10,<br>00-001 Borówkowo</span></p>
+                            <p><strong>Godziny otwarcia:</strong><br>
+                                Pon - Pt: 11:00 – 18:00<br>
+                                Sob - Ndz: 10:00 – 18:00<br>
+                            </p>
+                            <p><strong>Telefon:</strong> <a href="tel:+48123456789">+48 123 456 789</a></p>
+                            <p><strong>Email:</strong> <a
+                                    href="mailto:kontakt@jagodowyzakatek.pl">kontakt@jagodowyzakatek.pl</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="oferta" id="offer">
+            <div class="main-content">
+                <div class="oferta-container">
+                    <h3>Nasza Oferta</h3>
+                    <p>Poznaj nasze aktualne promocje i propozycje dla klientów indywidualnych oraz biznesowych.</p>
+                    <ul>
+                        <li>Oferty sezonowe na świeże owoce.</li>
+                        <li>Zestawy prezentowe z naszymi produktami.</li>
+                        <li>Propozycje dla gastronomii i sklepów.</li>
+                        <li>Świeże owoce dla firm.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <div class="container">
+                <div class="footer-columns">
+                    <div class="footer-col">
+                        <div class="footer-logo">
+                            <a href="index.html">
+                                <img src="images/menu-logo.webp" 
+                                     alt="Logo Jagodowy Zakątek przedstawia napis oraz rysunkowy obrazek bórówki amerykańskiej">
+                            </a>
+                            <a href="https://www.berryland.pl/" target="_blank" class="footer-logo-text">by Berrland</a>
+                        </div>
+                        <div class="footer-contact">
+                            <p><strong>Adres:</strong><span> ul. Jagodowa 10,<br>00-001 Borówkowo</span></p>
+                            <p><strong>Telefon:</strong> <a href="tel:+48123456789">+48 123 456 789</a></p>
+                            <p><strong>Email:</strong> <a
+                                    href="mailto:kontakt@jagodowyzakatek.pl">kontakt@jagodowyzakatek.pl</a></p>
+                        </div>
+                    </div>
+    
+                    <div class="footer-col footer-col-2">
+                        <h4>Nawigacja</h4>
+                        <ul>
+                            <li><a href="#about">Co nas wyróznia</a></li>
+                            <li><a href="#products">Produkty</a></li>
+                            <li><a href="#offer">Oferta</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="kontakt.html">Kontakt</a></li>
+                        </ul>
+                    </div>
+    
+                    <div class="footer-col footer-col-2">
+                        <h4>Ważne informacje</h4>
+                        <ul>
+                            <li><a href="polityka-prywatnosci.html">Polityka Prywatności</a></li>
+                            <li><a href="polityka-cookies.html">Polityka Cookies</a></li>
+                        </ul>
+                    </div>
+                </div>
+    
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Jagodowy Zakątek. Wszelkie prawa zastrzeżone.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    
+    <script src="https://kit.fontawesome.com/518e7fbed8.js" crossorigin="anonymous"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/carousel.js"></script>
+    <script src="scripts/cookies.js"></script>
+</body>
+
+</html>
