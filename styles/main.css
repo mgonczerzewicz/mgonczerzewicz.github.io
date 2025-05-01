@@ -602,6 +602,13 @@ footer {
 	background-color: #39245c;
 }
 
+.kontakt .contact-alert {
+	font-size: 0.9em;
+	text-align: center;
+	margin-top: 20px;
+	color: red;
+}
+
 
 /* BLOG.HTML Section */
 .blog-container {

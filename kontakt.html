@@ -5,18 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#f3f1f5">
-    <meta name="description" content="Skontaktuj się z Jagodowym Zakątkiem by Berrlandy. Odwiedź naszą lokalizację sezonową lub wyślij zapytanie przez formularz kontaktowy.">
+    <meta name="description"
+        content="Skontaktuj się z Jagodowym Zakątkiem by Berrlandy. Odwiedź naszą lokalizację sezonową lub wyślij zapytanie przez formularz kontaktowy.">
     <title>Jagodowy Zakątek by Berrland - Pyszne borówkowe przysmaki prosto z natury</title>
     <link rel="icon" type="image/png" href="images/favicon/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Allison&family=Poppins:wght@300;400;700&family=Roboto:wght@100..900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Allison&family=Poppins:wght@300;400;700&family=Roboto:wght@100..900&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/responsive.css" media="(max-width: 900px)">
     <script>
         // Ten skrypt wykonuje się od razu po załadowaniu HEAD i CSS
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const sections = document.querySelectorAll('section'); // Pobierz wszystkie sekcje
             sections.forEach(section => {
                 // Sprawdź, czy górna krawędź sekcji znajduje się powyżej dolnej krawędzi okna przeglądarki (czyli jest widoczna)
@@ -27,18 +30,20 @@
                 if (rect.top < window.innerHeight && rect.bottom > 0) {
                     section.classList.add('visible'); // Dodaj klasę 'visible', aby ją natychmiast wyświetlić
                 }
-                 // Sekcje poniżej pierwszego ekranu pozostaną ukryte (opacity: 0)
-                 // i zostaną obsłużone przez skrypt main.js po przewinięciu
+                // Sekcje poniżej pierwszego ekranu pozostaną ukryte (opacity: 0)
+                // i zostaną obsłużone przez skrypt main.js po przewinięciu
             });
         });
-    </script>   
+    </script>
 
     <link rel="preload" as="image" href="images/menu-logo.webp" type="image/webp">
 
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
 
-    </head>
+</head>
 
 <body>
     <div id="page-content">
@@ -47,7 +52,7 @@
                 <div class="logo">
                     <a href="index.html">
                         <img src="images/menu-logo.webp"
-                             alt="Logo Jagodowy Zakątek przedstawia napis oraz rysunkowy obrazek bórówki amerykańskiej">
+                            alt="Logo Jagodowy Zakątek przedstawia napis oraz rysunkowy obrazek bórówki amerykańskiej">
                     </a>
                     <a href="https://www.berryland.pl/" target="_blank" class="logo-text">by Berrland</a>
                 </div>
@@ -75,7 +80,7 @@
                 <button id="customize">Personalizuj</button>
             </div>
         </div>
-        
+
         <div id="cookie-settings" class="cookie-settings hidden">
             <h3>Ustawienia cookies</h3>
             <form id="cookie-form">
@@ -121,8 +126,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="message">Wiadomość:</label>
-                                <textarea id="message" name="wiadomość" rows="6" placeholder="Wpisz swoją wiadomość tutaj..." required></textarea> </div>
+                                <textarea id="message" name="wiadomość" rows="6"
+                                    placeholder="Wpisz swoją wiadomość tutaj..." required></textarea>
+                            </div>
                             <button disabled type="submit" class="btn">Wyślij wiadomość</button>
+                            <p class="contact-alert">Uwaga! Formularz kontaktowy jest aktualnie wyłączony. Prosimy o kontakt telefoniczny lub mailowy!</p>
                         </form>
                     </div>
 
@@ -136,8 +144,8 @@
                 <div class="footer-col">
                     <div class="footer-logo">
                         <a href="index.html">
-                            <img src="images/menu-logo.webp" 
-                                 alt="Logo Jagodowy Zakątek przedstawia napis oraz rysunkowy obrazek bórówki amerykańskiej">
+                            <img src="images/menu-logo.webp"
+                                alt="Logo Jagodowy Zakątek przedstawia napis oraz rysunkowy obrazek bórówki amerykańskiej">
                         </a>
                         <a href="https://www.berryland.pl/" target="_blank" class="footer-logo-text">by Berrland</a>
                     </div>
@@ -177,49 +185,49 @@
 
     <script src="scripts/cookies.js"></script>
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const params = new URLSearchParams(window.location.search);
-        const status = params.get('status');
-        const message = params.get('msg');
-        const contactFormWrapper = document.querySelector('.contact-form-wrapper'); // Znajdź element obok którego chcesz wyświetlić komunikat
+        document.addEventListener('DOMContentLoaded', function () {
+            const params = new URLSearchParams(window.location.search);
+            const status = params.get('status');
+            const message = params.get('msg');
+            const contactFormWrapper = document.querySelector('.contact-form-wrapper'); // Znajdź element obok którego chcesz wyświetlić komunikat
 
-        if (status) {
-            const messageDiv = document.createElement('div');
-            messageDiv.style.padding = '15px';
-            messageDiv.style.marginBottom = '20px';
-            messageDiv.style.borderRadius = '5px';
-            messageDiv.style.fontWeight = 'bold';
+            if (status) {
+                const messageDiv = document.createElement('div');
+                messageDiv.style.padding = '15px';
+                messageDiv.style.marginBottom = '20px';
+                messageDiv.style.borderRadius = '5px';
+                messageDiv.style.fontWeight = 'bold';
 
-            if (status === 'success') {
-                messageDiv.textContent = 'Dziękujemy za wiadomość! Odezwiemy się wkrótce.';
-                messageDiv.style.backgroundColor = '#d4edda'; // Zielone tło dla sukcesu
-                messageDiv.style.color = '#155724'; // Ciemnozielony tekst
-                // Opcjonalnie zresetuj formularz po sukcesie
-                const form = document.getElementById('contact-form');
-                if(form) form.reset();
+                if (status === 'success') {
+                    messageDiv.textContent = 'Dziękujemy za wiadomość! Odezwiemy się wkrótce.';
+                    messageDiv.style.backgroundColor = '#d4edda'; // Zielone tło dla sukcesu
+                    messageDiv.style.color = '#155724'; // Ciemnozielony tekst
+                    // Opcjonalnie zresetuj formularz po sukcesie
+                    const form = document.getElementById('contact-form');
+                    if (form) form.reset();
 
-            } else if (status === 'error') {
-                messageDiv.textContent = 'Wystąpił błąd: ' + (message ? decodeURIComponent(message) : 'Nie udało się wysłać wiadomości.');
-                messageDiv.style.backgroundColor = '#f8d7da'; // Czerwone tło dla błędu
-                messageDiv.style.color = '#721c24'; // Ciemnoczerwony tekst
+                } else if (status === 'error') {
+                    messageDiv.textContent = 'Wystąpił błąd: ' + (message ? decodeURIComponent(message) : 'Nie udało się wysłać wiadomości.');
+                    messageDiv.style.backgroundColor = '#f8d7da'; // Czerwone tło dla błędu
+                    messageDiv.style.color = '#721c24'; // Ciemnoczerwony tekst
 
+                }
+
+                // Dodaj komunikat na początku obszaru formularza
+                if (contactFormWrapper) {
+                    // Usuń istniejący komunikat, jeśli jest (np. po odświeżeniu strony z parametrami)
+                    const existingMessage = contactFormWrapper.querySelector('.form-status-message');
+                    if (existingMessage) existingMessage.remove();
+
+                    messageDiv.classList.add('form-status-message'); // Dodaj klasę, żeby łatwiej było znaleźć
+                    contactFormWrapper.insertBefore(messageDiv, contactFormWrapper.firstChild);
+                }
+
+                // Opcjonalnie: usuń parametry z URL, żeby komunikat zniknął po odświeżeniu strony
+                window.history.replaceState({}, document.title, window.location.pathname);
             }
-
-            // Dodaj komunikat na początku obszaru formularza
-            if (contactFormWrapper) {
-                 // Usuń istniejący komunikat, jeśli jest (np. po odświeżeniu strony z parametrami)
-                 const existingMessage = contactFormWrapper.querySelector('.form-status-message');
-                 if(existingMessage) existingMessage.remove();
-
-                 messageDiv.classList.add('form-status-message'); // Dodaj klasę, żeby łatwiej było znaleźć
-                 contactFormWrapper.insertBefore(messageDiv, contactFormWrapper.firstChild);
-            }
-
-            // Opcjonalnie: usuń parametry z URL, żeby komunikat zniknął po odświeżeniu strony
-             window.history.replaceState({}, document.title, window.location.pathname);
-        }
-    });
-</script>
+        });
+    </script>
 </body>
 
 </html>
