@@ -146,6 +146,7 @@ nav ul li i {
 	background-color: #39245c;
 }
 
+
 .hero {
 	position: relative;
 	padding-top: 120px;
@@ -585,9 +586,22 @@ footer {
 	margin-top: 20px;
 }
 
+.kontakt .main-content .contact-layout-container button[type='submit']:disabled {
+    cursor: not-allowed; /* Zmienia kursor na "zakazany" */
+    background-color: #cccccc; /* Szare tło */
+    color: #222; /* Szary tekst */
+    /* Możesz też usunąć box-shadow lub inne efekty hover/active */
+}
+
+.kontakt .main-content .contact-layout-container button[type='submit']:disabled:hover {
+    background-color: #bbbbbb; /* Szare tło */
+}
+
+
 .kontakt .main-content .contact-layout-container button[type='submit']:hover {
 	background-color: #39245c;
 }
+
 
 /* BLOG.HTML Section */
 .blog-container {
