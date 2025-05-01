@@ -57,7 +57,6 @@
                     <ul>
                         <li><a href="index.html#about">Co nas wyróżnia</a></li>
                         <li><a href="index.html#products">Produkty</a></li>
-                        <li><a href="index.html#offer">Oferta</a></li>
                         <li><a href="blog.html">Blog</a></li>
                         <li><a class="contact-btn" href="kontakt.html">Kontakt</a></li>
                     </ul>
@@ -107,7 +106,7 @@
                     </div>
                     <div class="contact-form-wrapper">
                         <h3>Napisz do nas!</h3>
-                        <form id="contact-form" action="YOUR_FORM_SUBMISSION_URL" method="POST">
+                        <form id="contact-form" action="scripts/send_contact_form.php" method="POST">
                             <div class="form-group">
                                 <label for="name">Imię:</label>
                                 <input type="text" id="name" name="imię" placeholder="Twoje imię" required>
@@ -143,7 +142,7 @@
                         <a href="https://www.berryland.pl/" target="_blank" class="footer-logo-text">by Berrland</a>
                     </div>
                     <div class="footer-contact">
-                        <p><strong>Adres:</strong><span> ul. Jagodowa 10,<br>00-001 Borówkowo</span></p>
+                        <p><strong>Adres:</strong><span> ul. Gdańska 173,<br>85-674 Bydgoszcz</span></p>
                         <p><strong>Telefon:</strong> <a href="tel:+48123456789">+48 123 456 789</a></p>
                         <p><strong>Email:</strong> <a
                                 href="mailto:kontakt@jagodowyzakatek.pl">kontakt@jagodowyzakatek.pl</a></p>
@@ -156,7 +155,6 @@
                         <li><a href="index.html">Strona główna</a></li>
                         <li><a href="index.html#about">Co nas wyróznia</a></li>
                         <li><a href="index.html#products">Produkty</a></li>
-                        <li><a href="index.html#offer">Oferta</a></li>
                         <li><a href="blog.html">Blog</a></li>
                         <li><a href="kontakt.html">Kontakt</a></li>
                     </ul>
@@ -178,6 +176,50 @@
     </footer>
 
     <script src="scripts/cookies.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const params = new URLSearchParams(window.location.search);
+        const status = params.get('status');
+        const message = params.get('msg');
+        const contactFormWrapper = document.querySelector('.contact-form-wrapper'); // Znajdź element obok którego chcesz wyświetlić komunikat
+
+        if (status) {
+            const messageDiv = document.createElement('div');
+            messageDiv.style.padding = '15px';
+            messageDiv.style.marginBottom = '20px';
+            messageDiv.style.borderRadius = '5px';
+            messageDiv.style.fontWeight = 'bold';
+
+            if (status === 'success') {
+                messageDiv.textContent = 'Dziękujemy za wiadomość! Odezwiemy się wkrótce.';
+                messageDiv.style.backgroundColor = '#d4edda'; // Zielone tło dla sukcesu
+                messageDiv.style.color = '#155724'; // Ciemnozielony tekst
+                // Opcjonalnie zresetuj formularz po sukcesie
+                const form = document.getElementById('contact-form');
+                if(form) form.reset();
+
+            } else if (status === 'error') {
+                messageDiv.textContent = 'Wystąpił błąd: ' + (message ? decodeURIComponent(message) : 'Nie udało się wysłać wiadomości.');
+                messageDiv.style.backgroundColor = '#f8d7da'; // Czerwone tło dla błędu
+                messageDiv.style.color = '#721c24'; // Ciemnoczerwony tekst
+
+            }
+
+            // Dodaj komunikat na początku obszaru formularza
+            if (contactFormWrapper) {
+                 // Usuń istniejący komunikat, jeśli jest (np. po odświeżeniu strony z parametrami)
+                 const existingMessage = contactFormWrapper.querySelector('.form-status-message');
+                 if(existingMessage) existingMessage.remove();
+
+                 messageDiv.classList.add('form-status-message'); // Dodaj klasę, żeby łatwiej było znaleźć
+                 contactFormWrapper.insertBefore(messageDiv, contactFormWrapper.firstChild);
+            }
+
+            // Opcjonalnie: usuń parametry z URL, żeby komunikat zniknął po odświeżeniu strony
+             window.history.replaceState({}, document.title, window.location.pathname);
+        }
+    });
+</script>
 </body>
 
 </html>
