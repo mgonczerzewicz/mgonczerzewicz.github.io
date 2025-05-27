@@ -71,7 +71,7 @@ nav ul li:first-child {
 }
 
 nav a {
-    color: #39245c;
+    color: #353a5f;
     font-size: 1.1em;
     text-align: center;
     display: block;
@@ -82,7 +82,7 @@ nav a {
     align-items: center;
     justify-content: center;
     z-index: 11;
-    color: #39245c;
+    color: #353a5f;
     font-size: 24px;
     font-weight: bold;
     padding: 10px 16px;

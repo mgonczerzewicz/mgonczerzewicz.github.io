@@ -54,7 +54,7 @@ section.visible {
 	font-family: 'Allison', sans-serif;
 	font-size: 4rem;
 	text-align: center;
-	color: #39245c;
+	color: #353a5f;
 	margin-bottom: 20px;
 }
 
@@ -94,7 +94,7 @@ header .main-content {
 .logo-text {
 	font-size: 12px;
 	font-family: 'Poppins', sans-serif;
-	color: #39245c;
+	color: #353a5f;
 	text-align: center;
 	display: block;
 	margin-top: -5px;
@@ -118,7 +118,7 @@ nav ul li {
 }
 
 nav a {
-	color: #39245c;
+	color: #353a5f;
 	text-decoration: none;
 	font-weight: bold;
 	font-size: 1em;
@@ -143,7 +143,7 @@ nav ul li i {
 
 .contact-btn:hover {
 	color: #fff;
-	background-color: #39245c;
+	background-color: #353a5f;
 }
 
 
@@ -182,7 +182,7 @@ nav ul li i {
 	font-size: 5rem;
 	margin-top: -25px;
 	margin-bottom: 20px;
-	color: #39245c;
+	color: #353a5f;
 	line-height: 1.2;
 }
 
@@ -263,7 +263,7 @@ nav ul li i {
 .about .card-title h4 {
 	font-size: 18px;
 	font-weight: bold;
-	color: #39245c;
+	color: #353a5f;
 	margin: 0 0 8px 0;
 	transition: color 0.3s ease;
 }
@@ -341,11 +341,11 @@ nav ul li i {
 }
 
 .location-info span {
-	color: #39245c;
+	color: #353a5f;
 }
 
 .location-info a {
-	color: #39245c;
+	color: #353a5f;
 	text-decoration: none;
 	transition: color 0.3s ease;
 }
@@ -415,7 +415,7 @@ footer {
 
 .footer-col ul li a {
 	text-decoration: none;
-	color: #39245c;
+	color: #353a5f;
 	transition: color 0.3s ease;
 }
 
@@ -440,13 +440,14 @@ footer {
 .footer-logo-text {
 	font-size: 12px;
 	font-family: 'Poppins', sans-serif;
-	color: #39245c;
+	color: #353a5f;
 	text-align: center;
 	text-decoration: none;
 	display: block;
 	width: 100%;
 	max-width: 100px;
 	margin: 0 auto;
+	padding-bottom: 20px ;
 }
 
 .footer-contact p {
@@ -454,11 +455,11 @@ footer {
 }
 
 .footer-contact span {
-	color: #39245c;
+	color: #353a5f;
 }
 
 .footer-contact a {
-	color: #39245c;
+	color: #353a5f;
 	text-decoration: none;
 	transition: color 0.3s ease;
 }
@@ -510,11 +511,11 @@ footer {
 }
 
 .kontakt .main-content .contact-layout-container .contact-info p strong {
-	color: #39245c;
+	color: #353a5f;
 }
 
 .kontakt .main-content .contact-layout-container .contact-info a {
-	color: #39245c;
+	color: #353a5f;
 	text-decoration: none;
 	transition: color 0.3s ease;
 }
@@ -599,7 +600,7 @@ footer {
 
 
 .kontakt .main-content .contact-layout-container button[type='submit']:hover {
-	background-color: #39245c;
+	background-color: #353a5f;
 }
 
 .kontakt .contact-alert {
@@ -695,7 +696,7 @@ footer {
 .cookie-banner h3,
 .cookie-settings h3 {
 	font-size: 24px;
-	color: #39245c;
+	color: #353a5f;
 	margin-bottom: 10px;
 }
 
@@ -730,12 +731,12 @@ footer {
 
 #accept-essential {
 	background-color: #c1b4d3;
-	color: #39245c;
+	color: #353a5f;
 }
 
 #customize {
 	background-color: #e0d9ed;
-	color: #39245c;
+	color: #353a5f;
 }
 
 .cookie-settings label {
@@ -744,7 +745,7 @@ footer {
 	font-size: 15px;
 	margin-bottom: 12px;
 	font-weight: 500;
-	color: #39245c;
+	color: #353a5f;
 	gap: 10px;
 	cursor: pointer;
 	user-select: none;
