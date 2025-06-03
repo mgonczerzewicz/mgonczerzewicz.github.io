@@ -1,8 +1,4 @@
-// scripts/essential.js
-// Ten skrypt zawiera niezbędne funkcjonalności UI, które powinny działać na WSZYSTKICH stronach,
-// niezależnie od zgody na cookies.
 
-// --- Zmiana klasy nagłówka na scroll ---
 window.addEventListener('scroll', function() {
     let header = document.querySelector('header');
     if (window.scrollY > 0) {
@@ -15,7 +11,6 @@ window.addEventListener('scroll', function() {
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- Płynne przewijanie do kotwic ---
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(event) {
             event.preventDefault();
@@ -23,9 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (targetId && targetId !== '#' && targetId.startsWith('#')) {
                  const target = document.querySelector(targetId);
                  if (target) {
-                    // Dostosuj offset (80px) do RZECZYWISTEJ wysokości Twojego nagłówka fixed
                     window.scrollTo({
-                        top: target.offsetTop - 80, // Użyj szacowanej wysokości nagłówka
+                        top: target.offsetTop - 80,
                         behavior: 'smooth'
                     });
                  }
@@ -33,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Obsługa menu hamburger ---
     const hamburgerBtn = document.getElementById('hamburger-button');
      if (hamburgerBtn) {
         hamburgerBtn.addEventListener('click', () => {
@@ -42,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
      }
 
-    // --- Zamykanie menu hamburger po kliknięciu w link nawigacyjny ---
     document.querySelectorAll('nav a').forEach(function(link) {
          link.addEventListener('click', function() {
              const header = document.querySelector('header');
@@ -56,4 +48,4 @@ document.addEventListener('DOMContentLoaded', () => {
          });
     });
 
-}); // End of DOMContentLoaded
+});

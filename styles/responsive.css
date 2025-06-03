@@ -255,7 +255,7 @@ footer {
 .product-item {
     width: 90%;
     flex-basis: auto;
-    margin: 10px auto;
+    margin: 10px 20px;
 }
 
 .produkty .main-content p {
