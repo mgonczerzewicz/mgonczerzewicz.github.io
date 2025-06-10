@@ -38,13 +38,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:wght@300;400;700&family=Roboto:wght@100..900&family=Unbounded:wght@200..900&display=swap"
         rel="stylesheet">
     <script src="https://kit.fontawesome.com/518e7fbed8.js" crossorigin="anonymous"></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="/styles/main.css">
-
+    <link rel="stylesheet" href="styles/main.css">
 
     <!-- Zabezpieczenia -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; 
@@ -60,81 +59,82 @@
     <link rel="manifest" href="">
 </head>
 
-<body class="dark-mode">
-    <header>
-        <nav class="container">
-            <div class="logo">
-                <a href="#">MICGO</a>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="#home">Strona Główna</a></li>
-                <li><a href="#services">Usługi</a></li>
-                <li><a href="#products">Produkty</a></li>
-                <li><a href="#about">O Nas</a></li>
-                <li><a href="#contact">Kontakt</a></li>
-            </ul>
-            <div class="nav-controls">
-                <button id="theme-toggle" class="control-button">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <div class="lang-switcher">
-                    <button id="lang-button" class="control-button">PL</button>
-                    <ul id="lang-list" class="lang-list hidden">
-                        <li><a href="#" data-lang="pl">PL</a></li>
-                        <li><a href="#" data-lang="en">EN</a></li>
+<body data-theme="dark">
+
+    <header class="site-header">
+        <div class="site-header-desktop">
+            <div class="site-header__container container">
+                <div class="site-header__logo-wrapper">
+                    <a href="/" class="site-header__logo-link">
+                        MICGO
+                    </a>
+                </div>
+                <nav class="site-header__nav main-nav">
+                    <ul class="site-header__nav-list">
+                        <li class="site-header__nav-item"><a href="#"
+                                class="site-header__nav-link a-links__underline">Usługi</a></li>
+                        <li class="site-header__nav-item"><a href="#" class="site-header__nav-link a-links__underline">O
+                                nas</a></li>
+                        <li class="site-header__nav-item"><a href="#"
+                                class="site-header__nav-link a-links__underline">Portfolio</a></li>
+                        <li class="site-header__nav-item"><a href="#"
+                                class="site-header__nav-link a-links__underline">Kontakt</a></li>
                     </ul>
+                </nav>
+                <div class="site-header__controls">
+                    <button id="theme-toggle" class="site-header__icon-button theme-toggle-button"
+                        aria-label="Przełącz motyw">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                    <button id="lang-toggle" class="site-header__icon-button lang-toggle-button"
+                        aria-label="Zmień język">
+                        PL
+                    </button>
                 </div>
             </div>
-        </nav>
-    </header>
-
-    <main>
-        <section id="home" class="hero container">
-            <div class="hero-content">
-                <h1>Innowacyjne Rozwiązania IT</h1>
-                <h2>Dla Biznesu i E-commerce</h2>
-                <h3>Transformujemy Twoje Pomysły w Cyfrowy Sukces</h3>
-                <button class="primary-button"><i class="fas fa-arrow-right"></i> Dowiedz się więcej</button>
-            </div>
-            <div class="hero-image">
-                <img src="/images/backgrounds/dark/hero-img-dark.png"
-                    alt="Grafika przedstawiająca rozwiązania IT">
-            </div>
-        </section>
-
-        <section id="services" class="services container">
-            <h2>Nasze Usługi</h2>
-            <div class="service-grid">
-                <div class="service-item">
-                    <h3><i class="fas fa-shopping-cart"></i> Rozwój E-commerce</h3>
-                    <p>Tworzymy skalowalne platformy e-commerce, które napędzają sprzedaż i zwiększają zaangażowanie
-                        klientów.</p>
-                </div>
-                <div class="service-item">
-                    <h3><i class="fas fa-laptop-code"></i> Aplikacje Webowe</h3>
-                    <p>Projektujemy i rozwijamy niestandardowe aplikacje webowe dostosowane do Twoich unikalnych potrzeb
-                        biznesowych.</p>
-                </div>
-                <div class="service-item">
-                    <h3><i class="fas fa-lightbulb"></i> Doradztwo IT</h3>
-                    <p>Oferujemy strategiczne doradztwo w zakresie technologii, pomagając optymalizować infrastrukturę
-                        IT.</p>
-                </div>
-                <div class="service-item">
-                    <h3><i class="fas fa-search"></i> Optymalizacja SEO</h3>
-                    <p>Zwiększamy widoczność Twojej strony w wyszukiwarkach, przyciągając więcej organicznego ruchu.</p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Twoja Firma IT & eCommerce. Wszelkie prawa zastrzeżone.</p>
         </div>
-    </footer>
+        <div class="site-header-mobile">
+            <div class="site-header__container container">
+                <button class="hamburger-menu-toggle" id="hamburger-menu-toggle" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="hamburger-line top"></span>
+                    <span class="hamburger-line middle"></span>
+                    <span class="hamburger-line bottom"></span>
+                </button>
+                <div class="site-header__logo-wrapper site-header__logo-wrapper--mobile">
+                    <a href="/" class="site-header__logo-link">
+                        MICGO
+                    </a>
+                </div>
+                <div class="site-header__mobile-placeholder"></div>
+            </div>
+            <nav id="mobile-menu" class="site-header__mobile-nav">
+                <ul class="site-header__mobile-nav-list">
+                    <li class="site-header__mobile-nav-item"><a href="#"
+                            class="site-header__mobile-nav-link a-links__underline">Usługi</a></li>
+                    <li class="site-header__mobile-nav-item"><a href="#"
+                            class="site-header__mobile-nav-link a-links__underline">O nas</a></li>
+                    <li class="site-header__mobile-nav-item"><a href="#"
+                            class="site-header__mobile-nav-link a-links__underline">Portfolio</a></li>
+                    <li class="site-header__mobile-nav-item"><a href="#"
+                            class="site-header__mobile-nav-link a-links__underline">Kontakt</a></li>
+                </ul>
+                <div class="site-header__mobile-controls">
+                    <button id="theme-toggle-mobile" class="site-header__icon-button theme-toggle-button"
+                        aria-label="Przełącz motyw">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                    <button id="lang-toggle-mobile" class="site-header__icon-button lang-toggle-button"
+                        aria-label="Zmień język">
+                        PL
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main>
 
-    <script src="scripts/theme-toggle.js"></script>
-</body>
+    </main>
+    <script src="js/main.js" type="module"></script>
 
 </html>
