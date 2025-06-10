@@ -2,37 +2,37 @@
     BASE STYLES
 */
 
-@import url('base/_reset.css');
-@import url('base/_variables.css');
-@import url('base/_typography.css');
-@import url('base/_base.css');
+@import url('../styles/base/_reset.css');
+@import url('../styles/base/_variables.css');
+@import url('../styles/base/_typography.css');
+@import url('../styles/base/_base.css');
 
 /*
     LAYOUT
 */
 
-@import url('layout/_grid.css');
-@import url('layout/_header.css');
-@import url('layout/_footer.css');
+@import url('../styles/layout/_grid.css');
+@import url('../styles/layout/_header.css');
+@import url('../styles/layout/_footer.css');
 
 /*
     COMPONENTS
 */
 
-@import url('components/__button.css');
-@import url('components/_card.css');
-@import url('components/_form.css');
+@import url('../styles/components/__button.css');
+@import url('../styles/components/_card.css');
+@import url('../styles/components/_form.css');
 
 /*
     PAGE-SPECIFIC
 */
 
-@import url('pages/_home.css');
+@import url('../styles/pages/_home.css');
 
 /*
 RESPONSIVE DESIGN
 */
 
-@import url('responsive/desktop.css');
-@import url('responsive/tablet.css');
-@import url('responsive/mobile.css');
+@import url('../styles/responsive/desktop.css');
+@import url('../styles/responsive/tablet.css');
+@import url('../styles/responsive/mobile.css');
