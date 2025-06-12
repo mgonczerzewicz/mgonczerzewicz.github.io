@@ -1,0 +1,18 @@
+/* SECTION ROADMAP */
+
+@media (max-width: 1024px) {
+	.roadmap-item:nth-child(odd) .roadmap-content,
+	.roadmap-item:nth-child(even) .roadmap-content {
+		width: 50%;
+		margin: 0;
+	}
+
+	.roadmap-item:nth-child(odd) .roadmap-image,
+	.roadmap-item:nth-child(even) .roadmap-image {
+		width: 40%;
+	}
+
+	.roadmap-content {
+		padding: 30px;
+	}
+}

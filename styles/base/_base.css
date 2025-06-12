@@ -14,7 +14,12 @@ body {
   color: var(--color-text-primary);
   line-height: 1.6;
   overflow-x: hidden;
+   margin: 0;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+section {
+    padding-top: 30px;
 }
 
 /* --TYPOGRAFIA-- */
@@ -48,22 +53,6 @@ a:hover {
   color: var(--color-accent-blue-hover);
 }
 
-/* --PRZYCISKI-- */
-button {
-  background-color: var(--color-accent-blue);
-  color: var(--color-text-primary-dark);
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  border: none;
-  /* box-shadow: var(--shadow); */
-  cursor: pointer;
-  transition: background-color 0.3s ease, opacity 0.3s ease;
-}
-
-button:hover {
-  background-color: var(--color-accent-blue-hover);
-  opacity: 1;
-}
 
 /* --KARTY / BLOKI-- */
 .card {

@@ -1,0 +1,36 @@
+@import url(../base/_variables.css);
+
+button {
+	background-color: var(--color-accent-blue);
+	color: var(--color-text-primary-dark);
+	padding: 0.5rem 1rem;
+	border-radius: 4px;
+	border: none;
+	/* box-shadow: var(--shadow); */
+	cursor: pointer;
+	transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+button:hover {
+	background-color: var(--color-accent-blue-hover);
+	opacity: 1;
+}
+
+.hero-button {
+	display: inline-block;
+	padding: 10px 20px;
+	font-size: 1em;
+	font-weight: 600;
+	text-decoration: none;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+	background: var(--color-gradient);
+	color: var(--color-text-primary);
+}
+
+.hero-button:hover {
+	background-color: var(--color-accent-blue-hover);
+	transform: translateY(-2px);
+}
