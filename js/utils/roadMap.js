@@ -40,4 +40,6 @@ export function initializeRoadMap() {
                 card.style.transform = 'translateY(0) scale(1) perspective(1000px) rotateX(0deg) rotateY(0deg)';
             });
         });
+
+        
 	}

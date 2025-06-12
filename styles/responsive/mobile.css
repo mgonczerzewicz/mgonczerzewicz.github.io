@@ -1,6 +1,61 @@
 /* SECTION HERO */
 
 @media (max-width: 768px) {
+    .hero-section {
+        flex-direction: column;
+        padding: 40px 20px;
+    }
+
+    .hero-image-container {
+		width: 100%; 
+		min-height: 300px;
+        height: 50vh;
+        margin-top: 30px;
+		order: 2;
+    }
+
+    .hero-content {
+        padding-left: 0;
+        text-align: center;
+		order: 1;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(2em, 8vw, 2.8em);
+        margin-bottom: 15px;
+    }
+
+    .hero-content h2 {
+        font-size: clamp(1em, 4vw, 1.2em);
+        margin-bottom: 30px;
+    }
+
+    .hero-button-wrapper {
+        justify-content: center;
+    }
+}
+@media (max-width: 480px) {
+    .hero-section {
+        padding: 30px 15px;
+    }
+
+    .hero-image-container {
+        height: 40vh;
+        margin-bottom: 20px;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(1.8em, 9vw, 2.5em);
+    }
+
+    .hero-content h2 {
+        font-size: clamp(0.9em, 4.5vw, 1.1em);
+    }
+}
+
+/* SECTION ROADMAP */
+
+@media (max-width: 768px) {
 
 	.roadmap-header {
 		margin-bottom: 60px;
