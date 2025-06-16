@@ -28,6 +28,10 @@
         font-size: 1.5rem; /* Mniejsza czcionka logo */
     }
 
+    .logo-image{
+        height: 30px;
+    }
+
     .site-header__nav-link {
         font-size: 15px; /* Mniejsza czcionka linków nawigacji */
         padding-bottom: 0.1rem; /* Zmniejszony padding linków */
@@ -74,7 +78,6 @@
     box-shadow: none;
 }
 
-
 .site-header__container {
     display: flex;
     justify-content: space-between;
@@ -92,7 +95,8 @@
     text-decoration: none;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     transition: font-size 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
-    
+        /* display: flex; Makes the link a flex container */
+    align-items: center;
     font-family: var(--font-logo); 
 }
 
@@ -187,6 +191,13 @@
 .site-header.water-effect {
     backdrop-filter: blur(0.75rem) saturate(1.2) brightness(1.1);
     -webkit-backdrop-filter: blur(0.75rem) saturate(1.2) brightness(1.1);
+}
+
+.logo-image {
+    margin-right: 8px; /* Adds some space between the image and the text */
+    height: 40px; /* Adjust the height as needed */
+    width: auto; /* Maintains aspect ratio */
+    transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* MOBILE */

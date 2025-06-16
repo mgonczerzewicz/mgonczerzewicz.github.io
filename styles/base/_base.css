@@ -3,82 +3,166 @@
 /* --PODSTAWOWE STYLE-- */
 
 html {
-  scroll-behavior: smooth;
-  font-size: 16px;
+	scroll-behavior: smooth;
+	font-size: 16px;
 }
 
 body {
-  font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  font-size: 1rem;
-  background-color: var(--color-background);
-  color: var(--color-text-primary);
-  line-height: 1.6;
-  overflow-x: hidden;
-   margin: 0;
-  transition: background-color 0.3s ease, color 0.3s ease;
+	font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+	font-size: 1rem;
+	background-color: var(--color-background);
+	color: var(--color-text-primary);
+	line-height: 1.6;
+	overflow-x: hidden;
+	margin: 0;
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#particles-js {
+	position: fixed; /* Będzie na stałej pozycji, niezależnie od przewijania */
+	width: 100%;
+	height: 100%;
+	background-color: var(--color-background); /* Ciemny kolor tła dla particles.js */
+	background-image: url(''); /* Opcjonalnie: obraz tła pod cząsteczkami */
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 50% 50%;
+	z-index: 1; /* Cząsteczki będą pod resztą treści */
+	top: 0;
+	left: 0;
+}
+
+header,
+main,
+footer {
+	/* Jeśli masz footer */
+	position: relative; /* Ważne, aby z-index działał poprawnie */
+	z-index: 2;
 }
 
 section {
-    padding-top: 30px;
+	padding-top: 30px;
 }
 
 /* --TYPOGRAFIA-- */
-h1, h2, h3, h4, h5, h6 {
-  color: var(--color-text-headings);
-  line-height: 1.2;
-  margin-bottom: 0.5em;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: var(--color-text-headings);
+	line-height: 1.2;
+	margin-bottom: 0.5em;
 }
 
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.75rem; }
-h4 { font-size: 1.5rem; }
-h5 { font-size: 1.25rem; }
-h6 { font-size: 1rem; }
+h1 {
+	font-size: 2.5rem;
+}
+h2 {
+	font-size: 2rem;
+}
+h3 {
+	font-size: 1.75rem;
+}
+h4 {
+	font-size: 1.5rem;
+}
+h5 {
+	font-size: 1.25rem;
+}
+h6 {
+	font-size: 1rem;
+}
 
 p {
-  margin-bottom: 1rem;
-  max-width: 75ch;
-  color: var(--color-text-primary);
+	margin-bottom: 1rem;
+	max-width: 75ch;
+	color: var(--color-text-primary);
 }
 
 /* --LINKI-- */
 a {
-  color: var(--color-accent-blue);
-  text-decoration: none;
-  transition: color 0.3s ease;
+	color: var(--color-accent-blue);
+	text-decoration: none;
+	transition: color 0.3s ease;
 }
 
 a:hover {
-  color: var(--color-accent-blue-hover);
+	color: var(--color-accent-blue-hover);
 }
-
 
 /* --KARTY / BLOKI-- */
 .card {
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-text-secondary);
-  border-radius: 8px;
-  padding: 1rem;
-  /* box-shadow: var(--shadow); */
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+	background-color: var(--color-surface);
+	border: 1px solid var(--color-text-secondary);
+	border-radius: 8px;
+	padding: 1rem;
+	/* box-shadow: var(--shadow); */
+	transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 /* --UTILITY-- */
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    /* Zwiększ padding z 1rem na np. 1.5rem lub 2rem, aby zwiększyć marginesy wewnętrzne */
-    padding: 0 1.5rem; /* Zmienione */
+	max-width: 1200px;
+	margin: 0 auto;
+	/* Zwiększ padding z 1rem na np. 1.5rem lub 2rem, aby zwiększyć marginesy wewnętrzne */
+	padding: 0 1.5rem; /* Zmienione */
 }
 
 main {
-    max-width: 1200px;
-    margin: 0 auto;
-    /* Zwiększ padding z 1rem na np. 1.5rem lub 2rem, aby zwiększyć marginesy wewnętrzne */
-    padding: 0 2rem; /* Zmienione */
+	max-width: 1200px;
+	margin: 0 auto;
+	/* Zwiększ padding z 1rem na np. 1.5rem lub 2rem, aby zwiększyć marginesy wewnętrzne */
+	padding: 0 2rem; /* Zmienione */
 }
 
 .text-center {
-  text-align: center;
+	text-align: center;
+}
+
+.animated-headline {
+	font-size: 2.5rem;
+	font-family: 'Poppins', sans-serif;
+	color: #222;
+}
+
+#typing {
+	color: var(--color-accent-blue);
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.subtitle {
+	display: block;
+}
+
+.cursor {
+	color: var(--color-accent-blue);
+	animation: blink 1s step-start infinite, jump 0.6s ease-in-out infinite;
+	display: inline-block;
+	margin-left: 2px;
+  font-weight: 600;
+}
+
+@keyframes blink {
+	0%,
+	50%,
+	100% {
+		opacity: 1;
+	}
+	25%,
+	75% {
+		opacity: 0;
+	}
+}
+
+@keyframes jump {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-5px);
+	}
 }
