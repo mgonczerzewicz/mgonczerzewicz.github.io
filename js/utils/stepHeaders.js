@@ -1,6 +1,4 @@
-// utils/stepHeaders.js
-
-export function initializeStepHeaders() { // <-- Dodano 'export function'
+export function initializeStepHeaders() {
     const stepHeaders = document.querySelectorAll('.step-header');
 
     stepHeaders.forEach(header => {
@@ -9,7 +7,6 @@ export function initializeStepHeaders() { // <-- Dodano 'export function'
             const content = step.querySelector('.step-content');
             const icon = this.querySelector('.step-icon');
 
-            // Close all other steps
             stepHeaders.forEach(otherHeader => {
                 if (otherHeader !== header) {
                     const otherStep = otherHeader.parentElement;
@@ -21,7 +18,6 @@ export function initializeStepHeaders() { // <-- Dodano 'export function'
                 }
             });
 
-            // Toggle current step
             content.classList.toggle('active');
             icon.classList.toggle('rotated');
         });

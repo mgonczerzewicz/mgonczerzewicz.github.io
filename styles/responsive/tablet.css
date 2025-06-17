@@ -1,6 +1,7 @@
 /* SECTION ROADMAP */
 
 @media (max-width: 1024px) {
+
 	.roadmap-item:nth-child(odd) .roadmap-content,
 	.roadmap-item:nth-child(even) .roadmap-content {
 		width: 50%;

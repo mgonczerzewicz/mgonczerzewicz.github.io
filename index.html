@@ -67,23 +67,19 @@
                 <nav class="site-header__nav main-nav">
                     <ul class="site-header__nav-list">
                         <li class="site-header__nav-item"><a href="#"
-                                class="site-header__nav-link a-links__underline">Usługi</a></li>
+                                class="site-header__nav-link a-links__underline active">Strona domowa</a></li>
+                        <li class="site-header__nav-item"><a href="#"
+                                class="site-header__nav-link a-links__underline">Usługi </a></li>
                         <li class="site-header__nav-item"><a href="#" class="site-header__nav-link a-links__underline">O
                                 nas</a></li>
                         <li class="site-header__nav-item"><a href="#"
                                 class="site-header__nav-link a-links__underline">Portfolio</a></li>
-                        <li class="site-header__nav-item"><a href="#"
-                                class="site-header__nav-link a-links__underline">Kontakt </a></li>
                     </ul>
                 </nav>
-                <div class="site-header__controls">
-                    <button id="theme-toggle" class="site-header__icon-button theme-toggle-button"
-                        aria-label="Przełącz motyw">
-                        <i class="fa-solid fa-moon"></i>
-                    </button>
-                    <button id="lang-toggle" class="site-header__icon-button lang-toggle-button"
-                        aria-label="Zmień język">
-                        PL
+                <div class="site-header2__controls">
+                    <button id="contact-btn" class="site-header2__icon-button contact-button"
+                        aria-label="Napisz do nas!">
+                        Napisz do nas <i class="fa-solid fa-angles-right animated-arrow"></i>
                     </button>
                 </div>
             </div>
@@ -112,16 +108,12 @@
                     <li class="site-header__mobile-nav-item"><a href="#"
                             class="site-header__mobile-nav-link a-links__underline">Portfolio</a></li>
                     <li class="site-header__mobile-nav-item"><a href="#"
-                            class="site-header__mobile-nav-link a-links__underline">Odezwij się do nas</a></li>
+                            class="site-header__mobile-nav-link a-links__underline">Napisz do nas</a></li>
                 </ul>
                 <div class="site-header__mobile-controls">
                     <button id="theme-toggle-mobile" class="site-header__icon-button theme-toggle-button"
                         aria-label="Przełącz motyw">
                         <i class="fa-solid fa-moon"></i>
-                    </button>
-                    <button id="lang-toggle-mobile" class="site-header__icon-button lang-toggle-button"
-                        aria-label="Zmień język">
-                        PL
                     </button>
                 </div>
             </nav>
@@ -129,20 +121,53 @@
     </header>
 
     <main>
+
         <section class="hero-section">
+
+            <div class="flex-spacer-top"></div>
             <div class="hero-image-container"></div>
             <div class="hero-content">
                 <h1 class="animated-headline">
-                    Tworzymy <span id="typing"></span><span class="cursor">|</span>,<div class="subtitle">to cyfrowy fundament Twojego sukcesu.</div>
-</h1>
+                    Tworzymy <span id="typing"></span><span class="cursor">|</span>,<div class="subtitle">to cyfrowy
+                        fundament Twojego sukcesu.</div>
+                </h1>
                 </h1>
                 <h2>Nowoczesne rozwiązania technologiczne, które przyspieszają Twój biznes. Tworzymy sklepy internetowe,
                     systemy IT i automatyzacja, które działają.</h2>
-                <div class="hero-button-wrapper">
-                    <button class="hero-button">Dowiedz się więcej</button>
-                </div>
             </div>
+            <div class="hero-button-wrapper">
+                <a href="#about" class="hero-scroll-icon" aria-label="Przewiń w dół">
+                    <i class="fa-solid fa-angles-down"></i></a>
+            </div>
+            <div class="flex-spacer-bottom"></div>
         </section>
+        <div class="site-button__controls">
+            <button id="theme-toggle" class="theme-toggle-button theme-switcher-slider" aria-label="Przełącz motyw"
+                role="switch" aria-checked="true">
+                <div class="slider-handle">
+                    <i class="fa-solid fa-moon dark-icon"></i>
+                    <i class="fa-solid fa-sun light-icon"></i>
+                </div>
+
+                <span class="slider-text top-text">Ciemny</span>
+                <span class="slider-text bottom-text">Jasny</span>
+            </button>
+  <button
+    id="lang-toggle"
+    class="site-button__icon-button lang-toggle-button lang-switcher-slider"
+    aria-label="Zmień język"
+    role="switch"
+    aria-checked="true"
+  >
+    <div class="slider-handle">
+      <span class="lang-text lang-pl">PL</span>
+      <span class="lang-text lang-en">EN</span>
+      </div>
+
+    <span class="slider-text top-lang-text">PL</span>
+    <span class="slider-text bottom-lang-text">EN</span>
+  </button>
+        </div>
 
         <section class="roadmap-section">
             <div class="roadmap-header">
@@ -277,120 +302,8 @@
                 </div>
             </div>
         </section>
-    </main>
 
-    <script>
-        particlesJS('particles-js', {
-            "particles": {
-                "number": {
-                    "value": 80,
-                    "density": {
-                        "enable": true,
-                        "value_area": 800
-                    }
-                },
-                "color": {
-                    "value": "#ffffff" /* Kolor cząsteczek */
-                },
-                "shape": {
-                    "type": "circle", /* Typ kształtu (circle, edge, triangle, polygon, star, image) */
-                    "stroke": {
-                        "width": 0,
-                        "color": "#000000"
-                    },
-                    "polygon": {
-                        "nb_sides": 5
-                    },
-                    "image": {
-                        "src": "img/github.svg", /* Opcjonalnie: obrazek zamiast kółek */
-                        "width": 100,
-                        "height": 100
-                    }
-                },
-                "opacity": {
-                    "value": 0.5,
-                    "random": false,
-                    "anim": {
-                        "enable": false,
-                        "speed": 1,
-                        "opacity_min": 0.1,
-                        "sync": false
-                    }
-                },
-                "size": {
-                    "value": 3,
-                    "random": true,
-                    "anim": {
-                        "enable": false,
-                        "speed": 40,
-                        "size_min": 0.1,
-                        "sync": false
-                    }
-                },
-                "line_linked": {
-                    "enable": true,
-                    "distance": 150,
-                    "color": "#ffffff", /* Kolor linii łączących cząsteczki */
-                    "opacity": 0.4,
-                    "width": 1
-                },
-                "move": {
-                    "enable": true,
-                    "speed": 6, /* Prędkość ruchu cząsteczek */
-                    "direction": "none",
-                    "random": false,
-                    "straight": false,
-                    "out_mode": "out",
-                    "bounce": false,
-                    "attract": {
-                        "enable": false,
-                        "rotateX": 600,
-                        "rotateY": 1200
-                    }
-                }
-            },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": {
-                    "onhover": {
-                        "enable": true,
-                        "mode": "grab" /* Tryb interakcji po najechaniu (grab, bubble, repulse) */
-                    },
-                    "onclick": {
-                        "enable": true,
-                        "mode": "push" /* Tryb interakcji po kliknięciu (push, remove, bubble, repulse) */
-                    },
-                    "resize": true
-                },
-                "modes": {
-                    "grab": {
-                        "distance": 200,
-                        "line_linked": {
-                            "opacity": 1
-                        }
-                    },
-                    "bubble": {
-                        "distance": 400,
-                        "size": 40,
-                        "duration": 2,
-                        "opacity": 8,
-                        "speed": 3
-                    },
-                    "repulse": {
-                        "distance": 200,
-                        "duration": 0.4
-                    },
-                    "push": {
-                        "particles_nb": 4
-                    },
-                    "remove": {
-                        "particles_nb": 2
-                    }
-                }
-            },
-            "retina_detect": true
-        });
-    </script>
+    </main>
     <script src="js/main.js" type="module"></script>
 
 </body>

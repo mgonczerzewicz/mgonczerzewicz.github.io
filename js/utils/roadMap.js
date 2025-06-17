@@ -1,5 +1,3 @@
-// utils/roadmapAnimations.js
-
 export function initializeRoadMap() {
 	
         const observerOptions = {
@@ -20,7 +18,6 @@ export function initializeRoadMap() {
             observer.observe(item);
         });
 
-        // Add smooth hover effects with mouse tracking
         document.querySelectorAll('.roadmap-content').forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();

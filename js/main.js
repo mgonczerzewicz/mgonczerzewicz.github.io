@@ -1,5 +1,3 @@
-// main.js
-
 import { initializeHeader } from './modules/navigation.js';
 import { initializeThemeSwitcher } from './modules/themeSwitcher.js';
 import { initializeLangSwitcher } from './modules/langSwitcher.js';
@@ -11,7 +9,6 @@ import { initializeChangingWord } from './utils/changingWord.js';
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Inicjalizuj wszystkie moduły
     initializeHeader();
     initializeThemeSwitcher();
     initializeLangSwitcher();
@@ -22,3 +19,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     console.log('MICGO: Wszystkie skrypty załadowane i zainicjowane.');
 });
+

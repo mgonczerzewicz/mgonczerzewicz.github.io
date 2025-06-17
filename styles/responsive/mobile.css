@@ -3,49 +3,47 @@
 @media (max-width: 768px) {
     .hero-section {
         flex-direction: column;
-        padding: 40px 20px;
+        height: calc(95vh - 10vh);
+        justify-content: center;
+        position: static;
+    }
+
+    .hero-button-wrapper {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        position: static;
+        bottom: auto;
+        left: auto;
+        transform: none;
+        z-index: auto;/
     }
 
     .hero-image-container {
-		width: 100%; 
-		min-height: 300px;
-        height: 50vh;
-        margin-top: 30px;
-		order: 2;
+        width: 100%;
+        min-height: 200px;
+        max-height: 50vh;
+        height: auto;
+        margin-top: 0;
+        order: 1;
+    }
+
+	.hero-button-wrapper {
+        order: 2;
+		margin-bottom: 20px;
     }
 
     .hero-content {
+		padding-top: 20px;
         padding-left: 0;
         text-align: center;
-		order: 1;
+        order: 2;
     }
 
     .hero-content h1 {
         margin-bottom: 15px;
     }
 
-    .hero-content h2 {
-        font-size: clamp(1em, 4vw, 1.2em);
-        margin-bottom: 30px;
-    }
-
-    .hero-button-wrapper {
-        justify-content: center;
-    }
-}
-@media (max-width: 480px) {
-    .hero-section {
-        padding: 30px 15px;
-    }
-
-    .hero-image-container {
-        height: 40vh;
-        margin-bottom: 20px;
-    }
-
-    .hero-content h2 {
-        font-size: clamp(0.9em, 4.5vw, 1.1em);
-    }
 }
 
 /* SECTION ROADMAP */

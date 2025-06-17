@@ -1,48 +1,56 @@
-// js/modules/themeSwitcher.js
-
 export const initializeThemeSwitcher = () => {
-	// Zmieniamy na querySelectorAll, aby pobrać WSZYSTKIE przyciski z daną klasą
-	const themeToggleBtns = document.querySelectorAll('.theme-toggle-button')
-	const body = document.body
+    const themeToggleBtns = document.querySelectorAll('.theme-toggle-button');
+    const body = document.body;
 
-	const updateThemeIcon = () => {
-		const currentTheme = body.getAttribute('data-theme')
-		themeToggleBtns.forEach(btn => {
-			// Iterujemy przez wszystkie przyciski
-			if (currentTheme === 'dark') {
-				btn.innerHTML = '<i class="fa-solid fa-sun"></i>' // Zmień na słońce w trybie ciemnym
-			} else {
-				btn.innerHTML = '<i class="fa-solid fa-moon"></i>' // Zmień na księżyc w trybie jasnym
-			}
-		})
-	}
+    const updateThemeIcon = () => {
+        const currentTheme = body.getAttribute('data-theme');
+        themeToggleBtns.forEach(btn => {
+            // Zakładamy, że btn to nasz .theme-switcher-slider
+            const sliderHandle = btn.querySelector('.slider-handle');
+            if (sliderHandle) { // Upewnij się, że gałka istnieje
+                const darkIcon = sliderHandle.querySelector('.dark-icon');
+                const lightIcon = sliderHandle.querySelector('.light-icon');
 
-	const loadTheme = () => {
-		const savedTheme = localStorage.getItem('theme')
-		if (savedTheme) {
-			body.setAttribute('data-theme', savedTheme)
-		} else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-			body.setAttribute('data-theme', 'dark')
-		} else {
-			body.setAttribute('data-theme', 'light')
-		}
-		updateThemeIcon() // Zaktualizuj ikonę po załadowaniu motywu
-	}
+                if (currentTheme === 'dark') {
+                    // W trybie ciemnym gałka jest na górze, pokazujemy księżyc
+                    if (darkIcon) darkIcon.style.opacity = '1';
+                    if (lightIcon) lightIcon.style.opacity = '0';
+                    btn.setAttribute('aria-checked', 'false'); // 'false' dla ciemnego motywu
+                } else {
+                    // W trybie jasnym gałka jest na dole, pokazujemy słońce
+                    if (darkIcon) darkIcon.style.opacity = '0';
+                    if (lightIcon) lightIcon.style.opacity = '1';
+                    btn.setAttribute('aria-checked', 'true'); // 'true' dla jasnego motywu
+                }
+            }
+        });
+    };
 
-	// Dodajemy nasłuchiwanie zdarzeń do KAŻDEGO przycisku
-	themeToggleBtns.forEach(btn => {
-		btn.addEventListener('click', () => {
-			if (body.getAttribute('data-theme') === 'dark') {
-				body.setAttribute('data-theme', 'light')
-				localStorage.setItem('theme', 'light')
-			} else {
-				body.setAttribute('data-theme', 'dark')
-				localStorage.setItem('theme', 'dark')
-			}
-			updateThemeIcon() // Zaktualizuj ikonę po zmianie motywu
-		})
-	})
+    const loadTheme = () => {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            body.setAttribute('data-theme', savedTheme);
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            body.setAttribute('data-theme', 'dark');
+        } else {
+            body.setAttribute('data-theme', 'light');
+        }
+        updateThemeIcon(); // Wywołujemy po załadowaniu motywu
+    };
 
-	loadTheme() // Załaduj motyw przy starcie
-	console.log('MICGO: theme changer initialized.')
-}
+    themeToggleBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            }
+            updateThemeIcon(); // Wywołujemy po zmianie motywu
+        });
+    });
+
+    loadTheme();
+    console.log('MICGO: theme changer initialized.');
+};

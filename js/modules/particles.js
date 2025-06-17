@@ -1,11 +1,9 @@
-// js/particles-init.js
-
 export function initializeParticles() {
     if (typeof particlesJS !== 'undefined') {
         particlesJS('particles-js', {
             "particles": {
                 "number": {
-                    "value": 100, // ZWIĘKSZONO: Więcej cząsteczek dla większej "gęstości" środka
+                    "value": 100,
                     "density": {
                         "enable": true,
                         "value_area": 800
@@ -53,15 +51,14 @@ export function initializeParticles() {
                 },
                 "move": {
                     "enable": true,
-                    "speed": 2,
-                    "direction": "none", // ZMIANA: Możesz spróbować "top-right", "bottom-left" itp. lub zostawić "none"
-                    "random": false,
+                    "speed": 1.5,
+                    "direction": "none",
+                    "random": true,
                     "straight": false,
-                    "out_mode": "bounce", // ZMIANA: Cząsteczki odbijają się od krawędzi
-                    // "out_mode": "out", // Domyślnie wychodziły poza ekran
-                    "bounce": true, // ZMIANA: Włącz odbijanie
+                    "out_mode": "bounce",
+                    "bounce": true, 
                     "attract": {
-                        "enable": true, // ZMIANA: Włącz przyciąganie
+                        "enable": false,
                         "rotateX": 600,
                         "rotateY": 1200
                     }
@@ -95,7 +92,7 @@ export function initializeParticles() {
                         "speed": 3
                     },
                     "repulse": {
-                        "distance": 150, // ZWIĘKSZONO: Większy zasięg odpychania
+                        "distance": 100,
                         "duration": 0.8
                     },
                     "push": {

@@ -19,15 +19,15 @@ body {
 }
 
 #particles-js {
-	position: fixed; /* Będzie na stałej pozycji, niezależnie od przewijania */
+	position: fixed;
 	width: 100%;
 	height: 100%;
-	background-color: var(--color-background); /* Ciemny kolor tła dla particles.js */
-	background-image: url(''); /* Opcjonalnie: obraz tła pod cząsteczkami */
+	background-color: var(--color-background);
+	background-image: url('');
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 50% 50%;
-	z-index: 1; /* Cząsteczki będą pod resztą treści */
+	z-index: 1;
 	top: 0;
 	left: 0;
 }
@@ -35,8 +35,7 @@ body {
 header,
 main,
 footer {
-	/* Jeśli masz footer */
-	position: relative; /* Ważne, aby z-index działał poprawnie */
+	position: relative;
 	z-index: 2;
 }
 
@@ -98,31 +97,33 @@ a:hover {
 	border: 1px solid var(--color-text-secondary);
 	border-radius: 8px;
 	padding: 1rem;
-	/* box-shadow: var(--shadow); */
 	transition: background-color 0.3s ease, border-color 0.3s ease;
 }
+
 
 /* --UTILITY-- */
 .container {
 	max-width: 1200px;
 	margin: 0 auto;
-	/* Zwiększ padding z 1rem na np. 1.5rem lub 2rem, aby zwiększyć marginesy wewnętrzne */
-	padding: 0 1.5rem; /* Zmienione */
+	padding: 0 1.5rem;
 }
 
 main {
 	max-width: 1200px;
 	margin: 0 auto;
-	/* Zwiększ padding z 1rem na np. 1.5rem lub 2rem, aby zwiększyć marginesy wewnętrzne */
-	padding: 0 2rem; /* Zmienione */
+	padding: 0 2rem;
 }
 
 .text-center {
 	text-align: center;
 }
 
+.active {
+	font-weight: 600;
+}
+
 .animated-headline {
-	font-size: 2.5rem;
+	font-size: 2rem;
 	font-family: 'Poppins', sans-serif;
 	color: #222;
 }
