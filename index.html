@@ -1,311 +1,100 @@
 <!DOCTYPE html>
 <html lang="pl">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MICGO: Innovative E-commerce & IT Solutions</title>
-    <meta name="description"
-        content="🚀 Napędzamy Twój biznes w cyfrowej erze! Kompleksowe rozwiązania #IT i #Ecommerce, które skalują. Odkryj, jak możemy Ci pomóc. #DigitalTransformation #Innovation">
-    <meta name="keywords"
-        content="e-commerce solutions, IT solutions, e-commerce development, IT services, online store development, web development, digital transformation, business technology, IT consulting, e-commerce consulting, custom e-commerce platforms, CRM integration, ERP integration, payment gateway integration, cloud solutions, cybersecurity, data analytics, SaaS development, API development, system integration, boost online sales, business growth, efficiency solutions, scalability, cost reduction, enhanced customer experience, secure e-commerce, digital innovation, operational excellence, e-commerce solutions for small business, IT services for enterprises, e-commerce Poland, IT solutions Poland, custom B2B e-commerce development">
-    <meta name="author" content="MICGO">
-
-    <meta property="og:title" content="MICGO: Innovative E-commerce & IT Solutions">
-    <meta property="og:description"
-        content="🚀 Napędzamy Twój biznes w cyfrowej erze! Kompleksowe rozwiązania #IT i #Ecommerce, które skalują. Odkryj, jak możemy Ci pomóc. #DigitalTransformation #Innovation.">
-    <meta property="og:image" content=" ">
-    <meta property="og:url" content=" ">
-    <meta property="og:type" content="website">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="MICGO: IT Solutions & Ecommerce">
-    <meta name="twitter:description"
-        content="🚀 Napędzamy Twój biznes w cyfrowej erze! Kompleksowe rozwiązania #IT i #Ecommerce, które skalują. Odkryj, jak możemy Ci pomóc. #DigitalTransformation #Innovation">
-    <meta name="twitter:image" content="https://twojastrona.pl/images/twitter-image.jpg">
-
-    <link rel="icon" href="images/favicon/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="images/favicon/apple-touch-icon.png">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:wght@300;400;700&family=Roboto:wght@100..900&family=Unbounded:wght@200..900&display=swap"
-        rel="stylesheet">
-    <script src="https://kit.fontawesome.com/518e7fbed8.js" crossorigin="anonymous"></script>
-
-    <link rel="stylesheet" href="styles/main.css">
-
-    <meta name="referrer" content="no-referrer-when-downgrade">
-    <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#4B0082">
-
-    <link rel="manifest" href="">
-
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-
+    <meta http-equiv="refresh" content="3; URL='https://micgo.pl'" />
     <style>
 
+      :root {
+        --color-background: #252422;
+        --color-surface: #333333;
+        --color-text-primary: #fffcf2;
+        --color-text-headings: #ccc5b9;
+        --color-text-secondary: #a9a9a9;
+        --color-accent-blue: #2176ff;
+        --color-accent-blue-hover: #0056e6;
+        --color-gradient: linear-gradient(135deg, #2176ff 0%, #8b5cf6 100%);
+        --font-logo: 'Unbounded', sans-serif;
+        --font-text-headings: 'Roboto', sans-serif;
+        --font-text-primary: 'Montserrat', sans-serif;
+      }
 
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto:wght@400;700&family=Unbounded:wght@600&display=swap');
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: var(--color-background);
+        color: var(--color-text-primary);
+        font-family: var(--font-text-primary);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+        padding: 2rem;
+      }
+
+      .spinner {
+        width: 64px;
+        height: 64px;
+        border: 6px solid rgba(255, 255, 255, 0.1);
+        border-top: 6px solid #2176ff;
+        border-right: 6px solid #8b5cf6;
+        border-radius: 50%;
+        animation: spin 1s ease-in-out infinite;
+        margin-bottom: 2rem;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .redirect-message {
+        font-size: 1.5rem;
+        font-family: var(--font-text-headings);
+        color: var(--color-text-primary);
+        margin-bottom: 1rem;
+        animation: fadeIn 1s ease-in-out;
+      }
+
+      .redirect-link {
+        color: var(--color-text-secondary);
+        font-weight: 500;
+        font-size: 16px;
+        text-decoration: none;
+        font-family: var(--font-text-primary);
+        transition: color 0.3s;
+      }
+
+      .redirect-link:hover {
+        color: #868686;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
     </style>
-</head>
-
-<body data-theme="dark">
-
-    <div id="particles-js"></div>
-
-    <header class="site-header">
-        <div class="site-header-desktop">
-            <div class="site-header__container container">
-                <div class="site-header__logo-wrapper">
-                    <a href="#" class="site-header__logo-link gradient-text-animated">
-                        MICGO
-                    </a>
-                </div>
-                <nav class="site-header__nav main-nav">
-                    <ul class="site-header__nav-list">
-                        <li class="site-header__nav-item"><a href="#"
-                                class="site-header__nav-link a-links__underline active">Strona domowa</a></li>
-                        <li class="site-header__nav-item"><a href="#"
-                                class="site-header__nav-link a-links__underline">Usługi </a></li>
-                        <li class="site-header__nav-item"><a href="#" class="site-header__nav-link a-links__underline">O
-                                nas</a></li>
-                        <li class="site-header__nav-item"><a href="#"
-                                class="site-header__nav-link a-links__underline">Portfolio</a></li>
-                    </ul>
-                </nav>
-                <div class="site-header2__controls">
-                    <button id="contact-btn" class="site-header2__icon-button contact-button"
-                        aria-label="Napisz do nas!">
-                        Napisz do nas <i class="fa-solid fa-angles-right animated-arrow"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="site-header-mobile">
-            <div class="site-header__container container">
-                <button class="hamburger-menu-toggle" id="hamburger-menu-toggle" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="hamburger-line top"></span>
-                    <span class="hamburger-line middle"></span>
-                    <span class="hamburger-line bottom"></span>
-                </button>
-                <div class="site-header__logo-wrapper site-header__logo-wrapper--mobile">
-                    <a href="/" class="site-header__logo-link gradient-text-animated">
-                        MICGO
-                    </a>
-                </div>
-                <div class="site-header__mobile-placeholder"></div>
-            </div>
-            <nav id="mobile-menu" class="site-header__mobile-nav">
-                <ul class="site-header__mobile-nav-list">
-                    <li class="site-header__mobile-nav-item"><a href="#"
-                            class="site-header__mobile-nav-link a-links__underline">Usługi</a></li>
-                    <li class="site-header__mobile-nav-item"><a href="#"
-                            class="site-header__mobile-nav-link a-links__underline">O nas</a></li>
-                    <li class="site-header__mobile-nav-item"><a href="#"
-                            class="site-header__mobile-nav-link a-links__underline">Portfolio</a></li>
-                    <li class="site-header__mobile-nav-item"><a href="#"
-                            class="site-header__mobile-nav-link a-links__underline">Napisz do nas</a></li>
-                </ul>
-                <div class="site-header__mobile-controls">
-                    <button id="theme-toggle-mobile" class="site-header__icon-button theme-toggle-button"
-                        aria-label="Przełącz motyw">
-                        <i class="fa-solid fa-moon"></i>
-                    </button>
-                </div>
-            </nav>
-        </div>
-    </header>
-
-    <main>
-
-        <section class="hero-section">
-
-            <div class="flex-spacer-top"></div>
-            <div class="hero-image-container"></div>
-            <div class="hero-content">
-                <h1 class="animated-headline">
-                    Tworzymy <span id="typing"></span><span class="cursor">|</span>,<div class="subtitle">to cyfrowy
-                        fundament Twojego sukcesu.</div>
-                </h1>
-                </h1>
-                <h2>Nowoczesne rozwiązania technologiczne, które przyspieszają Twój biznes. Tworzymy sklepy internetowe,
-                    systemy IT i automatyzacja, które działają.</h2>
-            </div>
-            <div class="hero-button-wrapper">
-                <a href="#about" class="hero-scroll-icon" aria-label="Przewiń w dół">
-                    <i class="fa-solid fa-angles-down"></i></a>
-            </div>
-            <div class="flex-spacer-bottom"></div>
-        </section>
-        <div class="site-button__controls">
-            <button id="theme-toggle" class="theme-toggle-button theme-switcher-slider" aria-label="Przełącz motyw"
-                role="switch" aria-checked="true">
-                <div class="slider-handle">
-                    <i class="fa-solid fa-moon dark-icon"></i>
-                    <i class="fa-solid fa-sun light-icon"></i>
-                </div>
-
-                <span class="slider-text top-text">Ciemny</span>
-                <span class="slider-text bottom-text">Jasny</span>
-            </button>
-  <button
-    id="lang-toggle"
-    class="site-button__icon-button lang-toggle-button lang-switcher-slider"
-    aria-label="Zmień język"
-    role="switch"
-    aria-checked="true"
-  >
-    <div class="slider-handle">
-      <span class="lang-text lang-pl">PL</span>
-      <span class="lang-text lang-en">EN</span>
-      </div>
-
-    <span class="slider-text top-lang-text">PL</span>
-    <span class="slider-text bottom-lang-text">EN</span>
-  </button>
-        </div>
-
-        <section class="roadmap-section">
-            <div class="roadmap-header">
-                <h3>Nasz proces tworzenia innowacyjnych rozwiązań</h3>
-                <p>Od wizji do sukcesu online – oto, jak przekształcamy Twoje pomysły w działające i efektywne platformy
-                    e-commerce i systemy IT.</p>
-            </div>
-
-            <div class="roadmap-container">
-                <div class="roadmap-timeline">
-                    <div class="roadmap-item">
-                        <div class="roadmap-content">
-                            <span class="roadmap-quarter">KROK 1</span>
-                            <h4 class="roadmap-title">Koncepcja i Strategia</h4>
-                            <p class="roadmap-description">Rozpoczynamy od dogłębnego zrozumienia Twojej
-                                <strong>wizji</strong> i celów. Tworzymy solidną <strong>strategię</strong>, która jest
-                                fundamentem całego projektu.
-                            </p>
-                        </div>
-                        <div class="roadmap-image roadmap-image__first">
-                        </div>
-                        <div class="roadmap-dot"></div>
-                    </div>
-
-                    <div class="roadmap-item">
-                        <div class="roadmap-content">
-                            <span class="roadmap-quarter">KROK 2</span>
-                            <h4 class="roadmap-title">Projektowanie UX/UI
-                            </h4>
-                            <p class="roadmap-description">Przekształcamy strategię w <strong>intuicyjne i estetyczne
-                                    interfejsy</strong>. Dbamy o doskonałe <strong>doświadczenie użytkownika</strong> i
-                                atrakcyjny <strong>wygląd</strong>.</p>
-                        </div>
-                        <div class="roadmap-image roadmap-image__second">
-                        </div>
-                        <div class="roadmap-dot"></div>
-                    </div>
-
-                    <div class="roadmap-item">
-                        <div class="roadmap-content">
-                            <span class="roadmap-quarter">KROK 3</span>
-                            <h4 class="roadmap-title">Rozwój i Implementacja</h4>
-                            <p class="roadmap-description">Nasz zespół deweloperów buduje Twoje rozwiązanie. Stawiamy na
-                                <strong>najnowsze technologie, czysty kod i skalowalne</strong> systemy.
-                            </p>
-                        </div>
-                        <div class="roadmap-image roadmap-image__third">
-                        </div>
-                        <div class="roadmap-dot"></div>
-                    </div>
-
-                    <div class="roadmap-item">
-                        <div class="roadmap-content">
-                            <span class="roadmap-quarter">KROK 4</span>
-                            <h4 class="roadmap-title">Testowanie i Uruchomienie</h4>
-                            <p class="roadmap-description">Przed wdrożeniem dokładnie <strong>testujemy</strong> system,
-                                by zapewnić jego <strong>funkcjonalność, wydajność i bezpieczeństwo</strong>. Potem
-                                następuje bezpieczne uruchomienie.</p>
-                        </div>
-                        <div class="roadmap-image roadmap-image__fourth">
-                        </div>
-                        <div class="roadmap-dot"></div>
-                    </div>
-
-                    <div class="roadmap-item">
-                        <div class="roadmap-content">
-                            <span class="roadmap-quarter">KROK 5</span>
-                            <h4 class="roadmap-title">Wsparcie i Optymalizacja</h4>
-                            <p class="roadmap-description">Nasza współpraca trwa dalej. Oferujemy <strong>wsparcie
-                                    techniczne, monitorowanie i rozwój platformy</strong>, byś zawsze był o krok przed
-                                konkurencją.</p>
-
-                        </div>
-                        <div class="roadmap-image roadmap-image__fifth">
-                        </div>
-                        <div class="roadmap-dot"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="services-section">
-            <div class="services-header">
-                <h3>Nasze Usługi</h3>
-                <p>
-                    Specjalizujemy się w dostarczaniu nowoczesnych rozwiązań cyfrowych,
-                    które wspierają rozwój firm na każdym etapie ich działalności.
-                </p>
-            </div>
-
-            <div class="services-list">
-                <div class="service-row">
-                    <div class="icon-wrapper">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </div>
-                    <div class="service-content">
-                        <h4>Sklepy Internetowe</h4>
-                        <p>Tworzymy funkcjonalne i estetyczne sklepy online, które przyciągają uwagę i zwiększają
-                            sprzedaż.</p>
-                    </div>
-                </div>
-
-                <div class="service-row">
-                    <div class="icon-wrapper">
-                        <i class="fa-solid fa-code"></i>
-                    </div>
-                    <div class="service-content">
-                        <h4>Systemy Dedykowane</h4>
-                        <p>Projektujemy rozwiązania IT dostosowane do specyfiki Twojego biznesu i jego procesów.</p>
-                    </div>
-                </div>
-
-                <div class="service-row">
-                    <div class="icon-wrapper">
-                        <i class="fa-solid fa-robot"></i>
-                    </div>
-                    <div class="service-content">
-                        <h4>Automatyzacja Procesów</h4>
-                        <p>Wdrażamy inteligentne rozwiązania, które eliminują powtarzalne zadania i oszczędzają czas.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="service-row">
-                    <div class="icon-wrapper">
-                        <i class="fa-solid fa-shield-halved"></i>
-                    </div>
-                    <div class="service-content">
-                        <h4>Cyberbezpieczeństwo</h4>
-                        <p>Zabezpieczamy dane i infrastrukturę IT zgodnie z najnowszymi standardami branżowymi.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-    <script src="js/main.js" type="module"></script>
-
-</body>
-
+  </head>
+  <body>
+    <div class="spinner"></div>
+    <div class="redirect-message">Przekierowuję Cię na <strong>MICGO.pl</strong>...</div>
+    <a class="redirect-link" href="https://micgo.pl">Kliknij tutaj, jeśli przekierowanie nie działa</a>
+  </body>
 </html>
