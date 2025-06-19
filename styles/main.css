@@ -1,0 +1,39 @@
+/*
+    BASE STYLES
+*/
+
+@import url('base/_reset.css');
+@import url('base/_variables.css');
+@import url('base/_typography.css');
+@import url('base/_base.css');
+
+/*
+    LAYOUT
+*/
+
+@import url('layout/_grid.css');
+@import url('layout/_header.css');
+@import url('layout/_footer.css');
+
+/*
+    COMPONENTS
+*/
+
+@import url('components/_button.css');
+@import url('components/_card.css');
+@import url('components/_form.css');
+@import url('components/_images.css');
+
+/*
+    PAGE-SPECIFIC
+*/
+
+@import url('pages/_home.css');
+
+/*
+RESPONSIVE DESIGN
+*/
+
+@import url('responsive/desktop.css');
+@import url('responsive/tablet.css');
+@import url('responsive/mobile.css');
