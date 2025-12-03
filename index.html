@@ -1,107 +1,148 @@
 <!DOCTYPE html>
 <html lang="pl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MICGO: Innowacyjne rozwiązania dla Twojej strony</title>
 
-    
-    <link rel="shortcut icon" href="images/favicon/favicon.ico">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsywny Header z Liquid Glass</title>
+    <link rel="stylesheet" href="style.css">
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
-    <meta http-equiv="refresh" content="3; URL='https://micgo.pl'" />
-    <style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
 
-      :root {
-        --color-background: #040c18;
-        --color-surface: #101a2b;
-        --color-text-primary: #fffcf2;
-        --color-text-headings: #ccc5b9;
-        --color-text-secondary: #a9a9a9;
-        --color-accent-blue: #2176ff;
-        --color-accent-blue-hover: #0056e6;
-        --color-gradient: linear-gradient(135deg, #2176ff 0%, #8b5cf6 100%);
-        --font-logo: 'Unbounded', sans-serif;
-        --font-text-headings: 'Roboto', sans-serif;
-        --font-text-primary: 'Montserrat', sans-serif;
-      }
+<body>
 
-      @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto:wght@400;700&family=Unbounded:wght@600&display=swap');
+    <header class="header" id="mainHeader">
+        <div class="header-content">
+            <a href="#" class="logo">
+                <img src="Agroexpert.png" alt="Logo Twojej Firmy" class="logo-img">
+                <span class="logo-text">AgroExpert</span>
+            </a>
+            <button class="hamburger" id="hamburgerButton" aria-label="Menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </header>
 
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+    <nav class="fullscreen-menu" id="fullscreenMenu">
+        <ul class="menu-list">
+            <li><a href="#">O nas</a></li>
+            <li><a href="#">Usługi</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="#">Kontakt</a></li>
+        </ul>
+    </nav>
 
-      body {
-        background-color: var(--color-background);
-        color: var(--color-text-primary);
-        font-family: var(--font-text-primary);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        text-align: center;
-        padding: 2rem;
-      }
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Profesjonalna ocena jakości produktów roślinnych</h1>
+            <p>Działamy na terenie całej Polski. Twoje plony pod okiem ekspertów.</p>
+            <a href="#contact" class="btn-contact">Umów bezpłatną konsultację</a>
+        </div>
+    </section>
 
-      .spinner {
-        width: 64px;
-        height: 64px;
-        border: 6px solid rgba(255, 255, 255, 0.1);
-        border-top: 6px solid #2176ff;
-        border-right: 6px solid #8b5cf6;
-        border-radius: 50%;
-        animation: spin 1s ease-in-out infinite;
-        margin-bottom: 2rem;
-      }
+    <section class="services-overview-section">
+        <div class="container">
+            <h2 class="section-title">Niezależne ekspertyzy, na których możesz polegać.</h2>
 
-      @keyframes spin {
-        to {
-          transform: rotate(360deg);
-        }
-      }
+            <div class="services-grid">
 
-      .redirect-message {
-        font-size: 1.5rem;
-        font-family: var(--font-text-headings);
-        color: var(--color-text-primary);
-        margin-bottom: 1rem;
-        animation: fadeIn 1s ease-in-out;
-      }
+                <div class="service-item">
+                    <h3 class="service-title">Minimalizacja Ryzyka Sporu</h3>
+                    <p>Dostarczamy niepodważalne dowody i dokumentację. Nasze ekspertyzy chronią Twoją pozycję w
+                        negocjacjach handlowych i sporach ubezpieczeniowych.</p>
+                </div>
 
-      .redirect-link {
-        color: var(--color-text-secondary);
-        font-weight: 500;
-        font-size: 16px;
-        text-decoration: none;
-        font-family: var(--font-text-primary);
-        transition: color 0.3s;
-      }
+                <div class="service-item">
+                    <h3 class="service-title">Globalna Zgodność i Certyfikacja</h3>
+                    <p>Wszystkie kontrole i wyceny są ściśle zgodne z normami handlowymi UE, międzynarodowymi
+                        protokołami fitosanitarnymi oraz Twoimi standardami wewnętrznymi.</p>
+                </div>
 
-      .redirect-link:hover {
-        color: #868686;
-      }
+                <div class="service-item">
+                    <h3 class="service-title">Reakcja Kryzysowa 24/7</h3>
+                    <p>Zapewniamy natychmiastową gotowość rzeczoznawców. Szybka interwencja jest kluczowa w przypadku
+                        reklamacji transportowych – działamy, gdy produkt jest na miejscu. </p>
+                </div>
 
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(10px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="spinner"></div>
-    <div class="redirect-message">Przekierowuję Cię na <strong>MICGO.pl</strong>...</div>
-    <a class="redirect-link" href="https://micgo.pl">Kliknij tutaj, jeśli przekierowanie nie działa</a>
-  </body>
+                <div class="service-item">
+                    <h3 class="service-title">Profesjonalna Dokumentacja</h3>
+                    <p>Raporty w formie papierowej lub cyfrowej z pełną galerią zdjęć. Ekspertyzy dostarczane
+                        terminowo drogą mailową lub priorytetową przesyłką pocztową.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="detailed-services-section">
+        <div class="container">
+            <h2 class="section-title">Nasze Usługi: Precyzja w Każdym Szczególe.</h2>
+            <p class="section-description">Oferujemy pełne spektrum usług rzeczoznawczych, dostosowanych do wymagań
+                całego łańcucha dostaw – od producenta po półkę sklepową.</p>
+
+            <div class="detailed-services-list">
+
+                <div class="service-row text-left">
+                    <div class="service-text">
+                        <h3 class="card-title">1. Wycena Wartości Rynkowej</h3>
+                        <p>Niezależna wycena wartości rynkowej towaru na dowolnym etapie obrotu. Kluczowa dla celów
+                            ubezpieczeniowych, celnych i transakcji handlowych.</p>
+                    </div>
+                    <div class="service-image-wrapper">
+                        <img src="services-1.jpg" alt="Obraz wyceny towaru" class="service-image">
+                    </div>
+                </div>
+
+                <div class="service-row text-right">
+                    <div class="service-image-wrapper">
+                        <img src="services-2.jpg" alt="Obraz kontroli w transporcie" class="service-image">
+                    </div>
+                    <div class="service-text">
+                        <h3 class="card-title">2. Kontrola i Reklamacje Transportowe</h3>
+                        <p>Błyskawiczna inspekcja towaru po dostawie. Sporządzanie dokumentacji niezbędnej do wszczęcia
+                            procedur reklamacyjnych i roszczeń wobec przewoźników.</p>
+                    </div>
+                </div>
+
+                <div class="service-row text-left">
+                    <div class="service-text">
+                        <h3 class="card-title">3. Audyty Jakości i Standardów</h3>
+                        <p>Ocena jakości partii w magazynach lub chłodniach. Weryfikacja zgodności z normami UE,
+                            specyfikacją kontraktową oraz klasyfikacją jakościową.</p>
+                    </div>
+                    <div class="service-image-wrapper">
+                        <img src="services-3.jpg" alt="Obraz audytu jakości" class="service-image">
+                    </div>
+                </div>
+
+                <div class="service-row text-right">
+                    <div class="service-image-wrapper">
+                        <img src="services-4.jpg" alt="Obraz rozstrzygania sporów" class="service-image">
+                    </div>
+                    <div class="service-text">
+                        <h3 class="card-title">4. Mediacje i Rozstrzyganie Sporów</h3>
+                        <p>Działania mediacyjne i eksperckie w przypadku sporów handlowych. Nasz raport to ostateczny
+                            dowód w kwestii stanu i jakości produktu.</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <script src="script.js" defer></script>
+</body>
+
+</html>
+
+<script src="script.js" defer></script>
+</body>
+
 </html>
