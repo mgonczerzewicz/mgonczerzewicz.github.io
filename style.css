@@ -491,6 +491,7 @@ body::-webkit-scrollbar {
 	/* Na urządzeniach mobilnych, efekt 'fixed' może działać niestabilnie lub być niepożądany. */
 	.parallax-separator {
 		height: 200px; /* Zmniejszamy wysokość na mobile */
+		background-attachment: scroll;
 	}
 }
 
@@ -528,6 +529,7 @@ body::-webkit-scrollbar {
 	/* Na urządzeniach mobilnych, efekt 'fixed' może działać niestabilnie lub być niepożądany. */
 	.parallax-separator2 {
 		height: 200px; /* Zmniejszamy wysokość na mobile */
+		background-attachment: scroll;
 	}
 }
 
