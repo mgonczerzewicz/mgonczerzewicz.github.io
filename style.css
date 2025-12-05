@@ -1,0 +1,1128 @@
+/* --- 1. PODSTAWOWY RESET I STYLIZACJA TŁA --- */
+
+body {
+	font-family: 'Inter', sans-serif !important;
+	/* Domyślny rozmiar i wygładzanie */
+	font-size: 16px;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+html {
+	scroll-padding-top: 70px; /* Wartość = Wysokość Twojego nagłówka (70px) */
+	scroll-behavior: smooth; /* Opcjonalnie: Płynne przewijanie */
+}
+
+h1,
+h2,
+h3 {
+	/* Nagłówki mogą używać bardziej pogrubionych wersji lub czcionki zoptymalizowanej pod wyświetlanie */
+	font-weight: 700;
+}
+
+body {
+	margin: 0;
+	font-family: sans-serif;
+	min-height: 200vh;
+	background-color: #ffffff;
+}
+
+body::-webkit-scrollbar {
+	display: none; /* Ukrywa cały pasek przewijania */
+}
+
+/* Opcjonalnie: Dla konkretnego elementu np. .box-overflow */
+.box-overflow::-webkit-scrollbar {
+	width: 0; /* Ustawia szerokość na zero */
+	height: 0; /* Ustawia wysokość na zero (dla poziomych pasków) */
+	display: none;
+}
+
+/* --- 2. STYLIZACJA HEADERA (NAGŁÓWKA) --- */
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 70px;
+	background-color: transparent;
+	color: #333;
+	z-index: 1200;
+	padding: 0;
+	transition: background-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* KONTENER DLA ZAWARTOŚCI Z MARGINESAMI BOCZNYMI */
+.header-content {
+	height: 100%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 0 20px; /* PADDING BOCZNY */
+	position: relative;
+}
+
+/* --- 3. EFEKT SCROLL-TRIGGER (LIQUID GLASS) --- */
+.header.scrolled {
+	background: rgba(255, 255, 255, 0.1);
+	box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3); /* Cień jest mocniejszy */
+
+	/* KLUCZOWE FILTRY DLA EFEKTU ZNIEKSZTAŁCENIA */
+	backdrop-filter: blur(50px) saturate(200%) contrast(150%);
+	-webkit-backdrop-filter: blur(50px) saturate(200%) contrast(150%);
+}
+
+/* Stylizacja Logo/Nazwy */
+/* --- 3. STYLIZACJA LOGO --- */
+
+/* Stylizacja kontenera Logo/Nazwy */
+.logo {
+	display: flex;
+	align-items: center;
+	font-size: 1.8em;
+	font-weight: bold;
+	font-family: 'Montserrat', sans-serif;
+	text-decoration: none;
+	color: #000;
+	/* KLUCZOWA ZMIANA: Pozycjonujemy logo absolutnie na środku */
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 10; /* Upewniamy się, że logo jest zawsze nad innymi elementami w headerze */
+}
+
+/* Stylizacja obrazka logo */
+.logo-img {
+	height: 50px; /* Wysokość obrazka */
+	width: auto;
+	margin-right: 10px; /* Odstęp między obrazkiem a tekstem */
+}
+
+/* Stylizacja samego tekstu */
+.logo-text {
+	font-size: 1em; /* Oznacza 1.8em z klasy .logo */
+	line-height: 1; /* Zapewnia wyśrodkowanie tekstu */
+}
+
+/* --- 4. STYLIZACJA IKONY HAMBURGERA --- */
+.hamburger {
+	/* Ustawiamy hamburgera na końcu kontenera */
+	margin-left: auto;
+	width: 30px;
+	height: 24px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	cursor: pointer;
+	z-index: 1600;
+	padding: 5px;
+	border: none;
+	background: none;
+	transition: width 0.2s ease, filter 0.2s ease;
+}
+
+.hamburger:hover {
+	width: 36px;
+}
+
+.hamburger .bar {
+	width: 100%;
+	height: 3px;
+	background-color: #000;
+	transition: all 0.3s ease;
+}
+
+/* Animacja krzyżyka */
+.hamburger.is-active .bar:nth-child(1) {
+	transform: translateY(6px) rotate(45deg);
+}
+
+.hamburger.is-active .bar:nth-child(2) {
+	transform: translateY(-6px) rotate(-45deg);
+}
+
+/* --- 5. STYLIZACJA PEŁNOEKRANOWEGO MENU --- */
+.fullscreen-menu {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #ca8282;
+	z-index: 1100;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* Początkowe przesunięcie poza ekran */
+	transform: translateX(100%);
+	transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+}
+
+.fullscreen-menu.is-open {
+	/* Wsuwanie na ekran po dodaniu klasy */
+	transform: translateX(0);
+}
+
+.header.menu-is-open {
+	/* Usuwamy box-shadow */
+	box-shadow: none !important;
+	background: transparent !important;
+
+	/* 3. ANULOWANIE EFEKTU LIQUID GLASS/ROZMYCIA */
+	backdrop-filter: none !important;
+	-webkit-backdrop-filter: none !important;
+}
+
+.menu-list {
+	list-style: none;
+	padding: 0;
+	text-align: center;
+}
+
+.menu-list a {
+	color: #000;
+	text-decoration: none;
+	font-size: 2.5em;
+	font-weight: 300;
+	display: block;
+	padding: 15px 0;
+	transition: color 0.2s;
+}
+
+.menu-list a:hover {
+	color: #fff;
+}
+
+/* ... pozostała część kodu CSS (body, header, logo, hamburger, menu) ... */
+
+/* --- 6. STYLIZACJA SEKCJI HERO --- */
+
+.hero-section {
+	/* Ustawia wysokość na całą wysokość widoku przeglądarki */
+	height: 100vh;
+	width: 100%;
+
+	/* Wstaw własny obrazek! */
+	background: url('hero-img.webp') no-repeat center center;
+	background-size: cover;
+
+	/* Używamy Flexbox do wyśrodkowania zawartości pionowo i poziomo */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+
+	/* Dodajemy warstwę przyciemniającą, aby tekst był bardziej czytelny */
+	position: relative;
+	z-index: 10; /* Upewniamy się, że jest pod headerem */
+}
+
+/* Warstwa przyciemniająca (Overlay) */
+.hero-section::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.4); /* Ciemny, półprzezroczysty kolor */
+	z-index: 1; /* Pod treścią (tekstem i przyciskiem) */
+}
+
+/* Kontener dla tekstu i przycisku (nad overlayem) */
+.hero-content {
+	color: #ffffff; /* Biały tekst dla kontrastu z ciemnym tłem */
+	z-index: 5; /* Musi być wyżej niż warstwa przyciemniająca (z-index: 1) */
+	max-width: 800px;
+	padding: 0 20px;
+}
+
+.hero-content h1 {
+	font-size: 3.5em;
+	margin-bottom: 15px;
+}
+
+.hero-content p {
+	font-size: 1.4em;
+	margin-bottom: 30px;
+	font-weight: 300;
+}
+
+/* Stylizacja przycisku kontaktu */
+.btn-contact {
+	display: inline-block;
+	background-color: #ca8282; /* Używamy jasnego koloru dla wyróżnienia */
+	color: #ffffff;
+	text-decoration: none;
+	padding: 12px 30px;
+	border-radius: 25px;
+	font-size: 1.1em;
+	font-weight: bold;
+	transition: all 0.3s ease;
+	border: 2px solid #ca8282;
+}
+
+.btn-contact:hover {
+	background-color: transparent;
+	border-color: #f4f4f4;
+	color: #f4f4f4;
+}
+
+/* USUŃ LUB ZMIEŃ NAZWĘ STAREGO KODU .content, ABY UNIKNĄĆ KONFLIKTÓW */
+.content {
+	/* Stary kod .content nie jest już potrzebny, można go usunąć */
+	/* Poniższe style są tylko na wypadek, gdybyś chciał zachować stary content pod hero */
+	padding-top: 0; /* Zmieniamy na 0, ponieważ Hero Section ma 100vh */
+	/* ... */
+}
+
+.container {
+	/* 1. Maksymalna szerokość: Ogranicza, jak daleko treść rozciąga się na dużych monitorach */
+	max-width: 1200px;
+
+	/* 2. Wyśrodkowanie: Wyrównuje kontener na środku strony */
+	margin-left: auto;
+	margin-right: auto;
+
+	/* 3. KLUCZOWY PUNKT: Padding boczny! Gwarantuje odstęp od krawędzi okna */
+	padding: 20px 20px 40px 20px;
+}
+
+@media (max-width: 600px) {
+	.container {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+}
+
+.reveal {
+    opacity: 0;
+    
+    /* KLUCZOWA ZMIANA: Zwiększenie czasu do 0.8s i użycie złożonej krzywej */
+    transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Wariant animacji: Pojawienie się od dołu */
+.fade-in-bottom {
+    transform: translateY(50px); 
+}
+
+/* Stan Końcowy: Aktywna klasa (widoczny) */
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0); 
+}
+
+/* Opóźnienie bazowe (0.2s - 0.4s to dobry początek) */
+.delay-1 { transition-delay: 0.2s; }
+.delay-2 { transition-delay: 0.4s; }
+.delay-3 { transition-delay: 0.6s; }
+.delay-4 { transition-delay: 0.8s; }
+
+/* Możesz kontynuować dla innych elementów, np. w sekcji detailed-services-list: */
+.delay-5 { transition-delay: 1.0s; }
+.delay-6 { transition-delay: 1.2s; }
+.delay-7 { transition-delay: 1.4s; }
+/* itd. */
+
+
+/* --- 7. STYLIZACJA SEKCJI PRZEGLĄDU KORZYŚCI --- */
+
+.services-overview-section {
+	/* padding: 100px 0; */
+	text-align: center;
+	background-color: #fff; /* Jasne, szare tło, aby oddzielić od Hero */
+	color: #000;
+}
+
+.section-title {
+	font-size: 2.2rem;
+	font-weight: 700;
+	text-align: center;
+}
+
+.section-description {
+	font-size: 20px;
+	text-align: center;
+}
+
+/* Układ 3-kolumnowy (CSS GRID) */
+.services-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr); /* Trzy równe kolumny */
+	gap: 40px;
+	text-align: left; /* Treść w kolumnach zrównana do lewej */
+}
+
+.service-item {
+	padding: 30px;
+	/* Efekt subtelnej ramki, typowy dla Apple */
+	border-radius: 12px;
+	background-color: #fff;
+	transition: all 0.3s ease;
+}
+
+.service-item:hover {
+	/* Lekkie uniesienie na hover dla interaktywności */
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.service-title {
+	font-size: 1.4em;
+	font-weight: 600;
+	margin-top: 0;
+	margin-bottom: 15px;
+	color: #1a1a1a;
+	transition: all 0.3s ease;
+}
+
+.service-item:hover .service-title {
+	scale: calc(105%);
+}
+
+.service-item p {
+	font-size: 1em;
+	color: #222;
+	line-height: 1.6;
+}
+
+@media (max-width: 992px) {
+	.services-grid {
+		/* Przełączenie na dwie kolumny na tabletach */
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 600px) {
+	.services-grid {
+		/* Przełączenie na jedną kolumnę na telefonach */
+		grid-template-columns: 1fr;
+	}
+}
+
+/* --- 8. STYLIZACJA SEKCJI SZCZEGÓŁOWYCH USŁUG (UKŁAD NAPRZEMIENNY) --- */
+.detailed-services-section {
+	background-color: #ffffff;
+	color: #000;
+}
+
+.detailed-services-list {
+	display: flex;
+	flex-direction: column; /* Układanie rzędów pionowo */
+	margin-top: 60px;
+}
+
+.service-row {
+	display: grid;
+	/* KLUCZOWE: Dwie kolumny o równym udziale */
+	grid-template-columns: 1fr 1fr;
+	gap: 80px; /* Duży odstęp między obrazkiem a tekstem */
+	align-items: center; /* Wyśrodkowanie tekstu i obrazka w pionie */
+	text-align: left;
+}
+
+/* Właściwy Styl Tekstu */
+
+.card-title {
+	font-size: 2em; /* Większy tytuł dla głównej usługi */
+	font-weight: 700;
+	color: #222;
+	margin-bottom: 15px;
+}
+
+.service-text p {
+	font-size: 1.1em;
+	color: #333;
+	line-height: 1.7;
+}
+
+/* Styl Obrazka */
+.service-image-wrapper {
+	/* Ustawienie elementu tak, by obrazek wypełnił cały dostępny obszar */
+	overflow: hidden;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25); /* Cień na obrazku */
+}
+
+.service-image {
+	width: 100%;
+	height: auto;
+	display: block;
+	object-fit: cover;
+	transition: transform 0.4s ease; /* Płynne powiększenie na hover */
+}
+
+.service-row:hover .service-image {
+	transform: scale(1.05); /* Lekkie powiększenie obrazka na hover */
+}
+
+/* --- RESPONSIVE POPRAWKI (KLUCZOWE) --- */
+@media (max-width: 992px) {
+	.service-row {
+		/* Na małych ekranach: jedna kolumna (teraz jako Flexbox dla łatwiejszego orderowania) */
+		display: flex;
+		flex-direction: column; /* Ustawienie stosu: jeden pod drugim */
+		gap: 0;
+	}
+
+	/* Ujednolicenie układu na mobile: Tekst ZAWSZE ma order 1, Obrazek ZAWSZE ma order 2 */
+
+	.service-text {
+		order: 1; /* Tekst jest zawsze na górze */
+		text-align: center;
+	}
+
+	.service-image-wrapper {
+		order: 2; /* Obrazek jest zawsze pod tekstem */
+		/* Na mobile, chcemy, żeby obrazek był widoczny, ale nie dominujący */
+		margin-top: 10px;
+	}
+
+	/* Upewnienie się, że tytuły wewnątrz tekstu są wyśrodkowane */
+	.card-title {
+		text-align: center;
+	}
+}
+
+@media (max-width: 992px) {
+	/* ... inne style dla service-row, itp. ... */
+
+	/* KLUCZOWA ZMIANA DLA SERVICE IMAGE WRAPPER */
+	.service-row .service-image-wrapper {
+		/* Wymuszamy, by wrapper z obrazkiem wypełnił całą szerokość ekranu, 
+           wypychając się poza padding kontenera. */
+		width: 100vw;
+
+		/* Używamy transform, aby cofnąć się o połowę szerokości kontenera, 
+           dzięki czemu obraz zaczyna się od samej krawędzi ekranu. 
+           (100vw = 100% szerokości viewportu) */
+		position: relative; /* Potrzebne do zresetowania bazowego punktu */
+		/* left: 50%;
+        transform: translateX(-50vw);  */
+
+		/* Opcjonalnie: Zapewniamy, że obraz jest na górze stosu (pod tekstem) */
+		z-index: 1;
+
+		/* Upewniamy się, że obraz jest na dole na mobile */
+		order: 2;
+	}
+
+	/* Styl dla tekstu */
+	.service-row .service-text {
+		order: 1; /* Tekst jest na górze */
+		/* Zmieniamy szerokość tekstu, aby nie był zbyt mały,
+           ale nadal był ograniczony przez padding kontenera. */
+		width: 100%;
+	}
+
+	/* Ustawienie stałej wysokości dla obrazka (jak wcześniej ustalono) */
+	.service-image {
+		width: 100%;
+		height: 250px;
+		object-fit: cover;
+	}
+}
+
+/* --- 9. STYLIZACJA SEKCJI PARALAKSA --- */
+.parallax-separator {
+	height: 300px;
+	width: 100%;
+
+	background-image: url('parallax.webp');
+
+	/* GWARANTUJE BRAK POWIELANIA I ZOOMOWANIE */
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+
+	/* KLUCZ DO EFEKTU PARALAKSY W CSS (TYLKO NA DESKTOPIE) */
+	background-attachment: fixed;
+
+	/* ... reszta stylów (position: relative, z-index, itp.) ... */
+}
+
+/* Możesz opcjonalnie dodać lekki overlay, jeśli obraz jest zbyt jasny: */
+.parallax-separator::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.15); /* Subtelne przyciemnienie */
+	z-index: 1;
+}
+
+/* --- RESPONSIVE POPRAWKI dla Paralaksa --- */
+@media (max-width: 992px) {
+	/* Na urządzeniach mobilnych, efekt 'fixed' może działać niestabilnie lub być niepożądany. */
+	.parallax-separator {
+		height: 200px; /* Zmniejszamy wysokość na mobile */
+		background-attachment: scroll;
+	}
+}
+
+.parallax-separator2 {
+	height: 300px;
+	width: 100%;
+
+	background-image: url('parallax2.webp');
+
+	/* GWARANTUJE BRAK POWIELANIA I ZOOMOWANIE */
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+
+	/* KLUCZ DO EFEKTU PARALAKSY W CSS (TYLKO NA DESKTOPIE) */
+	background-attachment: fixed;
+
+	/* ... reszta stylów (position: relative, z-index, itp.) ... */
+}
+
+/* Możesz opcjonalnie dodać lekki overlay, jeśli obraz jest zbyt jasny: */
+.parallax-separator2::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.15); /* Subtelne przyciemnienie */
+	z-index: 1;
+}
+
+/* --- RESPONSIVE POPRAWKI dla Paralaksa --- */
+@media (max-width: 992px) {
+	/* Na urządzeniach mobilnych, efekt 'fixed' może działać niestabilnie lub być niepożądany. */
+	.parallax-separator2 {
+		height: 200px; /* Zmniejszamy wysokość na mobile */
+		background-attachment: scroll;
+	}
+}
+
+/* --- 10. STYLIZACJA SEKTA WEZWANIA DO DZIAŁANIA (CTA) --- */
+.cta-section {
+	text-align: center;
+	/* Ciemne tło dla kontrastu i akcentu */
+	background-color: #ca8282;
+	color: #ffffff;
+}
+
+.cta-section h3 {
+	font-size: 2em;
+	font-weight: 700;
+	margin-bottom: 15px;
+}
+
+.cta-section p {
+	font-size: 1.1em;
+	color: #f4f4f4;
+	max-width: 700px;
+	margin: 0 auto 30px auto;
+}
+
+/* Stylizacja przycisku CTA */
+.btn-contact-b {
+	transition: all 0.3s ease;
+	border: 2px solid #f4f4f4;
+}
+
+.btn-contact-b:hover {
+	/* Delikatne przyciemnienie na hover */
+	color: #000;
+	border: 2px solid #000;
+}
+
+/* --- 10. STYLIZACJA SEKTA O NAS (ABOUT US) --- */
+.about-section {
+	text-align: center;
+	background-color: #ffffff;
+	color: #333;
+}
+
+.about-section .section-title {
+	font-size: 2.5em;
+	font-weight: 700;
+	margin-bottom: 50px;
+}
+
+/* Układ dwukolumnowy dla treści O Nas */
+.about-content {
+	display: grid;
+	/* Dzielimy na dwie kolumny (np. 60% na tekst, 40% na obraz) */
+	grid-template-columns: 3fr 2fr;
+	gap: 80px;
+	text-align: left;
+	align-items: center; /* Wyśrodkowanie pionowe */
+}
+
+.lead-paragraph {
+	font-size: 1.3em;
+	font-weight: 600;
+	margin-bottom: 25px;
+	color: #1a1a1a;
+}
+
+.about-text p {
+	font-size: 1.1em;
+	line-height: 1.7;
+	color: #555;
+	margin-bottom: 20px;
+}
+
+.about-image {
+	width: 100%;
+	height: auto;
+	display: block;
+	/* Nowoczesny styl: kwadratowy/zaokrąglony obraz */
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+	transition: transform 0.4s ease;
+}
+
+.about-image-wrapper {
+	overflow: hidden;	
+}
+
+.about-image-wrapper:hover .about-image {
+    transform: scale(1.05); /* Lekkie powiększenie na hover */
+}
+
+/* --- RESPONSIVE POPRAWKI --- */
+@media (max-width: 992px) {
+	.about-content {
+		/* Na tabletach i telefonach: układ kolumnowy */
+		grid-template-columns: 1fr;
+		gap: 40px;
+		text-align: center; /* Wyśrodkowanie tekstu na mobile */
+	}
+
+	.about-image-wrapper {
+		order: -1; /* Obrazek jest nad tekstem na mobile */
+
+		/* KLUCZOWA POPRAWKA: Rozciągnięcie na całą szerokość ekranu */
+
+		/* 1. Cofnięcie elementu do lewej krawędzi o wartość paddingu kontenera (20px) */
+		margin-left: -20px;
+
+		/* 2. Zwiększenie szerokości o podwójną wartość paddingu, aby pokryć cały viewport 
+           (100% szerokości kontenera + 20px lewo + 20px prawo = 40px) */
+		width: calc(100% + 40px);
+
+		/* Usuwamy cień na hover, jeśli chcemy, aby nie wychodził poza ekran */
+		box-shadow: none;
+		border-radius: 0; /* Opcjonalnie: usuwamy zaokrąglenie, aby przylegało do krawędzi */
+	}
+
+	.about-image {
+		width: 100%;
+		height: 350px;
+		object-fit: cover;
+		object-position: top;
+	}
+	.about-text {
+		order: 1;
+	}
+}
+
+/* --- 11. STYLIZACJA FORMULARZA KONTAKTOWEGO --- */
+.contact-form-section {
+	text-align: center;
+	background-color: #f7f7f7; /* Jasne tło, by oddzielić od białego About Us */
+	color: #000;
+}
+
+.contact-form-section .section-title {
+	font-size: 2.5em;
+	font-weight: 700;
+	margin-bottom: 10px;
+}
+
+.contact-form-section .section-description {
+	font-size: 1.1em;
+	color: #333;
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+/* Stylizacja Formularza */
+.contact-form {
+	max-width: 600px; /* Ograniczenie szerokości formularza */
+	margin: 0 auto;
+	text-align: left;
+	background-color: #ffffff;
+	padding: 30px;
+	border-radius: 12px;
+}
+
+.form-group {
+	margin-bottom: 20px;
+}
+
+.contact-form label {
+	display: block;
+	font-weight: 600;
+	margin-bottom: 8px;
+	color: #1a1a1a;
+	font-size: 0.95em;
+}
+
+.contact-form input[type='text'],
+.contact-form input[type='email'],
+.contact-form input[type='tel'],
+.contact-form textarea {
+	width: 100%;
+	padding: 12px;
+	border: 1px solid #888;
+	border-radius: 8px; /* Lekko zaokrąglone pola */
+	font-size: 1em;
+	box-sizing: border-box; /* Kluczowe, by padding nie zwiększał szerokości */
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+	border-color: #d46e6e; /* Podświetlenie akcentem na focus */
+	outline: none;
+	box-shadow: 0 0 0 3px rgba(212, 110, 110, 0.2);
+}
+
+.contact-form textarea {
+	resize: vertical;
+}
+
+/* Checkbox i akceptacja */
+.checkbox-group {
+	display: flex;
+	align-items: flex-start;
+	font-size: 0.9em;
+	color: #555;
+}
+
+.checkbox-group input[type='checkbox'] {
+	margin-top: 5px;
+	margin-right: 10px;
+}
+
+/* Stylizacja przycisku Submit */
+.btn-submit {
+	display: block;
+	width: 100%;
+	background-color: #d46e6e; /* Używamy mocniejszego czerwonego akcentu */
+	color: white;
+	padding: 15px;
+	border: none;
+	border-radius: 8px;
+	font-size: 1.1em;
+	font-weight: 700;
+	cursor: pointer;
+	transition: background-color 0.2s ease;
+	margin-top: 30px;
+}
+
+.btn-submit:hover {
+	background-color: #e38787; /* Jaśniejszy odcień na hover */
+}
+
+.btn-submit.success {
+	background-color: #5cb85c !important; /* Zielony kolor dla sukcesu */
+	cursor: default;
+	pointer-events: none; /* Zapobiega dalszemu klikaniu */
+}
+
+.btn-submit.loading {
+	opacity: 0.7;
+	cursor: wait;
+}
+
+/* ... W sekcji 12. STYLIZACJA STOPKI (FOOTER) ... */
+
+.main-footer {
+	background-color: #ca8282;
+	color: #ffffff;
+	font-size: 0.9em;
+}
+
+.footer-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 40px;
+	/* Domyślne wyrównanie dla całej siatki niech będzie Left */
+	text-align: left;
+}
+
+/* --- Wyrównania Kolumn --- */
+
+/* KOLUMNA 1: DANE FIRMY (Lewo) */
+.footer-info {
+	text-align: left;
+}
+
+/* KOLUMNA 2: NAWIGACJA (Środek) */
+.footer-nav {
+	text-align: center; /* KLUCZOWE: Wyśrodkowanie w drugiej kolumnie */
+}
+
+/* KOLUMNA 3: KONTAKT (Prawo) */
+.footer-contact {
+	text-align: left; /* Wyrównanie do lewej strony kolumny dla czytelności */
+}
+
+/* --- Stylizacja Elementów Wewnętrznych --- */
+
+.footer-col h4 {
+	font-size: 1.1em;
+	font-weight: 700;
+	color: #f4f4f4;
+	margin-bottom: 20px;
+}
+
+/* Logo (nad danymi prawnymi) */
+.footer-info .footer-logo {
+	font-size: 2em;
+	font-weight: 700;
+	margin-bottom: 15px;
+	color: #ffffff;
+	display: inline-block; /* Aby był poprawnie wyrównany przez text-align: left */
+}
+
+/* Dane prawne i copyright */
+.copyright-text,
+.legal-info {
+	color: #f4f4f4;
+	font-size: 0.85em;
+	margin-top: 5px;
+	margin-bottom: 0;
+	line-height: 1.5;
+}
+
+.copyright-text.copyright-small {
+	margin-top: 20px;
+}
+
+/* Styl linków (bez zmian) */
+.footer-col ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.footer-col a {
+	color: #f4f4f4;
+	text-decoration: none;
+	line-height: 2;
+	transition: color 0.2s ease;
+}
+.footer-nav a:hover {
+	color: #000;
+}
+.footer-contact a:hover {
+	color: #000;
+}
+
+/* --- RESPONSIVE POPRAWKI --- */
+@media (max-width: 768px) {
+	.footer-grid {
+		grid-template-columns: 1fr;
+		/* KLUCZOWY PUNKT: Wyrównuje wszystkie elementy w kolumnie do środka */
+		text-align: center;
+		gap: 30px;
+	}
+
+	/* Dodatkowe wymuszenie wyśrodkowania na kolumnach, 
+       aby nadpisać ewentualne wyrównania z desktopu: */
+	.footer-col {
+		text-align: center;
+		padding-top: 20px;
+		border-top: 1px solid #fff;
+	}
+
+	/* Wyrównanie linków nawigacyjnych (lista ul) na mobile */
+	.footer-col ul {
+		/* Wymaga, aby element ul był traktowany jako blok do wyśrodkowania */
+		display: inline-block;
+		text-align: center;
+	}
+
+	.footer-col:first-child {
+		border-top: none;
+	}
+}
+
+.footer-credit {
+	text-align: center;
+}
+
+.footer-credit p {
+	font-size: 0.75em; /* Mała, dyskretna czcionka */
+	color: #f4f4f4; /* Bardzo ciemny, stonowany kolor */
+	margin: 0;
+}
+
+.footer-credit a {
+	color: #f4f4f4; /* Bardzo ciemny, stonowany kolor */
+}
+
+.footer-logo-img {
+	height: 50px;
+	width: auto;
+	margin-right: 10px;
+
+	/* KLUCZOWY DODATEK: Wyrównuje obrazek do środka wertykalnie względem tekstu */
+	vertical-align: middle;
+}
+
+.main-footer .footer-logo-img {
+	/* Używamy filtru, aby obrócić czarny kolor w biały/jasny */
+	filter: brightness(0) invert(1) brightness(0.95);
+}
+
+/* --- RESPONSIVE POPRAWKI dla Stopki --- */
+@media (max-width: 768px) {
+	/* W Media Query stopka jest już wyśrodkowana, więc nie potrzebujemy zmian. */
+	.footer-credit {
+		padding-top: 20px;
+	}
+}
+
+/* --- STYLIZACJA BANERU COOKIES --- */
+.cookie-consent {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	/* Ciemne, ale miękkie tło */
+	background-color: #1c1c1c;
+	color: #ffffff;
+	z-index: 9999;
+	padding: 15px 0;
+	/* Domyślnie chowa baner, a JS go wsuwa */
+	transform: translateY(0);
+	transition: transform 0.5s ease-out;
+	box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Klasa ukrywająca baner (dodawana po akceptacji/ustawieniach) */
+.cookie-consent.hidden {
+	transform: translateY(100%);
+}
+
+.cookie-content {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	font-size: 0.95em;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 20px;
+}
+
+.cookie-content p {
+	margin: 0;
+	text-align: center;
+}
+
+.cookie-content a {
+	color: #e38787; /* Kolor akcentu */
+	text-decoration: underline;
+}
+
+.cookie-actions {
+	display: flex;
+	gap: 10px;
+	margin-left: 20px;
+}
+
+/* Styl przycisków */
+.btn-cookie {
+	padding: 8px 15px;
+	border: 1px solid transparent;
+	border-radius: 5px;
+	cursor: pointer;
+	font-weight: 600;
+	transition: background-color 0.2s, border-color 0.2s;
+}
+
+.btn-cookie.accept {
+	background-color: #d46e6e;
+	color: white;
+}
+
+.btn-cookie.settings {
+	background-color: transparent;
+	border-color: #ffffff;
+	color: white;
+}
+
+/* Responsywność */
+@media (max-width: 768px) {
+	.cookie-content {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	.cookie-actions {
+		margin-left: 0;
+		width: 100%;
+		justify-content: space-around;
+		margin-top: 10px;
+	}
+}
+
+/* --- STYLIZACJA BANERU COOKIES --- */
+/* ... (pozostałe style cookie-consent, cookie-content) ... */
+
+/* NOWY PANEL USTAWIEŃ */
+.cookie-preferences {
+	padding: 0 20px;
+	text-align: left;
+}
+
+/* Ukrywanie/Pokazywanie */
+.cookie-preferences.hidden {
+	display: none; /* Domyślnie ukryty */
+}
+
+.consent-options {
+	margin: 20px 0;
+	border-top: 1px solid #333;
+	border-bottom: 1px solid #333;
+}
+
+.consent-option {
+	margin-bottom: 15px;
+	padding: 5px 0;
+}
+
+.consent-option input[type='checkbox'] {
+	margin-right: 10px;
+	transform: scale(1.2);
+}
+
+.consent-option label {
+	font-weight: 600;
+	color: #ffffff;
+}
+
+.consent-option .desc {
+	font-size: 0.8em;
+	color: #b0b0b0;
+	margin: 3px 0 0 25px; /* Wcięcie opisu */
+}
+
+/* Stylizacja przycisków w panelu */
+#savePreferences {
+	background-color: #d46e6e;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+#backToMain {
+	background-color: #555;
+	color: white;
+}
+
+.cookie-content.hidden {
+	display: none !important;
+}
+
+.cookie-preferences.hidden {
+	display: none !important;
+}
