@@ -33,9 +33,9 @@ h3 {
 	font-weight: 700;
 }
 
-/* body::-webkit-scrollbar {
+body::-webkit-scrollbar {
 	display: none; 
-} */
+}
 
 /* Opcjonalnie: Dla konkretnego elementu np. .box-overflow */
 .box-overflow::-webkit-scrollbar {
