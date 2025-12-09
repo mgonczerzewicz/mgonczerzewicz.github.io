@@ -534,6 +534,16 @@ body::-webkit-scrollbar {
 	.card-title {
 		text-align: center;
 	}
+	.service-row:nth-child(even) .service-text {
+    /* Ustawia tekst w wierszu parzystym na drugą pozycję (kolumna 2) */
+    order: 1; 
+}
+
+.service-row:nth-child(even) .service-image-wrapper {
+    /* Ustawia obrazek w wierszu parzystym na pierwszą pozycję (kolumna 1) */
+    order: 2; 
+}
+
 }
 
 @media (max-width: 992px) {
