@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	const header = document.getElementById('mainHeader')
 	const hamburger = document.getElementById('hamburgerButton')
 	const menu = document.getElementById('fullscreenMenu')
-	const SCROLL_THRESHOLD = 100 // Próg przewijania w pikselach
+	const SCROLL_THRESHOLD = 0 // Próg przewijania w pikselach
 
 	// Elementy Formularza Kontaktowego
 	const form = document.getElementById('contactForm')

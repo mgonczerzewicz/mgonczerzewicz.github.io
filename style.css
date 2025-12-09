@@ -33,9 +33,9 @@ h3 {
 	font-weight: 700;
 }
 
-body::-webkit-scrollbar {
-	display: none; /* Ukrywa cały pasek przewijania */
-}
+/* body::-webkit-scrollbar {
+	display: none; 
+} */
 
 /* Opcjonalnie: Dla konkretnego elementu np. .box-overflow */
 .box-overflow::-webkit-scrollbar {
@@ -53,7 +53,7 @@ body::-webkit-scrollbar {
 	height: 70px;
 	background-color: transparent;
 	color: #333;
-	z-index: 1200;
+	z-index: 100;
 	padding: 0;
 	transition: background-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
 }
@@ -220,7 +220,6 @@ body::-webkit-scrollbar {
 
 	/* Dodajemy warstwę przyciemniającą, aby tekst był bardziej czytelny */
 	position: relative;
-	z-index: 10; /* Upewniamy się, że jest pod headerem */
 }
 
 /* Warstwa przyciemniająca (Overlay) */
@@ -309,10 +308,6 @@ body::-webkit-scrollbar {
 	transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Wariant animacji: Pojawienie się od dołu */
-.fade-in-bottom {
-	transform: translateY(50px);
-}
 
 /* Stan Końcowy: Aktywna klasa (widoczny) */
 .reveal.active {
@@ -550,22 +545,26 @@ body::-webkit-scrollbar {
 
 	/* KLUCZOWA ZMIANA DLA SERVICE IMAGE WRAPPER */
 	.service-row .service-image-wrapper {
-		/* Wymuszamy, by wrapper z obrazkiem wypełnił całą szerokość ekranu, 
-           wypychając się poza padding kontenera. */
-		width: 100vw;
+		/* Usuwamy width: 100vw; i zastępujemy go poniższymi liniami */
 
-		/* Używamy transform, aby cofnąć się o połowę szerokości kontenera, 
-           dzięki czemu obraz zaczyna się od samej krawędzi ekranu. 
-           (100vw = 100% szerokości viewportu) */
-		position: relative; /* Potrzebne do zresetowania bazowego punktu */
-		/* left: 50%;
-        transform: translateX(-50vw);  */
+		/* 1. Ustawia na całą szerokość dostępną w kontenerze rodzica */
+		width: 100%;
+
+		/* 2. Przesuwa do lewej, ignorując padding kontenera (20px na desktop, 15px na mobile) */
+		margin-left: -15px;
+
+		/* 3. Zwiększa szerokość, aby zrekompensować przesunięcie, wypełniając krawędź. 
+           (15px lewo + 15px prawo = 30px) */
+		width: calc(100% + 30px);
 
 		/* Opcjonalnie: Zapewniamy, że obraz jest na górze stosu (pod tekstem) */
 		z-index: 1;
 
 		/* Upewniamy się, że obraz jest na dole na mobile */
 		order: 2;
+
+		/* Usuwamy cień, jeśli chcemy, aby obraz przylegał do krawędzi bez widocznych artefaktów */
+		box-shadow: none;
 	}
 
 	/* Styl dla tekstu */
@@ -599,7 +598,7 @@ body::-webkit-scrollbar {
 	/* KLUCZ DO EFEKTU PARALAKSY W CSS (TYLKO NA DESKTOPIE) */
 	background-attachment: fixed;
 	position: relative;
-	
+
 	z-index: 0;
 	/* ... reszta stylów (position: relative, z-index, itp.) ... */
 }
